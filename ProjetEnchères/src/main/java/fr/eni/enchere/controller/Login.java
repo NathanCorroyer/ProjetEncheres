@@ -32,6 +32,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 	
 		
 		HttpSession ses;
@@ -53,3 +54,27 @@ public class Login extends HttpServlet {
 	}
 
 }
+=======
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		
+		HttpSession session;
+		Utilisateur user;
+		HttpSession ses;
+		String email = request.getParameter("email");
+		String mdp = request.getParameter("mdp");
+		user =UtilisateurManager.getInstance().login(email,mdp);
+		
+		if(user!=null)
+		{
+			ses= request.getSession();
+			ses.setAttribute("userConnected", user);
+			response.sendRedirect("index.html");
+		}
+		else
+		{
+			response.sendRedirect("login.jsp");
+		}
+	}
+
+}
+>>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git

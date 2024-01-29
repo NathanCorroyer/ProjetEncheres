@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.UtilisateurManager;
+<<<<<<< HEAD
 import fr.eni.enchere.bo.Utilisateur;
+=======
+>>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
 
 /**
  * Servlet implementation class ServletRegisterUtilisateur
@@ -30,8 +33,13 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		Utilisateur um = new UtilisateurManager.getInstance();
 		
+=======
+		UtilisateurManager um = UtilisateurManager.getInstance();
+		Request.getParameter
+>>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
 	}
 
 }
