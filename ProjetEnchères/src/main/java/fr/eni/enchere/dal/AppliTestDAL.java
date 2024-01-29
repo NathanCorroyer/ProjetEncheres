@@ -6,6 +6,8 @@ public class AppliTestDAL {
 		//Déclaration et instanciation de la DAO
 		//ArticleDAOJdbcImpl articleDAO = new ArticleDAOJdbcImpl();
         UtilisateurDAO user = DAOFactory.getUtilisateurDAO() ;
+        
+       
 
         
 		//Instanciation du jeu d'essai 
