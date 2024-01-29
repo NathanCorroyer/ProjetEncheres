@@ -50,8 +50,15 @@ public class UtilisateurManager {
 		utilisateurDAO.register(u);
 	}
 	
-	public void login(Utilisateur u) {
-		utilisateurDAO.login(u);
+	public Utilisateur login(String email, String mdp) {
+		Utilisateur user = null;
+		try {
+			user = utilisateurDAO.login(email, mdp);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
 	}
 }
 >>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git

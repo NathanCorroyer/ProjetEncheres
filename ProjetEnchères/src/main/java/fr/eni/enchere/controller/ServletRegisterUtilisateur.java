@@ -38,7 +38,10 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 		
 =======
 		UtilisateurManager um = UtilisateurManager.getInstance();
+<<<<<<< HEAD
 		Request.getParameter
+>>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
+=======
 >>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
 	}
 
