@@ -1,5 +1,5 @@
 package fr.eni.enchere.dal;
 
-public class UtilisateurDAO {
+public interface UtilisateurDAO {
 
 }
