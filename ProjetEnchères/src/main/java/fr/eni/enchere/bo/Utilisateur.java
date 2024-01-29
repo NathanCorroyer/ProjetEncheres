@@ -14,6 +14,9 @@ public class Utilisateur {
 	private Integer credit;
 	private boolean administrateur;
 	
+	public Utilisateur() {};
+	
+
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String password) {

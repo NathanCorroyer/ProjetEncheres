@@ -2,7 +2,11 @@ package fr.eni.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
@@ -14,6 +18,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? "
 			+ "							WHERE noUtilisateur=?";
+	
+	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
 
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
@@ -51,7 +57,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	
 	public void update(Utilisateur u) throws SQLException {
-		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE)){
+		try(Connection con = ConnectionProvider.getConnection();PreparedStatement pstmt = con.prepareStatement(SQL_UPDATE)){
 			pstmt.setString(1,u.getPseudo());
 			pstmt.setString(2,u.getNom());
 			pstmt.setString(3, u.getPrenom());
@@ -72,7 +78,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
-
+	
+	public List<Utilisateur> findAll() throws SQLException{
+		
+		List<Utilisateur> listeUtilisateurs = new ArrayList();
+		
+		try( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_FIND_ALL)){
+			
+			ResultSet rs = pstmt.executeQuery() ;
+			
+			while ( rs.next() ) {
+				Utilisateur u = new Utilisateur();
+				u.setPseudo(rs.getString("pseudo"));
+				u.setNom(rs.getString("nom"));
+				u.setPrenom(rs.getString("prenom"));
+				u.setEmail(rs.getString("email"));
+				u.setTelephone(rs.getString("telephone"));
+				u.setRue(rs.getString("rue"));
+				u.setCode_postal(rs.getString("code_postal"));
+				u.setVille(rs.getString("ville"));
+				u.setPassword(rs.getString("password"));
+				 
+				listeUtilisateurs.add(u);
+			}
+			
+		} catch ( SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listeUtilisateurs ;
+	}
 		
 
 	
