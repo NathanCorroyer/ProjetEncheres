@@ -98,7 +98,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				u.setCode_postal(rs.getString("code_postal"));
 				u.setVille(rs.getString("ville"));
 				u.setPassword(rs.getString("password"));
-				
+				 
 				listeUtilisateurs.add(u);
 			}
 			
