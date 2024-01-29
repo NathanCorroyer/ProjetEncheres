@@ -2,7 +2,6 @@ package fr.eni.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -53,8 +52,7 @@ public class UtilisateurDAOJdbcImpl {
 	
 	
 	public void update(Utilisateur u) throws SQLException {
-		try(Connection cnx = ConnectionProvider.getConnection()){
-			PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE);
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE)){
 			pstmt.setString(1,u.getPseudo());
 			pstmt.setString(2,u.getNom());
 			pstmt.setString(3, u.getPrenom());
@@ -70,6 +68,8 @@ public class UtilisateurDAOJdbcImpl {
 			pstmt.executeUpdate();
 			pstmt.close();
 			
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }
