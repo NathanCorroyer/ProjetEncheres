@@ -15,8 +15,8 @@
  <section class="login-form">
       <form class="login" action="<%=request.getContextPath() %>/login" method="post"> 
         <div class="input-field">
-          <label for="id">Identifiant: </label>
-          <input class="input" name="id" id="id" placeholder="Identifiant" required="required">
+          <label for="email">Email: </label>
+          <input class="input" name="email" id="email" placeholder="email" required="required">
         </div>
 
         <div class="input-field">

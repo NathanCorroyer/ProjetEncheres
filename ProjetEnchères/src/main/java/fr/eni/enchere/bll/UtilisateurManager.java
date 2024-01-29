@@ -8,7 +8,7 @@ public class UtilisateurManager {
 	
 	public static UtilisateurManager getInstance() {
 		if (instance == null) {
-			instance = new UtilisateurManager(UtilisateurDAO.ge());
+			instance = new UtilisateurManager(UtilisateurDAO.getInstance());
 		}
 		return instance;
 	}
