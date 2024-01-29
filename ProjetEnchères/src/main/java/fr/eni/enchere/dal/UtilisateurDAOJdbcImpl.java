@@ -20,6 +20,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			+ "							WHERE noUtilisateur=?";
 	
 	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
+	
+	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
 
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
@@ -109,6 +111,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return listeUtilisateurs ;
 	}
 		
+	 public void deleteAll() {
+	        try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement stmt = con.prepareStatement(SQL_DELETE_ALL)){
+	            stmt.executeQuery();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 	
 
