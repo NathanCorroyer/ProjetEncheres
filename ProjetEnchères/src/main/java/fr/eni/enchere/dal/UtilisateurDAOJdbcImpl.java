@@ -115,7 +115,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 	 public void deleteAll() {
 	        try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement stmt = con.prepareStatement(SQL_DELETE_ALL)){
-	            stmt.executeQuery();
+	            stmt.executeUpdate();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
