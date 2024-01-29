@@ -42,13 +42,16 @@ public class UtilisateurManager {
 		utilisateurDAO.deleteByMail(email);
 	}
 	
-	public void update(Utilisateur c) throws SQLException {
-		utilisateurDAO.update(c);
+	public void update(Utilisateur u) throws SQLException {
+		utilisateurDAO.update(u);
 	}
 	
-	public void register (Utilisateur c) throws SQLException {
-		utilisateurDAO.register(c);
+	public void register (Utilisateur u) throws SQLException {
+		utilisateurDAO.register(u);
 	}
 	
+	public void login(Utilisateur u) {
+		utilisateurDAO.login(u);
+	}
 }
 >>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
