@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
 		{
 			ses= request.getSession();
 			ses.setAttribute("userConnected", user);
-			response.sendRedirect(index.html);
+			response.sendRedirect("index.html");
 		}
 		else
 		{
