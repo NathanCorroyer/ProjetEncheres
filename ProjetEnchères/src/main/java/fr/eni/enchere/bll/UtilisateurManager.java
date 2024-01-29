@@ -1,5 +1,6 @@
 package fr.eni.enchere.bll;
 
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
@@ -11,4 +12,10 @@ public class UtilisateurManager {
 			instance = new UtilisateurManager(UtilisateurDAO.getInstance());
 		}
 		return instance;
+	}
+	
+	public Utilisateur login(String email, String password) {
+		return utilisateurDAO.login(email,password);
+		
+		// TO DO METHODE UTILISATEURDAO
 	}
