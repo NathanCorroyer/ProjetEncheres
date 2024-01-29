@@ -14,6 +14,22 @@ public class Utilisateur {
 	private Integer credit;
 	private boolean administrateur;
 	
+	public Utilisateur() {};
+	
+	public Utilisateur (String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String password  ) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.password = password;
+	}
+	
 	
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String password, Integer credit) {
