@@ -2,6 +2,7 @@ package fr.eni.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fr.eni.enchere.bo.Utilisateur;
@@ -27,6 +28,7 @@ public class UtilisateurDAOJdbcImpl {
 			pstmt.setInt(10,u.getCredit());
 			pstmt.setBoolean(11, u.isAdministrateur());
 			pstmt.setInt(12, u.getNoUtilisateur());
+			pstmt.close();
 		}
 	}
 }
