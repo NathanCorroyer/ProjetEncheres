@@ -30,6 +30,7 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		
 	}
 
 }
