@@ -31,10 +31,9 @@ public class Utilisateur {
 	}
 	
 	
-	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, String password, Integer credit) {
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String password) {
 		super();
-		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -44,7 +43,6 @@ public class Utilisateur {
 		this.code_postal = code_postal;
 		this.ville = ville;
 		this.password = password;
-		this.credit = credit;
 	}
 	public Integer getNoUtilisateur() {
 		return noUtilisateur;
