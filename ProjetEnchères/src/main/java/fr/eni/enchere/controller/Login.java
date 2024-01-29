@@ -53,8 +53,7 @@ public class Login extends HttpServlet {
 		}
 	}
 
-}
-=======
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		
 		Utilisateur user;
@@ -76,4 +75,4 @@ public class Login extends HttpServlet {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
+
