@@ -5,7 +5,7 @@
 		driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		type = "javax.sql.DataSource"
 		
-		url = "jdbc:sqlserver://localhost;databaseName=BDD_DEMO;encrypt=false"
+		url = "jdbc:sqlserver://localhost;databaseName=ENCHERE_BDD;encrypt=false"
 		username = "utilisateurBDD"
 		password = "Pa$$w0rd"
 		
