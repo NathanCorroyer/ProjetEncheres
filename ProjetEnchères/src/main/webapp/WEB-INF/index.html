@@ -11,12 +11,32 @@
     <nav>
         <a href="#" class="login-link">Se connecter / S'inscrire</a>
     </nav>
-    <h3>Filtres :</h3>
+    <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     <form class="search-form" action="#" method="get">
-        <input type="text" name="search" placeholder="Rechercher...">
-        <input type="submit" value="Rechercher">
+        <input type="text" name="search" placeholder="Le nom de l'article contient">
     </form>
-    <h2>Liste des enchères</h2>
+    <h4>Catégorie :</h4>
+    <select class="category-dropdown">
+        <option value="categorie1">Toutes</option>
+        <option value="categorie2">Informatique</option>
+        <option value="categorie3">Ameublement</option>
+        <option value="categorie4">Vêtement</option>
+        <option value="categorie5">Sports et Loisirs</option>
+      </select>
+     <section class="annonces">
+        <ul>
+            <li>
+                <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
+                <div class="annonce-details">
+                    <h4>PC Gamer pas terrible</h4>
+                    <p>Prix : 210 points</p>
+                    <p>Fin de l'enchère : 01/01/2025</p>
+                    <p>Vendeur : Sasusuke</p>
+                </div>
+            </li>
+
+        </ul>
+    </section>
 </body>
 </html>
