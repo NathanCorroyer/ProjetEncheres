@@ -57,7 +57,6 @@ public class Login extends HttpServlet {
 =======
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		
-		HttpSession session;
 		Utilisateur user;
 		HttpSession ses;
 		String email = request.getParameter("email");
