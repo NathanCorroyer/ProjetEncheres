@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+
 	
 		
 		HttpSession ses;
@@ -51,8 +51,6 @@ public class Login extends HttpServlet {
 		{
 			response.sendRedirect("login.jsp");
 		}
-	}
-
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		
