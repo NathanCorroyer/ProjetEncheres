@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import fr.eni.enchere.bo.Utilisateur;
 
-public class UtilisateurDAOJdbcImpl {
+public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String SQL_REGISTER = "INSERT INTO Utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) "
 			+ "									VALUES (?,?,?,?,?,?,?,?,?,?)\"" ;
@@ -72,4 +72,11 @@ public class UtilisateurDAOJdbcImpl {
 			
 		}
 	}
+
+
+		
+	
+
+	
+
 }

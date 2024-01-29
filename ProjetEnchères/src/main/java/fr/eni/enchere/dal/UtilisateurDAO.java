@@ -1,13 +1,15 @@
 package fr.eni.enchere.dal;
 
+import java.sql.SQLException;
+
 import fr.eni.enchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
-	void register(Utilisateur utilisateur);
+	void register(Utilisateur utilisateur) throws SQLException;
 	
-	void update(Utilisateur utilisateur);
+	void update(Utilisateur utilisateur) throws SQLException;
 	
-	void delete(Utilisateur utilisateur);
+	void deleteByMail(String email ) throws SQLException;
 	
 	
 }
