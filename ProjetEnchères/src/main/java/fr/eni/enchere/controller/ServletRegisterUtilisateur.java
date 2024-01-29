@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletRegisterUtilisateur
  */
-@WebServlet("/Register")
+@WebServlet("/register")
 public class ServletRegisterUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/register.jps");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
 			rd.forward(request, response);
 		}
 
@@ -27,7 +30,7 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtilisateurManager um = new UtilisateurManager.getInstance();
+		Utilisateur um = new UtilisateurManager.getInstance();
 		
 	}
 
