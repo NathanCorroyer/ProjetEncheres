@@ -22,6 +22,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
 	
 	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
+	private final String SQL_LOGIN= "SELECT noUtilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and password = ?";
 
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
@@ -119,6 +120,35 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
+	 }
+	 
+	 public Utilisateur login(String email, String mdp){
+		 Utilisateur utilisateur=null;
+		 try(Connection cnx = ConnectionProvider.getConnection() ; PreparedStatement pstmt = cnx.prepareStatement(SQL_LOGIN)){
+			 pstmt.setString(1, email);
+			 pstmt.setString(2, mdp);
+			 ResultSet rs = pstmt.executeQuery();
+			 if(rs.next()) {
+				 	utilisateur= new Utilisateur();
+				 	utilisateur.setNoUtilisateur(rs.getInt("noUtilisateur"));
+				 	utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setEmail(rs.getString("email"));
+					utilisateur.setCode_postal(rs.getString("code_postal"));
+					utilisateur.setRue(rs.getString("rue"));;
+					utilisateur.setVille(rs.getString("ville"));
+					utilisateur.setPassword(rs.getString("mot_de_passe"));
+					utilisateur.setCredit(rs.getInt("credit"));
+					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+					utilisateur.setTelephone(rs.getString("telephone"));
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return utilisateur;
+		 
 	 }
 
 	
