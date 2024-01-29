@@ -25,10 +25,13 @@ public class TestDAL extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur Kevin = new Utilisateur("sasukeke", "narutoxique", "sakura", "darksasuke@exemple.com","0222222222" , "KOUKOU", "05205", "Konoha", "glacevanillefraise");
+		Utilisateur Kevin = new Utilisateur("sasukekos", "narutoxique", "sakura", "darksasukexxx@exemple.com","0222222222" , "KOUKOU", "05205", "Konoha", "glacevanillefraise",0,false);
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
 		try {
+			userDAO.deleteAll();
 			userDAO.register(Kevin);
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

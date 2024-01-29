@@ -11,8 +11,8 @@ import fr.eni.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private static final String SQL_REGISTER = "INSERT INTO Utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe) "
-			+ "									VALUES (?,?,?,?,?,?,?,?,?)\"" ;
+	private static final String SQL_REGISTER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
+			+ "									VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_DELETE_BY_EMAIL = "DELETE FROM Utilisateurs WHERE email like ?";
 	
@@ -20,23 +20,27 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			+ "							WHERE noUtilisateur=?";
 	
 	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
+	
+	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
 
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
 		
-		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement ptsmt = con.prepareStatement(SQL_REGISTER) ){
+		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_REGISTER) ){
 			
-			ptsmt.setString(1 , utilisateur.getPseudo());
-			ptsmt.setString(2 , utilisateur.getNom());
-			ptsmt.setString(3 , utilisateur.getPrenom());
-			ptsmt.setString(4 , utilisateur.getEmail());
-			ptsmt.setString(5 , utilisateur.getTelephone());
-			ptsmt.setString(6 , utilisateur.getRue());
-			ptsmt.setString(7 , utilisateur.getCode_postal());
-			ptsmt.setString(8 , utilisateur.getVille());
-			ptsmt.setString(9 , utilisateur.getPassword());
+			pstmt.setString(1 , utilisateur.getPseudo());
+			pstmt.setString(2 , utilisateur.getNom());
+			pstmt.setString(3 , utilisateur.getPrenom());
+			pstmt.setString(4 , utilisateur.getEmail());
+			pstmt.setString(5 , utilisateur.getTelephone());
+			pstmt.setString(6 , utilisateur.getRue());
+			pstmt.setString(7 , utilisateur.getCode_postal());
+			pstmt.setString(8 , utilisateur.getVille());
+			pstmt.setString(9 , utilisateur.getPassword());
+			pstmt.setInt(10,utilisateur.getCredit());
+			pstmt.setInt(11, 0);
 			
-			ptsmt.executeUpdate();
+			pstmt.executeUpdate();
 			
 		} catch ( SQLException e ) {
 			e.printStackTrace();
@@ -109,6 +113,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return listeUtilisateurs ;
 	}
 		
+	 public void deleteAll() {
+	        try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement stmt = con.prepareStatement(SQL_DELETE_ALL)){
+	            stmt.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	 }
 
 	
 

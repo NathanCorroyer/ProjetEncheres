@@ -11,5 +11,6 @@ public interface UtilisateurDAO {
 	
 	void deleteByMail(String email ) throws SQLException;
 	
+	void deleteAll() throws SQLException;
 	
 }
