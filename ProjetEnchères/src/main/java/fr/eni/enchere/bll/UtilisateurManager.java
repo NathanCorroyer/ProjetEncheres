@@ -17,5 +17,5 @@ public class UtilisateurManager {
 	public Utilisateur login(String email, String password) {
 		return utilisateurDAO.login(email,password);
 		
-		// TO DO METHODE UTILISATEURDAO
+		// TO DO METHODE UTILISATEURDAO POUR LOGIN
 	}

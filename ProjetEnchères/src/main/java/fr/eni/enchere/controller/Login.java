@@ -32,11 +32,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+	
 		
-		HttpSession session;
-		Utilisateur user;
 		HttpSession ses;
+		Utilisateur user;
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
 		user =UtilisateurManager.getInstance().login(email,mdp);
