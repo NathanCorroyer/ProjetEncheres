@@ -15,6 +15,10 @@ public class UtilisateurDAOJdbcImpl {
 	
 	private static final String SQL_DELETE_BY_EMAIL = "DELETE FROM Utilisateurs WHERE email like ?";
 	
+	private final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? "
+			+ "							WHERE noUtilisateur=?";
+
+	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
 		
 		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement ptsmt = con.prepareStatement(SQL_REGISTER) ){
@@ -48,11 +52,6 @@ public class UtilisateurDAOJdbcImpl {
 			e.printStackTrace();
 		}
 	}
-	
-	private final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE noUtilisateur=?";
-
-	
-	
 	
 	
 	public void update(Utilisateur u) throws SQLException {
