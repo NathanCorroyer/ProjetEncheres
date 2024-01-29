@@ -28,6 +28,7 @@ public class UtilisateurDAOJdbcImpl {
 			pstmt.setInt(10,u.getCredit());
 			pstmt.setBoolean(11, u.isAdministrateur());
 			pstmt.setInt(12, u.getNoUtilisateur());
+			pstmt.executeUpdate();
 			pstmt.close();
 			
 		}
