@@ -14,6 +14,8 @@ public class Utilisateur {
 	private Integer credit;
 	private boolean administrateur;
 	
+	// List<Article>
+	
 	public Utilisateur() {};
 	
 

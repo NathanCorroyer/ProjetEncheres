@@ -34,7 +34,6 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		
-		HttpSession session;
 		Utilisateur user;
 		HttpSession ses;
 		String email = request.getParameter("email");
