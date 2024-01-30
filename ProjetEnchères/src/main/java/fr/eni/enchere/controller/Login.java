@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -52,24 +53,6 @@ public class Login extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		
-		Utilisateur user;
-		HttpSession ses;
-		String email = request.getParameter("email");
-		String mdp = request.getParameter("mdp");
-		user =UtilisateurManager.getInstance().login(email,mdp);
-		
-		if(user!=null)
-		{
-			ses= request.getSession();
-			ses.setAttribute("userConnected", user);
-			response.sendRedirect("index.html");
-		}
-		else
-		{
-			response.sendRedirect("login.jsp");
-		}
 	}
 
 }
