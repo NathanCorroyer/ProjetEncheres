@@ -46,7 +46,7 @@
         <label for="motDePasse">Mot de passe :</label>
         <input type="password" id="motDePasse" name="motDePasse" required>
         
-        <label for="confirmation">Confirmation :</label>
+        <label for="confirmation">Confirmation du mot de passe :</label>
         <input type="password" id="confirmation" name="confirmation" required>
 
         <label for="pseudo">Pseudo :</label>
