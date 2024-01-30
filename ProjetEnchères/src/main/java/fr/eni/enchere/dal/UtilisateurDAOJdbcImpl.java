@@ -102,7 +102,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				u.setRue(rs.getString("rue"));
 				u.setCode_postal(rs.getString("code_postal"));
 				u.setVille(rs.getString("ville"));
-				u.setPassword(rs.getString("password"));
+				u.setPassword(rs.getString("mot_de_passe"));
 				 
 				listeUtilisateurs.add(u);
 			}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,16 +25,17 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if ( request.getSession().getAttribute("userConnected") != null ) {
+		/*if ( request.getSession().getAttribute("userConnected") != null ) {*/
 			List<Utilisateur> listeUtilisateurs ; 
 				try {
 					listeUtilisateurs = UtilisateurManager.getInstance().findAll();
 					request.setAttribute("listeUtilisateurs", listeUtilisateurs );
-					getServletContext().getRequestDispatcher("/WEB-INF/listeUtilisateurs.jsp").forward(request, response);
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/listeUtilisateurs.jsp");
+					rd.forward(request, response);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-		}
+	//}
 	}
 
 }

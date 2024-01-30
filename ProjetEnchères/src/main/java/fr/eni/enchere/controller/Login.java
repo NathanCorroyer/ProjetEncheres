@@ -46,11 +46,11 @@ public class Login extends HttpServlet {
 		{
 			ses= request.getSession();
 			ses.setAttribute("userConnected", user);
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 		else
 		{
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("index.jsp");
 		}
 
 	}
