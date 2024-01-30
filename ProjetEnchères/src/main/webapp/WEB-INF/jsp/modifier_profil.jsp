@@ -64,5 +64,15 @@
 		</c:choose>
         <button type="submit">S'inscrire</button>
     </form>
+    <c:if test="${validation eq true} ">
+    	<p>Modification effectuée</p>	
+    </c:if>
+    <c:if test="${validation eq false }">
+    	<c:forEach var="erreur" items="listeErreurs">
+    		<p>${erreur}</p>
+    	</c:forEach>
+    	
+    </c:if>
+    
 </body>
 </html>
