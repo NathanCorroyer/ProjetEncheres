@@ -18,6 +18,14 @@
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Coucou</a>
+    
+    <c:if test="${not empty requestScope.succesSuppression}">
+    	<p style="color : green">${requestScope.succesSuppression}</p>
+    </c:if>
+    <c:if test="${not empty requestScope.erreurSuppression}">
+    	<p style="color : red">${requestScope.erreurSuppression}</p>
+    </c:if>
+    
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     <form class="search-form" action="#" method="get">
