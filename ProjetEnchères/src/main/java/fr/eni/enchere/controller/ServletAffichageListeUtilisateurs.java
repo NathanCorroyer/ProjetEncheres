@@ -26,7 +26,6 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if ( request.getSession().getAttribute("userConnected") != null ) {
 			List<Utilisateur> listeUtilisateurs ; 
-			
 				try {
 					listeUtilisateurs = UtilisateurManager.getInstance().findAll();
 					request.setAttribute("listeUtilisateurs", listeUtilisateurs );
