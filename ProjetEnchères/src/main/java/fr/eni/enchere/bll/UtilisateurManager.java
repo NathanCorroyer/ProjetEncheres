@@ -6,7 +6,6 @@ import fr.eni.enchere.bo.Utilisateur;
 
 import java.sql.SQLException;
 
-import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
 

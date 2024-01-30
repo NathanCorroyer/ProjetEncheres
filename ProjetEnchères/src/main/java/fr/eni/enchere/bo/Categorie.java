@@ -1,5 +1,8 @@
 package fr.eni.enchere.bo;
 
-public class Categorie {
-
+public enum Categorie {
+	INFORMATIQUE,
+	AMEUBLEMENT,
+	SPORTS_LOISIRS,
+	VETEMENTS
 }
