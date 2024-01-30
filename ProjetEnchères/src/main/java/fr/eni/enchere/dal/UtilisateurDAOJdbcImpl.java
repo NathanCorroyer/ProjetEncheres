@@ -84,7 +84,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	
-	public List<Utilisateur> findAll() throws SQLException{
+	public List<Utilisateur> findAll(){
 		
 		List<Utilisateur> listeUtilisateurs = new ArrayList();
 		
