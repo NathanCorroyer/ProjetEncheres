@@ -69,8 +69,6 @@ public class Login extends HttpServlet {
 		else
 		{
 			response.sendRedirect("login.jsp");
-			
-			
 		}
 	}
 
