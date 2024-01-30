@@ -1,6 +1,7 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,11 +47,13 @@ public class Login extends HttpServlet {
 		{
 			ses= request.getSession();
 			ses.setAttribute("userConnected", user);
-			response.sendRedirect("index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 		else
 		{	
-			response.sendRedirect("index.jsp");
+			response.sendRedirect(request.getContextPath()+"/login");
+			
 		}
 
 	}
