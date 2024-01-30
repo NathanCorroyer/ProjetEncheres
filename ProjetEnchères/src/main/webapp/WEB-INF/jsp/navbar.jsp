@@ -1,11 +1,11 @@
 
  	<%@page import="fr.eni.enchere.bo.Utilisateur"%>
-<% if( session.getAttribute("ConnectedUser") != null){ %>
+<% if( session.getAttribute("userConnected") != null){ %>
  		<!--Navbar-->
  
     <nav class="navbar">
       <div class="navbar-links">
-      <%Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
+      <%Utilisateur connectedUser = (Utilisateur) session.getAttribute("userConnected"); %>
           <ul>
           <li><a href="#">Enchères </a></li>
           <li><a href="#">Vendre</a></li>
