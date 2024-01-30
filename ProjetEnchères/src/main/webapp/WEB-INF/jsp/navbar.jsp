@@ -7,7 +7,10 @@
       <div class="navbar-links">
       <%Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
           <ul>
-              <li><a href="#">Deconnexion</a></li>
+          <li><a href="#">Enchères </a></li>
+          <li><a href="#">Vendre</a></li>
+          <li><a href="#">Mon Profil</a></li>	
+          <li><a href="#">Deconnexion</a></li>
               
               <!--  TO DO PAGE ACCUEIL DECONNECTED -->
           </ul>

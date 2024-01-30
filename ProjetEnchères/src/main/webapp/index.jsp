@@ -9,11 +9,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI-Encheres</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/navbar.css">
 </head>
 <body>
-    <h1>ENI-Encheres</h1>
     
+    <h1>ENI-Encheres</h1>
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
     <h2>Liste des enchères</h2>
