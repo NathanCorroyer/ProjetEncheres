@@ -143,7 +143,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					utilisateur.setTelephone(rs.getString("telephone"));
 			 }else {
-				 System.out.println("Ca veut pas créer l'utilisateur");
+				 System.out.println("Utilisateur non trouvé en base de données");
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

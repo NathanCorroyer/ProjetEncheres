@@ -42,16 +42,17 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
 		user =UtilisateurManager.getInstance().login(email,mdp);
-		
+		ses= request.getSession();
 		if(user!=null)
 		{
-			ses= request.getSession();
+			
 			ses.setAttribute("userConnected", user);
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 		else
 		{	
+			ses.setAttribute("email", email);
 			response.sendRedirect(request.getContextPath()+"/login");
 			
 		}
