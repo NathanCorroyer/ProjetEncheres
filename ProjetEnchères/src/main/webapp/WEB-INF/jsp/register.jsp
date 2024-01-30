@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI-Encheres / Inscription</title>
-    <link rel="stylesheet" href="styleregister.css">
+   <link rel="stylesheet" href="styles/styleregister.css">
     <script>
     // Fonction de validation du formulaire
     function validerFormulaire() {
-      // Récupérer les valeurs des champs
       var motDePasse = document.getElementById('motDePasse').value;
       var confirmation = document.getElementById('confirmation').value;
 
       // Vérifier si les champs de mot de passe sont identiques
       if (motDePasse !== confirmation) {
         alert("Les mots de passe ne correspondent pas.");
-        return false; // Empêcher la soumission du formulaire
+        return false; 
       }
 
     e
@@ -51,7 +50,8 @@
         <input type="password" id="confirmation" name="confirmation" required>
 
         <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" name="pseudo" required>
+		<input type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+"
+	 	title="Le pseudo doit contenir uniquement des caractères alphanumériques" required>
 
         <label for="rue">Rue :</label>
         <input type="text" id="rue" name="rue" required>
