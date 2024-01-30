@@ -13,9 +13,9 @@
 </head>
 <body>
     <h1>ENI-Encheres</h1>
-    <nav>
-        <a href="<%=request.getContextPath()%>/login" class="login-link">Se connecter / S'inscrire</a>
-    </nav>
+    
+    <!--  Navbar -->
+    <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     <form class="search-form" action="#" method="get">
