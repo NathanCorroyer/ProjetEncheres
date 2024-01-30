@@ -6,7 +6,6 @@
     <nav class="navbar">
       <div class="navbar-links">
       <%Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
-      <h1>ENI-Encheres</h1>
           <ul>
           <li><a href="#">Enchères </a></li>
           <li><a href="#">Vendre</a></li>
@@ -28,7 +27,6 @@
  <nav class="navbar">
 
         <div class="navbar-links">
-        <h1>ENI-Encheres</h1>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/register"> Créer Un Compte </a></li>
                  <li><a href="<%=request.getContextPath()%>/login"> Se Connecter </a></li>
