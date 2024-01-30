@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>ENI-Encheres</h1>
+    
     
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>

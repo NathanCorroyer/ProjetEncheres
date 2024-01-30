@@ -6,8 +6,12 @@
     <nav class="navbar">
       <div class="navbar-links">
       <%Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
+      <h1>ENI-Encheres</h1>
           <ul>
-              <li><a href="#">Deconnexion</a></li>
+          <li><a href="#">Enchères </a></li>
+          <li><a href="#">Vendre</a></li>
+          <li><a href="#">Mon Profil</a></li>	
+          <li><a href="#">Deconnexion</a></li>
               
               <!--  TO DO PAGE ACCUEIL DECONNECTED -->
           </ul>
@@ -24,6 +28,7 @@
  <nav class="navbar">
 
         <div class="navbar-links">
+        <h1>ENI-Encheres</h1>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/register"> Créer Un Compte </a></li>
                  <li><a href="<%=request.getContextPath()%>/login"> Se Connecter </a></li>
