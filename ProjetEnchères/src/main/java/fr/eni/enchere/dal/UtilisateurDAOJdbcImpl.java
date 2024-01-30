@@ -130,7 +130,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			 ResultSet rs = pstmt.executeQuery();
 			 if(rs.next()) {
 				 	utilisateur= new Utilisateur();
-				 	utilisateur.setNoUtilisateur(rs.getInt("noUtilisateur"));
+				 	utilisateur.setNoUtilisateur(rs.getInt("no_Utilisateur"));
 				 	utilisateur.setPseudo(rs.getString("pseudo"));
 					utilisateur.setNom(rs.getString("nom"));
 					utilisateur.setPrenom(rs.getString("prenom"));
@@ -142,6 +142,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					utilisateur.setTelephone(rs.getString("telephone"));
+			 }else {
+				 System.out.println("Utilisateur non trouvé en base de données");
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
