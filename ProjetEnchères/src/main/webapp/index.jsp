@@ -1,4 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +14,7 @@
 <body>
     <h1>ENI-Encheres</h1>
     <nav>
-        <a href="#" class="login-link">Se connecter / S'inscrire</a>
+        <a href="<%=request.getContextPath()%>/login" class="login-link">Se connecter / S'inscrire</a>
     </nav>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
