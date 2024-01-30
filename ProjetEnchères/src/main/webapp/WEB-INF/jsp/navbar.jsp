@@ -12,7 +12,7 @@
 	          <ul>
 	          <li><a href="#">Enchères </a></li>
 	          <li><a href="#">Vendre</a></li>
-	          <li><a href="#">Mon Profil</a></li>	
+	          <li><a href="<%=request.getContextPath()%>/WEB-INF/jsp/mon_profil.jsp">Mon Profil</a></li>
 	          <li><a href="<%=request.getContextPath()%>/servletdeconnexion">Deconnexion</a></li>
 	              
 	              <!--  TO DO PAGE ACCUEIL DECONNECTED -->
