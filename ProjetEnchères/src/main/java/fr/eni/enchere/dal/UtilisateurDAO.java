@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -12,5 +13,8 @@ public interface UtilisateurDAO {
 	void deleteByMail(String email ) throws SQLException;
 	
 	void deleteAll() throws SQLException;
+	
 	Utilisateur login(String email, String password) throws SQLException;
+	
+	List<Utilisateur> findAll() throws SQLException;
 }

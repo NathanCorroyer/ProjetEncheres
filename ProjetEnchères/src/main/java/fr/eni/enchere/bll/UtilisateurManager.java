@@ -5,6 +5,7 @@ import fr.eni.enchere.bo.Utilisateur;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
@@ -25,8 +26,6 @@ public class UtilisateurManager {
 		}
 		return instance;
 	}
-	
-
 
 	public void deleteByMail(String email) throws SQLException {
 		utilisateurDAO.deleteByMail(email);
@@ -48,6 +47,10 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public List<Utilisateur> findAll() throws SQLException{
+		return utilisateurDAO.findAll();
 	}
 }
 
