@@ -17,12 +17,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_DELETE_BY_EMAIL = "DELETE FROM Utilisateurs WHERE email like ?";
 	
 	private final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? "
-			+ "							WHERE noUtilisateur=?";
+			+ "							WHERE no_Utilisateur=?";
 	
 	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
 	
 	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
-	private final String SQL_LOGIN= "SELECT noUtilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and password = ?";
+	private final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
 
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
