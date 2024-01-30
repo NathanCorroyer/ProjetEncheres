@@ -20,16 +20,16 @@
 				<th>Ville</th>
 			</tr>
 			<c:forEach items="${listeUtilisateurs}" var="u">
-				<td>
-					<tr>${u.pseudo}</tr>
-					<tr>${u.nom}</tr>
-					<tr>${u.prenom}</tr>
-					<tr>${u.email}</tr>
-					<tr>${u.telephone}</tr>
-					<tr>${u.rue}</tr>
-					<tr>${u.code_postal}</tr>
-					<tr>${u.ville}</tr>
-				</td>
+				<tr>
+					<td>${u.pseudo}</td>
+					<td>${u.nom}</td>
+					<td>${u.prenom}</td>
+					<td>${u.email}</td>
+					<td>${u.telephone}</td>
+					<td>${u.rue}</td>
+					<td>${u.code_postal}</td>
+					<td>${u.ville}</td>
+				</tr>
 			</c:forEach>
 	</table>
 </body>
