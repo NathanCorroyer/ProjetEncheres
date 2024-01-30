@@ -22,8 +22,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
 	
 	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
+	
 	private final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
 
+
+	
+	
 	
 	public void register ( Utilisateur utilisateur ) throws SQLException {
 		
@@ -152,7 +156,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		 return utilisateur;
 		 
 	 }
-
+	 
+	
+		 
+	 }
 	
 
-}
+
