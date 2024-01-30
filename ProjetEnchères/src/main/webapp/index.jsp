@@ -17,7 +17,7 @@
     <h1>ENI-Encheres</h1>
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
-    <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Coucou</a>
+    <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
     
     <c:if test="${not empty requestScope.succesSuppression}">
     	<p style="color : green">${requestScope.succesSuppression}</p>

@@ -28,6 +28,7 @@ public class ServletSuppressionCompte extends HttpServlet {
 		
 		if ( mail != null && !mail.isEmpty() ) {
 			try {
+				request.getSession().invalidate();
 				um.deleteByMail(mail);
 				request.setAttribute("succesSuppression", "L'utilisateur a été supprimé avec succès.");
 			} catch (SQLException e) {
