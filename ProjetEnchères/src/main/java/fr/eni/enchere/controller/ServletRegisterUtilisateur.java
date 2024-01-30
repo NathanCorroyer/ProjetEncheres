@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur;
 
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -34,7 +35,11 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur newUser = new Utilisateur();
+<<<<<<< Updated upstream
 
+=======
+		
+>>>>>>> Stashed changes
 	}
 
 }
