@@ -1,6 +1,7 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,8 +33,24 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		Utilisateur newUser = new Utilisateur();
-
+		Utilisateur newUser = new Utilisateur(
+				request.getParameter("pseudo"),
+				request.getParameter("nom"),
+                request.getParameter("prenom"),
+                request.getParameter("email"),
+                request.getParameter("telephone"),
+                request.getParameter("rue"),
+                request.getParameter("codePostal"),
+                request.getParameter("ville"),
+                request.getParameter("motDePasse")
+                
+                );
+		try {
+			um.register(newUser);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("/WEB-INF/jsp/register.jsp").forward(request, response);
 	}
-
 }

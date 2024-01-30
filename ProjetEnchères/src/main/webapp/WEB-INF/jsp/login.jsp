@@ -17,7 +17,7 @@
  	<p>Email ou mot de passe non valide</p>
  </c:if>
  <section class="login-form">
-      <form class="login" action="<%=request.getContextPath() %>/login" method="post"> 
+      <form class="login" action="<%=request.getContextPath()%>/login" method="post"> 
         <div class="input-field">
           <label for="email">Email: </label>
           <input class="input" name="email" id="email" placeholder="email" required="required">

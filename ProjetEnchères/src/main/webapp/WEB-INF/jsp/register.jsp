@@ -27,7 +27,7 @@
     <h1>ENI-Enchères</h1>
     <h2>Mon profil</h2>
     
-    <form class="inscription-form" action="#" method="post" onsubmit="return validerFormulaire()">
+    <form class="inscription-form" action="${pageContext.request.contextPath}/register" method="post" onsubmit="return validerFormulaire()">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required>
 
