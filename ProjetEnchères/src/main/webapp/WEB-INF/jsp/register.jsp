@@ -59,7 +59,7 @@
         <label for="ville">Ville :</label>
         <input type="text" id="ville" name="ville" required>
 
-        <button type="submit">Créer</button>
+        <button type="submit" onclick="redirigerVersConnexion()">Créer</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
 
@@ -67,6 +67,11 @@
         function annuler() {
             window.location.href = '<%=request.getContextPath()%>/login ';
         }
+        
+        function redirigerVersConnexion() {
+            window.location.href = '<%=request.getContextPath()%>/login';
+        }
+        
     </script>
 </body>
 </html>
