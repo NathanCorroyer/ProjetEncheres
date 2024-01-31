@@ -13,7 +13,7 @@
 <body>
 
 <div class="head">
-<h1>ENI-Enchères </h1>
+
 <h2>Se connecter</h2>
 </div>
  
