@@ -6,6 +6,10 @@ body {
     text-align: center;
 }
 
+.main {
+	padding: 20px
+}
+
 .informations h1 {
     background-color: #4285f4;
     color: #ffffff;

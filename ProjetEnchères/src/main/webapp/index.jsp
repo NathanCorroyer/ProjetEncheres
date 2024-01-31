@@ -18,6 +18,7 @@
     
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
+<section class="main">
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
     
     <c:if test="${not empty requestScope.succesSuppression}">
@@ -53,6 +54,7 @@
             </li>
 
         </ul>
+    </section>
     </section>
 </body>
 </html>
