@@ -1,6 +1,8 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +32,12 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		Utilisateur userAffiche = null;
 		
 
-			userAffiche = UtilisateurManager.selectUserByPseudo(pseudo);
+			try {
+				userAffiche = Utilisateur.selectUserByPseudo(pseudo);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	
-		
 		
 		if (userAffiche != null && connectedUser != null) {
 			
