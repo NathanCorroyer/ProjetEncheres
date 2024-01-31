@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +13,7 @@ import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie"
-												+ ","
-												+ "FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u on a. ";
+	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
 												+ "FROM ARTICLES_VENDUS WHERE no_categorie = ?";
@@ -42,13 +41,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		try {
 			a=new Article();
 			a.setNoArticle(rs.getInt("no_article"));
+			a.setNom_Article(rs.getString("nom_article"));
 			a.setDescription(rs.getString("description"));
 			a.setDate_debut_encheres(rs.getDate("date_debut_encheres").toLocalDate());
 			a.setDate_fin_encheres(rs.getDate("date_fin_encheres").toLocalDate());
 			a.setPrix_initial(rs.getInt("prix_initial"));
 			a.setPrix_vente(rs.getInt("prix_vente"));
-			a.setCategorie(rs.getInt("categorie"));
-			a.setNoUtilisateur(rs.getInt("noUtilisateur"));
+			a.setCategorie(rs.getInt("no_categorie"));
+			a.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -99,7 +99,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_AJOUTER)){
 			pstmt.setString(1, a.getNom_Article());
 			pstmt.setString(2, a.getDescription());
-			pstmt.setDate(0, null);
+			pstmt.setDate(3, Date.valueOf(a.getDate_debut_encheres()));
+			pstmt.setDate(4, Date.valueOf(a.getDate_fin_encheres()));
+			pstmt.setInt(5, a.getPrix_initial());
+			pstmt.setInt(6, a.getPrix_vente());
+			pstmt.setInt(7, a.getNoUtilisateur());
+			pstmt.setInt(8, a.getCategorie());
+			pstmt.executeUpdate();
+			
 		}
 		
 	}
