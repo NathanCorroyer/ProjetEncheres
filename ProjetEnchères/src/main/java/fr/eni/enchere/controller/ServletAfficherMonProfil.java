@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.dal.DAOFactory;
+import fr.eni.enchere.dal.UtilisateurDAO;
 
 /**
  * Servlet implementation class ServletAfficherProfil
@@ -29,11 +31,13 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
 				
 		String pseudo = request.getParameter("pseudo");	
+		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur userAffiche = null;
 		
 
 			try {
-				userAffiche = Utilisateur.selectUserByPseudo(pseudo);
+				
+				userAffiche=um.selectUserByPseudo(pseudo);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
