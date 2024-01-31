@@ -4,17 +4,31 @@ import java.time.LocalDate;
 
 public class Article {
 	 private boolean vendu;
+	 private Integer noArticle;
 	 private String nom_Article;
 	 private String description;
 	 private LocalDate date_debut_encheres;
 	 private LocalDate date_fin_encheres;
-	 private float prix_initial;
-	 private float prix_vente;
-	 private Categorie categorie;
-	 private Utilisateur vendeur;
-	 private Utilisateur acheteur;
+	 private int prix_initial;
+	 private int prix_vente;
+	 private int categorie;
+	 private int noUtilisateur;
+	 //private Utilisateur vendeur;
+	 //private Utilisateur acheteur;
 	 
 	 
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+	public Integer getNoArticle() {
+		return noArticle;
+	}
+	public void setNoArticle(Integer noArticle) {
+		this.noArticle = noArticle;
+	}
 	public boolean isVendu() {
 		return vendu;
 	}
@@ -48,33 +62,33 @@ public class Article {
 	public float getPrix_initial() {
 		return prix_initial;
 	}
-	public void setPrix_initial(float prix_initial) {
+	public void setPrix_initial(int prix_initial) {
 		this.prix_initial = prix_initial;
 	}
 	public float getPrix_vente() {
 		return prix_vente;
 	}
-	public void setPrix_vente(float prix_vente) {
+	public void setPrix_vente(int prix_vente) {
 		this.prix_vente = prix_vente;
 	}
-	public Categorie getCategorie() {
+	public int getCategorie() {
 		return categorie;
 	}
-	public void setCategorie(Categorie categorie) {
+	public void setCategorie(int categorie) {
 		this.categorie = categorie;
 	}
-	public Utilisateur getVendeur() {
-		return vendeur;
-	}
-	public void setVendeur(Utilisateur vendeur) {
-		this.vendeur = vendeur;
-	}
-	public Utilisateur getAcheteur() {
-		return acheteur;
-	}
-	public void setAcheteur(Utilisateur acheteur) {
-		this.acheteur = acheteur;
-	}
-	 
+//	public Utilisateur getVendeur() {
+//		return vendeur;
+//	}
+//	public void setVendeur(Utilisateur vendeur) {
+//		this.vendeur = vendeur;
+//	}
+//	public Utilisateur getAcheteur() {
+//		return acheteur;
+//	}
+//	public void setAcheteur(Utilisateur acheteur) {
+//		this.acheteur = acheteur;
+//	}
+//	 
 	 
 }	

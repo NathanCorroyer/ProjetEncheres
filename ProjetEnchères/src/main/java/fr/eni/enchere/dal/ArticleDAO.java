@@ -1,5 +1,6 @@
 package fr.eni.enchere.dal;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.enchere.bo.Article;
@@ -10,7 +11,7 @@ public interface ArticleDAO {
 	List<Article> selectByCategorie(); 	//Filtrer résultats par catégorie
 	List<Article> selectByName(); 		//Surement un name like ? pour filtre de recherche par nom
 	List<Article> selectArticlesFromUser(Utilisateur u); //Pour afficher tous les articles d'un même utilisateur
-	void ajouter(Article a);
+	void ajouter(Article a) throws SQLException;
 	void supprimer(Article a);
 	void update(Article a);
 	void deleteSingleArticleFromUser(Utilisateur u, Article a);
