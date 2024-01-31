@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
-import fr.eni.enchere.dal.DAOFactory;
-import fr.eni.enchere.dal.UtilisateurDAO;
 
 /**
  * Servlet implementation class ServletAfficherProfil
