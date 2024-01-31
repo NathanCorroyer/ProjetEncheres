@@ -14,7 +14,6 @@
 </head>
 <body>
     
-    <h1>ENI-Encheres</h1>
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
