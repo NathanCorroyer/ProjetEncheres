@@ -15,7 +15,6 @@
     <p>Email : ${user.email}</p>
     <p>Téléphone : ${user.telephone}</p>
     <p>Rue : ${user.rue}</p>
-    <p>Code postal : ${user.codePostal}</p>
     <p>Ville : ${user.ville}</p>
     <a href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
 </body>
