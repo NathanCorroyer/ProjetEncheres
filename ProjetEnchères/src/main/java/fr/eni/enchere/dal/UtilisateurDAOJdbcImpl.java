@@ -158,7 +158,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		 
 	 }
 	 
-	 public Utilisateur selectByPseudo(String pseudo) throws BusinessException {
+	 public Utilisateur selectByPseudo(String pseudo) {
 	        Utilisateur utilisateur = null;
 
 	        try (Connection connection = ConnectionProvider.getConnection();
@@ -166,24 +166,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	            preparedStatement.setString(1, pseudo);
 
-	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-	                if (resultSet.next()) {
-	                    utilisateur = mapResultSetToUtilisateur(resultSet);
+	            try (ResultSet rs = preparedStatement.executeQuery()) {
+	                if (rs.next()) {
+	                    utilisateur = mapResultSetToUtilisateur(rs);
 	                }
 	            }
 
 	        } catch (SQLException e) {
-	            throw new BusinessException("Erreur lors de la récupération de l'utilisateur par pseudo", e);
+	        	e.printStackTrace();
 	        }
+	            
 
-	        return utilisateur;
+			return utilisateur;
 	    }
 
-	    private Utilisateur mapResultSetToUtilisateur(ResultSet resultSet) throws SQLException {
+	 public Utilisateur mapResultSetToUtilisateur(ResultSet rs) throws SQLException {
 	        Utilisateur utilisateur = new Utilisateur();
-	        utilisateur.setId(resultSet.getInt("idUtilisateur"));
-	        utilisateur.setPseudo(resultSet.getString("pseudo"));
-	        // Mappez d'autres attributs en fonction de votre modèle Utilisateur
+	        
+	        
+	        utilisateur.setNoUtilisateur(rs.getInt("no_Utilisateur"));
+		 	utilisateur.setPseudo(rs.getString("pseudo"));
+			utilisateur.setNom(rs.getString("nom"));
+			utilisateur.setPrenom(rs.getString("prenom"));
+			utilisateur.setEmail(rs.getString("email"));
+			utilisateur.setCode_postal(rs.getString("code_postal"));
+			utilisateur.setRue(rs.getString("rue"));;
+			utilisateur.setVille(rs.getString("ville"));
+			utilisateur.setPassword(rs.getString("mot_de_passe"));
+			utilisateur.setCredit(rs.getInt("credit"));
+			utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			utilisateur.setTelephone(rs.getString("telephone"));
 
 	        return utilisateur;
 	    }
