@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.ArticleDAOJdbcImpl;
 import fr.eni.enchere.dal.DAOFactory;
+import fr.eni.enchere.dal.UtilisateurDAO;
 
 
 @WebServlet("/TestCreationArticle")
@@ -26,18 +28,23 @@ public class TestCreationArticle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Article a = new Article("Poudre de cacao", "Tu sais lire", LocalDate.of(2023, 12, 5), LocalDate.of(2024,01,25),50,150,9,2);
-//		Article art = new Article("Poudre de caca", "Tu sais pas lire?", LocalDate.of(2023, 10, 2), LocalDate.of(2024,01,15),70,180,9,2);
+	Article a = new Article("Poudre de cactus", "Tu sais lire", LocalDate.of(2023, 12, 5), LocalDate.of(2024,01,25),50,150,2,9,1002);
+		Article art = new Article("Poudre de cacophonie", "Tu sais pas lire?", LocalDate.of(2023, 10, 2), LocalDate.of(2024,01,15),70,180,2,9,1002);
+	//	Utilisateur acheteur = new Utilisateur("JDER","Derulo","Jason","jder@gmail.com","0222222222" , "KOUKOU", "05205", "Konoha", "glacevanillefraise",0,false);
 		ArticleDAO aDAO = DAOFactory.getArticleDAO();
-//	try {
-//			aDAO.ajouter(art);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		//UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
+	try {
+			//uDAO.register(acheteur);
+			aDAO.ajouter(art);
+			aDAO.ajouter(a);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<Article> listeArticles = aDAO.selectAll();
-		for(Article a : listeArticles) {
-			System.out.println(a.toString());
+		for(Article article : listeArticles) {
+			System.out.println(article.toString());
 		}
 		
 		

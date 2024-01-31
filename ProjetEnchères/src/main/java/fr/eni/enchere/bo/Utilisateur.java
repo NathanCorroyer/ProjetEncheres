@@ -1,5 +1,7 @@
 package fr.eni.enchere.bo;
 
+import java.util.List;
+
 public class Utilisateur {
 	private Integer noUtilisateur;
 	private String pseudo;
@@ -13,8 +15,8 @@ public class Utilisateur {
 	private String password;
 	private Integer credit;
 	private boolean administrateur;
-	
-	// List<Article>
+	private boolean actif;
+	private List<Article> listeArticles;
 	
 	public Utilisateur() {};
 	
@@ -126,5 +128,9 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%d || %s || %s|| %s || %s|| %s || %s|| %s || %s || %s || %d", noUtilisateur, pseudo,nom, prenom, email, telephone, rue,code_postal,ville, password, credit  );
+	}
 	
 }

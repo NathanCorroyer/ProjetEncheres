@@ -64,5 +64,17 @@ public class UtilisateurManager {
 		}
         return user;
     }
+	
+	public Utilisateur selectUserByNumero(int numero) throws SQLException {
+	       
+		Utilisateur user = null;
+
+        try {
+			user = utilisateurDAO.selectByNumero(numero);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return user;
+    }
 }
 

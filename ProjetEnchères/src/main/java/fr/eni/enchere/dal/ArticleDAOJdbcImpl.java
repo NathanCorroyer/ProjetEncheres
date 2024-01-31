@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, no_acheteur FROM ARTICLES_VENDUS";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
 												+ "FROM ARTICLES_VENDUS WHERE no_categorie = ?";
@@ -47,7 +48,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setPrix_initial(rs.getInt("prix_initial"));
 			a.setPrix_vente(rs.getInt("prix_vente"));
 			a.setCategorie(rs.getInt("no_categorie"));
+			UtilisateurManager um = UtilisateurManager.getInstance();
+			Utilisateur vendeur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNoUtilisateur(rs.getInt("no_utilisateur"));
+			a.setVendeur(vendeur);
+			Utilisateur acheteur;
+			Integer no_acheteur = rs.getInt("no_acheteur");
+			if(no_acheteur != null) {
+				acheteur = um.selectUserByNumero(rs.getInt("no_acheteur"));
+				a.setAcheteur(acheteur);
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -104,6 +114,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			pstmt.setInt(6, a.getPrix_vente());
 			pstmt.setInt(7, a.getNoUtilisateur());
 			pstmt.setInt(8, a.getCategorie());
+		//	pstmt.setInt(9, a.getNo_acheteur());
 			pstmt.executeUpdate();
 			
 		}

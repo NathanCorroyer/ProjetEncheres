@@ -13,15 +13,43 @@ public class Article {
 	 private int prix_vente;
 	 private int categorie;
 	 private int noUtilisateur;
-	 //private Utilisateur vendeur;
-	 //private Utilisateur acheteur;
+	 private Utilisateur vendeur;
+	 private int no_acheteur;
+	 private Utilisateur acheteur;
 	 
 	 
+	public Utilisateur getAcheteur() {
+		return acheteur;
+	}
+	public void setAcheteur(Utilisateur acheteur) {
+		this.acheteur = acheteur;
+	}
 	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
+	public Utilisateur getVendeur() {
+		return vendeur;
+	}
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
+	}
 	public Article() {
 		super();
+	}
+	
+	
+	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
+			int prix_initial, int prix_vente, int categorie, int noUtilisateur, int no_acheteur) {
+		super();
+		this.nom_Article = nom_Article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.prix_vente = prix_vente;
+		this.categorie = categorie;
+		this.noUtilisateur = noUtilisateur;
+		this.no_acheteur = no_acheteur;
 	}
 	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
 			int prix_initial, int prix_vente, int noUtilisateur,int categorie) {
@@ -52,6 +80,12 @@ public class Article {
 	}
 	public String getNom_Article() {
 		return nom_Article;
+	}
+	public int getNo_acheteur() {
+		return no_acheteur;
+	}
+	public void setNo_acheteur(int no_acheteur) {
+		this.no_acheteur = no_acheteur;
 	}
 	public void setNom_Article(String nom_Article) {
 		this.nom_Article = nom_Article;
@@ -107,8 +141,13 @@ public class Article {
 //	 
 	@Override
 	public String toString() {
-		return String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d", no_article, nom_Article, description, date_debut_encheres.toString(), 
-																			date_fin_encheres.toString(), prix_initial, prix_vente, noUtilisateur, categorie);
+		StringBuilder chaine = new StringBuilder();
+		chaine.append(String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d || Vendeur : %s", no_article, nom_Article, description, date_debut_encheres.toString(), 
+																			date_fin_encheres.toString(), prix_initial, prix_vente, noUtilisateur, categorie, vendeur.getPseudo()));
+		if(acheteur != null) {
+			chaine.append(String.format(" || Acheteur : %s", acheteur.getPseudo()));
+		}
+		return chaine.toString();
 	}
 	 
 }	
