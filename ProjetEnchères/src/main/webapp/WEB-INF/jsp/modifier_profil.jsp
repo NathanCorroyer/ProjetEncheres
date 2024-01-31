@@ -61,6 +61,14 @@
         <input type="password" id="confirmation" name="confirmation" required><br>
         
         <button type="submit">Valider</button>
+        <button type="button" onclick="annuler()">Retour à l'accueil</button>
+        <script>
+        function annuler() {
+            window.location.href = '<%=request.getContextPath()%>/index.jsp ';
+        }
+        
+        </script>
+        
     </form>
     
 </body>
