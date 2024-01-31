@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Modification de votre profil</title>
+<link rel="stylesheet" href="styles/stylemodifprofil.css">
 </head>
 <body>
 	

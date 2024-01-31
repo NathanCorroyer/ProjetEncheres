@@ -1,4 +1,4 @@
-
+	<link rel="stylesheet" href="styles/navbar.css">
  	<%@page import="fr.eni.enchere.bo.Utilisateur"%>
  	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,6 +7,8 @@
  <c:choose>
 	 <c:when test="${userConnected ne null}">
 	    <nav class="navbar">
+	    
+	    <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp">ENI Encheres</a></h1>
 	      <div class="navbar-links">
 
 	          <ul>
@@ -26,7 +28,7 @@
 
 	 <c:otherwise>
 	 <nav class="navbar">
-	
+	<h1 id="title">ENI Encheres</h1>
 	        <div class="navbar-links">
 	            <ul>
 	                <li><a href="<%=request.getContextPath()%>/register"> Créer Un Compte </a></li>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletSuppressionCompte
@@ -23,23 +24,25 @@ public class ServletSuppressionCompte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtilisateurManager um = UtilisateurManager.getInstance();
-		String mail = request.getParameter("mail");
+		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
+		String mail = connectedUser.getEmail() ;
+		UtilisateurManager userToDelete = UtilisateurManager.getInstance();
+		
 		
 		if ( mail != null && !mail.isEmpty() ) {
+			request.getSession().invalidate();
 			try {
-				request.getSession().invalidate();
-				um.deleteByMail(mail);
-				request.setAttribute("succesSuppression", "L'utilisateur a été supprimé avec succès.");
+				userToDelete.deleteByMail(mail);
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}		
+			}
+			request.setAttribute("succesSuppression", "L'utilisateur a été supprimé avec succès.");		
 		} else {
 			request.setAttribute("erreurSuppression", "L'adresse e-mail n'a pas été fournie correctement.");
 		}
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
 	}
 }

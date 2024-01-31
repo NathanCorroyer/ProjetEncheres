@@ -13,7 +13,7 @@
 <body>
 
 <div class="head">
-
+ <%@ include file = "navbar.jsp" %>
 <h2>Se connecter</h2>
 </div>
  

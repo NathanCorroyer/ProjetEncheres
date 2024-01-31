@@ -10,11 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI-Enchères</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+    
 </head>
 <body>
     
-    <h1>ENI-Encheres</h1>
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
