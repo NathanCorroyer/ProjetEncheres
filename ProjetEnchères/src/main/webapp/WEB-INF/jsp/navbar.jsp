@@ -28,7 +28,7 @@
 
 	 <c:otherwise>
 	 <nav class="navbar">
-	<h1 id="title">ENI Encheres</h1>
+	 <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp">ENI Encheres</a></h1>
 	        <div class="navbar-links">
 	            <ul>
 	                <li><a href="<%=request.getContextPath()%>/register"> Créer Un Compte </a></li>
