@@ -17,4 +17,7 @@ public interface UtilisateurDAO {
 	Utilisateur login(String email, String password) throws SQLException;
 	
 	List<Utilisateur> findAll() throws SQLException;
+
+	Utilisateur selectByPseudo(String pseudo);
+	
 }
