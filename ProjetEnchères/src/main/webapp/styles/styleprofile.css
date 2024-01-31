@@ -34,6 +34,22 @@ a {
     transition: background-color 0.3s;
 }
 
-a:hover {
-    background-color: #c82333;
+
+
+
+
+a.modifier-profil {
+    background-color: #ff8000;
+}
+
+a.modifier-profil:hover {
+	
+	color:grey;
+   
+}
+
+a.supprimer-compte:hover {
+	
+	color:grey;
+	
 }
