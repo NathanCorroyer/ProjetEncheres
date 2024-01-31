@@ -59,7 +59,7 @@
         <label for="confirmation">Confirmation du nouveau mot de passe :</label>
         <input type="password" id="confirmation" name="confirmation" required><br>
         
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Valider</button>
     </form>
     
 </body>

@@ -51,8 +51,11 @@ public class ServletModificationProfil extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("mon_profil");
-																			
+		
+		//response.sendRedirect("mon_profil");
+		request.setAttribute("user", user);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
+		rd.forward(request, response);																	
 		
 	}
 
