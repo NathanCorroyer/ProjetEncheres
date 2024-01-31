@@ -1,8 +1,6 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +14,8 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet implementation class ServletAfficherProfil
  */
-@WebServlet("/mon_profil")
-public class ServletAfficherMonProfil extends HttpServlet {
+@WebServlet("/ServletAfficherSelonPseudo")
+public class ServletAfficherSelonPseudo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,17 +27,12 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
 				
 		String pseudo = request.getParameter("pseudo");	
-		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur userAffiche = null;
 		
 
-			try {
-				
-				userAffiche=um.selectUserByPseudo(pseudo);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			userAffiche = UtilisateurManager.selectUserByPseudo(pseudo);
 	
+		
 		
 		if (userAffiche != null && connectedUser != null) {
 			
