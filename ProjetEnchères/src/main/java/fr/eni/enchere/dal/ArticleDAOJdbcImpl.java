@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,23 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 
 	private Article ArticleBuilder(ResultSet rs) {
-		Article a = new Article();
-		a.set
-		return null;
+		Article a = null;
+		try {
+			a=new Article();
+			a.setNoArticle(rs.getInt("no_article"));
+			a.setDescription(rs.getString("description"));
+			a.setDate_debut_encheres(rs.getDate("date_debut_encheres").toLocalDate());
+			a.setDate_fin_encheres(rs.getDate("date_fin_encheres").toLocalDate());
+			a.setPrix_initial(rs.getInt("prix_initial"));
+			a.setPrix_vente(rs.getInt("prix_vente"));
+			a.setCategorie(rs.getInt("categorie"));
+			a.setNoUtilisateur(rs.getInt("noUtilisateur"));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
 	}
 
 	@Override
@@ -50,7 +65,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
 				listeArticles.add(a);
-				
 			}
 			
 		} catch (SQLException e) {
@@ -58,7 +72,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			e.printStackTrace();
 		}
 		
-		
+		return listeArticles;
 	}
 
 
@@ -81,8 +95,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	}
 
 	@Override
-	public void ajouter(Article a) {
-		
+	public void ajouter(Article a) throws SQLException {
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_AJOUTER)){
+			pstmt.setString(1, a.getNom_Article());
+			pstmt.setString(2, a.getDescription());
+			pstmt.setDate(0, null);
+		}
 		
 	}
 
