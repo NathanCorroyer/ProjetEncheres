@@ -11,8 +11,9 @@ import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
-												+ "FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie"
+												+ ","
+												+ "FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u on a. ";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
 												+ "FROM ARTICLES_VENDUS WHERE no_categorie = ?";

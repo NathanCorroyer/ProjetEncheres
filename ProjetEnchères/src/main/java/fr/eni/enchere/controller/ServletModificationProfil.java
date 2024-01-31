@@ -22,9 +22,9 @@ public class ServletModificationProfil extends HttpServlet {
 	
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UtilisateurManager connectedUser = (UtilisateurManager) request.getSession().getAttribute("userConnected");
+		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
 		request.setAttribute("user", connectedUser);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier_Profil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier_profil.jsp");
 		rd.forward(request, response);
 	}
 	
