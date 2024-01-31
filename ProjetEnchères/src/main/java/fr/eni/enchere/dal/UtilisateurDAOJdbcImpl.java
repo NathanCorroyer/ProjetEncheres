@@ -25,6 +25,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
 
+	private final String SELECT_BY_PSEUDO = "SELECT * FROM Utilisateurs WHERE pseudo = ?";
 
 	
 	
@@ -157,6 +158,35 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		 
 	 }
 	 
+	 public Utilisateur selectByPseudo(String pseudo) throws BusinessException {
+	        Utilisateur utilisateur = null;
+
+	        try (Connection connection = ConnectionProvider.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_PSEUDO)) {
+
+	            preparedStatement.setString(1, pseudo);
+
+	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                if (resultSet.next()) {
+	                    utilisateur = mapResultSetToUtilisateur(resultSet);
+	                }
+	            }
+
+	        } catch (SQLException e) {
+	            throw new BusinessException("Erreur lors de la récupération de l'utilisateur par pseudo", e);
+	        }
+
+	        return utilisateur;
+	    }
+
+	    private Utilisateur mapResultSetToUtilisateur(ResultSet resultSet) throws SQLException {
+	        Utilisateur utilisateur = new Utilisateur();
+	        utilisateur.setId(resultSet.getInt("idUtilisateur"));
+	        utilisateur.setPseudo(resultSet.getString("pseudo"));
+	        // Mappez d'autres attributs en fonction de votre modèle Utilisateur
+
+	        return utilisateur;
+	    }
 	
 		 
 	 }
