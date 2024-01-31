@@ -14,8 +14,8 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet implementation class ServletAfficherProfil
  */
-@WebServlet("/mon_profil")
-public class ServletAfficherMonProfil extends HttpServlet {
+@WebServlet("/ServletAfficherSelonPseudo")
+public class ServletAfficherSelonPseudo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
