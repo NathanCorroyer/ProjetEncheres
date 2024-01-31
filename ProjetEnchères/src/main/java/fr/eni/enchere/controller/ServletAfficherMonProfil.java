@@ -29,11 +29,13 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
 				
 		String pseudo = request.getParameter("pseudo");	
+		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur userAffiche = null;
 		
 
 			try {
-				userAffiche = Utilisateur.selectUserByPseudo(pseudo);
+				
+				userAffiche=um.selectUserByPseudo(pseudo);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
