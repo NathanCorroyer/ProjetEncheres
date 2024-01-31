@@ -5,10 +5,12 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
@@ -29,7 +31,8 @@ public class ServletModificationProfil extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
+		Integer noUtilisateur = connectedUser.getNoUtilisateur();
 		Utilisateur user = new Utilisateur( request.getParameter("pseudo"),
 											request.getParameter("nom"),
 											request.getParameter("prenom"),
@@ -39,7 +42,8 @@ public class ServletModificationProfil extends HttpServlet {
 											request.getParameter("codePostal"),
 											request.getParameter("ville"),
 											request.getParameter("motDePasse"));
-		user.setNoUtilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
+		
+		user.setNoUtilisateur(noUtilisateur);
 		
 		try {
 			UtilisateurManager.getInstance().update(user);
