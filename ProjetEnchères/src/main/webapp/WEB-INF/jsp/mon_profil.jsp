@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styleprofil.css">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ENI-Enchères</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil</title>
+    <link rel="stylesheet" href="styles/styleprofile.css">
+</head>
+<body>
+
 </head>
 <body>
     <h1>ENI-Enchères</h1>
@@ -16,6 +19,7 @@
     <p>Téléphone : ${user.telephone}</p>
     <p>Rue : ${user.rue}</p>
     <p>Ville : ${user.ville}</p>
+    <p> Code postal : ${user.code_postal}</p>
     <a href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
 </body>
 </html>
