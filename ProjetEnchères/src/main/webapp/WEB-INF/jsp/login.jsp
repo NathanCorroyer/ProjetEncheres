@@ -11,9 +11,11 @@
 <link rel="stylesheet" href="styles/stylelogin.css">
 </head>
 <body>
+<%@ include file = "navbar.jsp" %>
+<section class="main">
 
 <div class="head">
- <%@ include file = "navbar.jsp" %>
+
 <h2>Se connecter</h2>
 </div>
  
@@ -44,5 +46,6 @@
         </div>
       </form>
     </section>
+</section>
 </body>
 </html>

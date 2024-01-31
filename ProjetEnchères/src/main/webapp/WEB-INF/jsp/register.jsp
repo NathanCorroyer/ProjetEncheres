@@ -24,7 +24,10 @@
   </script>
 </head>
 <body>
+
     <%@ include file = "navbar.jsp" %>
+    
+    <section class="main">
     <h2>Mon profil</h2>
     
     <form class="inscription-form" action="${pageContext.request.contextPath}/register" method="post" onsubmit="return validerFormulaire()">
@@ -71,5 +74,7 @@
        
         
     </script>
+    
+    </section>
 </body>
 </html>

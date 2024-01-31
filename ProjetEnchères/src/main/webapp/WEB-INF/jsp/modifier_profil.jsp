@@ -10,8 +10,7 @@
 <link rel="stylesheet" href="styles/stylemodifprofil.css">
 </head>
 <body>
-	
-	<h1>ENI-Enchères</h1>
+	<%@ include file = "navbar.jsp" %>
    	<h2>Modification du profil</h2>
    	
    	<script>
