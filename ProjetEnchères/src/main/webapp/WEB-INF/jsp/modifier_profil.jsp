@@ -15,15 +15,15 @@
    	
    	<script>
     document.getElementById("formulaireModif").addEventListener("submit", function(event) {
-        var password = document.getElementById("motDePasse").value;
-        var confirmPassword = document.getElementById("confirmation").value;
+        var nouveauMotDePasse = document.getElementById("motDePasse").value;
+        var confirmationMotDePasse = document.getElementById("confirmation").value;
 
-        if (password !== confirmPassword) {
-            alert("Les mots de passe ne correspondent pas !");
+        if (nouveauMotDePasse !== confirmationMotDePasse) {
+            alert("Les nouveaux mots de passe ne correspondent pas !");
             event.preventDefault(); // Empêche l'envoi du formulaire
         }
     });
-	</script>
+</script>
     
     <form id="formulaireModif" class="modification-form" action="${pageContext.request.contextPath}/ServletModificationProfil" method="POST">
         <label for="pseudo">Pseudo :</label>
