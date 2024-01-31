@@ -12,55 +12,67 @@
 	
 	<h1>ENI-Enchères</h1>
    	<h2>Modification du profil</h2>
-   	
-   	<script>
-    document.getElementById("formulaireModif").addEventListener("submit", function(event) {
-        var password = document.getElementById("motDePasse").value;
-        var confirmPassword = document.getElementById("confirmation").value;
-
-        if (password !== confirmPassword) {
-            alert("Les mots de passe ne correspondent pas !");
-            event.preventDefault(); // Empêche l'envoi du formulaire
-        }
-    });
-	</script>
     
-    <form id="formulaireModif" class="modification-form" action="${pageContext.request.contextPath}/ServletModificationProfil" method="POST">
+    <form class="modification-form" action="${pageContext.request.contextPath}/update" method="POST">
         <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" name="pseudo" value="${user.pseudo}"  required><br>
+        <input type="text" id="pseudo" name="pseudo" value="${userConnected.pseudo}"  required><br>
 
  		<label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" value="${user.nom}" required><br>
+        <input type="text" id="nom" name="nom" value="${userConnected.nom}" required><br>
         
         <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" value="${user.prenom}" required><br>
+        <input type="text" id="prenom" name="prenom" value="${userConnected.prenom}" required><br>
         
         <label for="email">Email :</label>
-        <input type="email" id="email" name="email" value="${user.email}"  required><br>
+        <input type="email" id="email" name="email" value="${userConnected.email}"  required><br>
 
         <label for="telephone">Téléphone :</label>
-        <input type="tel" id="telephone" name="telephone"  value="${user.telephone}" required><br>
+        <input type="tel" id="telephone" name="telephone"  value="${userConnected.telephone}" required><br>
         
         <label for="rue">Rue :</label>
-        <input type="text" id="rue" name="rue"  value="${user.rue}" required><br>
+        <input type="text" id="rue" name="rue"  value="${userConnected.rue}" required><br>
 
         <label for="codePostal">Code postal :</label>
-        <input type="text" id="codePostal" name="codePostal"  value="${user.code_postal}" required><br>
+        <input type="text" id="codePostal" name="codePostal"  value="${userConnected.code_postal}" required><br>
         
         <label for="ville">Ville :</label>
-        <input type="text" id="ville" name="ville"  value="${user.ville}" required><br>
+        <input type="text" id="ville" name="ville"  value="${userConnected.ville}" required><br>
         
         <label for="motDePasseActuel">Mot de passe actuel :</label>
 		<input type="password" id="motDePasseActuel" name="motDePasseActuel" required><br>
+		<c:choose>
+			<c:when test="${not empty param.motDePasseActuel and param.motDePasseActuel ne userConnected.password}">
+				<p>Petit filou, ce n'est pas votre mot de passe</p>
+			</c:when>
+			<c:otherwise>
+				<p>Mot de passe valide</p>		
+			</c:otherwise>
+		</c:choose>
 		
         <label for="NouveauMotDePasse">Nouveau mot de passe :</label>
         <input type="password" id="motDePasse" name="motDePasse" required><br>
 
         <label for="confirmation">Confirmation du nouveau mot de passe :</label>
         <input type="password" id="confirmation" name="confirmation" required><br>
-        
+		<c:choose>
+			<c:when test="${not empty param.motDePasse and not empty param.confirmation and param.motDePasse ne param.confirmation}">
+				<p>Les mots de passe ne correspondent pas</p>
+			</c:when>
+			<c:otherwise>
+				<p>Les mots de passe correspondent</p>
+			</c:otherwise>
+		</c:choose>
         <button type="submit">S'inscrire</button>
     </form>
+    <c:if test="${validation eq true} ">
+    	<p>Modification effectuée</p>	
+    </c:if>
+    <c:if test="${validation eq false }">
+    	<c:forEach var="erreur" items="listeErreurs">
+    		<p>${erreur}</p>
+    	</c:forEach>
+    	
+    </c:if>
     
 </body>
 </html>

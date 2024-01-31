@@ -68,9 +68,7 @@
             window.location.href = '<%=request.getContextPath()%>/login ';
         }
         
-        function redirigerVersConnexion() {
-            window.location.href = '<%=request.getContextPath()%>/login';
-        }
+       
         
     </script>
 </body>

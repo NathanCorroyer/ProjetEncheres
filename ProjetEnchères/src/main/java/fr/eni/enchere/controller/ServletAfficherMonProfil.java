@@ -26,9 +26,9 @@ public class ServletAfficherMonProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
+		Utilisateur connectedUser = (Utilisateur) session.getAttribute("userConnected");
 				
-		String pseudo = request.getParameter("pseudo");	
+		String pseudo = connectedUser.getPseudo();	
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur userAffiche = null;
 		
@@ -43,7 +43,7 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		
 		if (userAffiche != null && connectedUser != null) {
 			
-			request.setAttribute("UserAffiche", userAffiche);
+			request.setAttribute("user", userAffiche);
 			request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp").forward(request, response);	
 					
 		} 
