@@ -11,8 +11,8 @@
 
 </head>
 <body>
-    <h1>ENI-Enchères</h1>
-    <h2>Mon profil</h2>
+     <%@ include file = "navbar.jsp" %>
+    <div class="informations"><h2>Mon profil</h2>
     <p>Pseudo : ${user.pseudo}</p>
     <p>Nom : ${user.nom}</p>
     <p>Prénom : ${user.prenom}</p>
@@ -23,7 +23,7 @@
     <p> Code postal : ${user.code_postal}</p>
     <a class ="supprimer-compte" href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
     <a class="modifier-profil" href="${pageContext.request.contextPath}/ServletModificationProfil">Modifier mon profil </a>
-
+</div>
     
 </body>
 </html>

@@ -24,7 +24,7 @@
   </script>
 </head>
 <body>
-    <h1>ENI-Enchères</h1>
+    <%@ include file = "navbar.jsp" %>
     <h2>Mon profil</h2>
     
     <form class="inscription-form" action="${pageContext.request.contextPath}/register" method="post" onsubmit="return validerFormulaire()">

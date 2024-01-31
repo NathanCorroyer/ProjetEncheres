@@ -6,24 +6,24 @@ body {
     text-align: center;
 }
 
-h1 {
+.informations h1 {
     background-color: #4285f4;
     color: #ffffff;
     padding: 20px;
     margin: 0;
 }
 
-h2 {
+.informations h2 {
     color: #333;
 }
 
-p {
+.informations p {
     margin: 10px 0;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-a {
+.informations a {
     display: inline-block;
     margin-top: 20px;
     background-color: #dc3545;
