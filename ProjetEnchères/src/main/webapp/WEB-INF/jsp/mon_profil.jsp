@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="styles/styleprofile.css">
     
 </head>
-<body>
 
-</head>
 <body>
      <%@ include file = "navbar.jsp" %>
      <section class="main">
@@ -26,5 +24,13 @@
     <a class="modifier-profil" href="${pageContext.request.contextPath}/ServletModificationProfil">Modifier mon profil </a>
 </div>
     </section>
+    
+    	<c:if test="${not empty requestScope.succesModif}">
+    	<p style="color : green">${requestScope.succesModif}</p>
+    </c:if>
+    <c:if test="${not empty requestScope.erreurModif}">
+    	<p style="color : red">${requestScope.erreurModif}</p>
+    </c:if>
+    
 </body>
 </html>
