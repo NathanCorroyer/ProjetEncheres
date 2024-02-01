@@ -12,15 +12,15 @@
      <%@ include file = "navbar.jsp" %>
      <section class="main">
     <div class="informations"><h2>Mon profil</h2>
-    <p>Pseudo : ${user.pseudo}</p>
-    <p>Nom : ${user.nom}</p>
-    <p>Prénom : ${user.prenom}</p>
-    <p>Email : ${user.email}</p> 
-    <p>Téléphone : ${user.telephone}</p>
-    <p>Rue : ${user.rue}</p>
-    <p>Ville : ${user.ville}</p>
-    <p> Code postal : ${user.code_postal}</p>
-    <h3>Crédit : ${user.credit}</h3> 
+    <p>Pseudo : ${userConnected.pseudo}</p>
+    <p>Nom : ${userConnected.nom}</p>
+    <p>Prénom : ${userConnected.prenom}</p>
+    <p>Email : ${userConnected.email}</p> 
+    <p>Téléphone : ${userConnected.telephone}</p>
+    <p>Rue : ${userConnected.rue}</p>
+    <p>Ville : ${userConnected.ville}</p>
+    <p> Code postal : ${userConnected.code_postal}</p>
+    <h3>Crédit : ${userConnected.credit}</h3> 
     <form action="${pageContext.request.contextPath}/ServletAjoutCredit" method="post"> 
     <label for="nombreCredit">Nombre de crédits :</label>
     <input type="number" id="nombreCredit" name="nombreCredit" required>

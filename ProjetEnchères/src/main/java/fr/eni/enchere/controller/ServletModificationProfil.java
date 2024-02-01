@@ -51,7 +51,7 @@ public class ServletModificationProfil extends HttpServlet {
 						user.setNoUtilisateur(noUtilisateur);
 						user.setCredit(creditactuel);
 				UtilisateurManager.getInstance().update(user);
-			    request.getSession().setAttribute("user", connectedUser );
+			    request.getSession().setAttribute( "userConnected" , user );
 				request.setAttribute("succesModif", "Toutes les modifications ont été prises en compte.");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
 				rd.forward(request, response);	
@@ -70,7 +70,7 @@ public class ServletModificationProfil extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			request.setAttribute("user", userAffiche );
+			request.setAttribute("userConnected", userAffiche );
 			request.setAttribute("erreurModif", "L'ancien mot de passe que vous avez entré ne correspond pas.");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
 			rd.forward(request, response);

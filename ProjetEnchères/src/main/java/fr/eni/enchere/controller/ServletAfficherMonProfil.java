@@ -42,7 +42,7 @@ public class ServletAfficherMonProfil extends HttpServlet {
 		
 		if (userAffiche != null && connectedUser != null) {
 			
-			request.setAttribute("user", userAffiche);
+			request.setAttribute("userConnected", userAffiche);
 			request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp").forward(request, response);	
 					
 		} 
