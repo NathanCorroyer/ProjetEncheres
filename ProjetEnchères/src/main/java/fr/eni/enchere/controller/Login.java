@@ -37,23 +37,24 @@ public class Login extends HttpServlet {
 
 	
 		
-		HttpSession ses;
+		
 		Utilisateur user;
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
 		user =UtilisateurManager.getInstance().login(email,mdp);
+		HttpSession ses;
 		ses= request.getSession();
 		if(user!=null)
 		{
-			
 			ses.setAttribute("userConnected", user);
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 		else
 		{	
-			ses.setAttribute("email", email);
-			response.sendRedirect(request.getContextPath()+"/login");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			request.setAttribute("erreur", "Email ou mot de passe non valide.");
+			rd.forward(request, response);
 			
 		}
 
