@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>ENI Enchère - Connexion</title>
 <link rel="stylesheet" href="styles/stylelogin.css">
+<link rel="icon" href="https://capecia-formations.fr/wp-content/uploads/2019/09/LogoENIcertification-print.png" type="image/x-icon">
 </head>
 <body>
 <%@ include file = "navbar.jsp" %>
