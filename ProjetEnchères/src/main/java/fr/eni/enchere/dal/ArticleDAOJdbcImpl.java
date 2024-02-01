@@ -24,10 +24,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	private static final String SQL_SELECT_FROM_USER = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_vendeur, no_categorie"
 													+  "FROM ARTICLES_VENDUS WHERE no_vendeur = ?";
 	
-	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_vendeur, no_categorie)"
-											+ "VALUES (?,?,?,?,?,?,?,?)";
-	private static final String SQL_AJOUTER_AVEC_ACHETEUR = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_vendeur, no_categorie,no_acheteur)"
-			+ "VALUES (?,?,?,?,?,?,?,?,?)";
+	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_vendeur, no_categorie)"
+											+ "VALUES (?,?,?,?,?,?,?)";
+	private static final String SQL_AJOUTER_AVEC_ACHETEUR = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_vendeur, no_categorie,no_acheteur)"
+			+ "VALUES (?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_SUPPRIMER = "DELETE FROM ARTICLES_VENDUS WHERE no_Article = ?";
 	
@@ -48,7 +48,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setDate_debut_encheres(rs.getDate("date_debut_encheres").toLocalDate());
 			a.setDate_fin_encheres(rs.getDate("date_fin_encheres").toLocalDate());
 			a.setPrix_initial(rs.getInt("prix_initial"));
-			a.setPrix_vente(rs.getInt("prix_vente"));
 			a.setCategorie(rs.getInt("no_categorie"));
 			UtilisateurManager um = UtilisateurManager.getInstance();
 			Utilisateur vendeur = um.selectUserByNumero(rs.getInt("no_vendeur"));
@@ -113,9 +112,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			pstmt.setDate(3, Date.valueOf(a.getDate_debut_encheres()));
 			pstmt.setDate(4, Date.valueOf(a.getDate_fin_encheres()));
 			pstmt.setInt(5, a.getPrix_initial());
-			pstmt.setInt(6, a.getPrix_vente());
-			pstmt.setInt(7, a.getNoVendeur());
-			pstmt.setInt(8, a.getCategorie());
+			pstmt.setInt(6, a.getNoVendeur());
+			pstmt.setInt(7, a.getCategorie());
 			pstmt.executeUpdate();
 			
 		}
@@ -131,10 +129,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			pstmt.setDate(3, Date.valueOf(a.getDate_debut_encheres()));
 			pstmt.setDate(4, Date.valueOf(a.getDate_fin_encheres()));
 			pstmt.setInt(5, a.getPrix_initial());
-			pstmt.setInt(6, a.getPrix_vente());
-			pstmt.setInt(7, a.getNoVendeur());
-			pstmt.setInt(8, a.getCategorie());
-			pstmt.setInt(9, a.getNo_acheteur());
+			pstmt.setInt(6, a.getNoVendeur());
+			pstmt.setInt(7, a.getCategorie());
+			pstmt.setInt(8, a.getNo_acheteur());
 			
 			pstmt.executeUpdate();
 		}		
