@@ -23,7 +23,7 @@
     <h3>Crédit : ${user.credit}</h3> 
     <form action="${pageContext.request.contextPath}/ServletAjoutCredit" method="post"> 
     <label for="nombreCredit">Nombre de crédits :</label>
-    <input type="text" id="nombreCredit" name="nombreCredit" required>
+    <input type="number" id="nombreCredit" name="nombreCredit" required>
     <button type="submit">Ajouter du crédit</button>
 </form>
 

@@ -6,50 +6,42 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse; 
+import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur; 
 
 @WebServlet("/ServletAjoutCredit")
 public class ServletAjoutCredit extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException { 
-    
-        String creditStr = request.getParameter("nombreCredit");
-
-       
-        if (creditStr != null && creditStr.matches("\\d+")) {
-            int nombreCredit = Integer.parseInt(creditStr);
-
-
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=ENCHERE_BDD";
-            String utilisateurBDD = "votre_utilisateur";
-            String motDePasseBDD = "votre_mot_de_passe";
-
-            try (Connection connexion = DriverManager.getConnection(url, utilisateurBDD, motDePasseBDD)) {
-               
-                String requete = "UPDATE utilisateurs SET credit = credit + ? WHERE id_utilisateur = ?";
-                try (PreparedStatement preparedStatement = connexion.prepareStatement(requete)) {
-                   
-                    int idUtilisateur = 1; 
-
-                    preparedStatement.setInt(1, nombreCredit);
-                    preparedStatement.setInt(2, idUtilisateur);
-
-                  
-                    preparedStatement.executeUpdate();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                
-            }
-
-          
-            response.sendRedirect(request.getContextPath() + "/profile.jsp");
-        } else {
-            
-            response.sendRedirect(request.getContextPath() + "/profile.jsp?erreur=credit_invalid");
-        }
-    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	
+    	Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
+    	String paramRecup = request.getParameter("nombreCredit");
+    	Integer noUtilisateur = connectedUser.getNoUtilisateur();
+    	int creditsAjoutes = Integer.parseInt(paramRecup);
+    	int anciensCredits = connectedUser.getCredit();
+    	int nouveauxCredits = anciensCredits + creditsAjoutes ;
+   
+    	connectedUser.setCredit(connectedUser.getCredit() + creditsAjoutes );
+    	
+    	try {
+    	
+    	UtilisateurManager.getInstance().update(connectedUser);
+    	request.setAttribute( "user" , connectedUser );
+    	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
+    	
+			rd.forward(request, response);
+		} catch (ServletException | IOException | SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    	
+}
 }
