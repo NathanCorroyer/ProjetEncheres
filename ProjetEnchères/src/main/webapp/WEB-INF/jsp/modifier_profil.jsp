@@ -24,6 +24,8 @@
         }
     });
 </script>
+
+ 	
     
     <form id="formulaireModif" class="modification-form" action="${pageContext.request.contextPath}/ServletModificationProfil" method="POST">
         <label for="pseudo">Pseudo :</label>
@@ -69,6 +71,13 @@
         </script>
         
     </form>
+    
+    	<c:if test="${not empty requestScope.succesModif}">
+    	<p style="color : green">${requestScope.succesModif}</p>
+    </c:if>
+    <c:if test="${not empty requestScope.erreurModif}">
+    	<p style="color : red">${requestScope.erreurModif}</p>
+    </c:if>
     
 </body>
 </html>

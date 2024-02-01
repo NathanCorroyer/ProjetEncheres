@@ -27,15 +27,14 @@ public class ServletAfficherMonProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("userConnected");
-				
-		String pseudo = connectedUser.getPseudo();	
+		Integer idUser = connectedUser.getNoUtilisateur();	
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		Utilisateur userAffiche = null;
 		
 
 			try {
 				
-				userAffiche=um.selectUserByPseudo(pseudo);
+				userAffiche= um.selectUserByNumero(idUser);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
