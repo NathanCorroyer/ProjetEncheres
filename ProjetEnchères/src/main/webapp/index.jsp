@@ -35,6 +35,7 @@
     <form class="search-form" action="#" method="get">
         <input type="text" name="search" placeholder="Le nom de l'article contient">
     </form>
+    
     <h4>Catégorie :</h4>
     <select class="category-dropdown">
         <option value="categorie1">Toutes</option>
@@ -43,20 +44,8 @@
         <option value="categorie4">Vêtement</option>
         <option value="categorie5">Sports et Loisirs</option>
       </select>
-     <section class="annonces">
-        <ul>
-            <li>
-                <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
-                <div class="annonce-details">
-                    <h4>PC Gamer pas terrible</h4>
-                    <p>Prix : 210 points</p>
-                    <p>Fin de l'enchère : 01/01/2025</p>
-                    <p>Vendeur : Sasusuke</p>
-                </div>
-            </li>
-
-        </ul>
-    </section>
+      <jsp:include page="TestANouveau.jsp" />
+     
     </section>
 </body>
 </html>
