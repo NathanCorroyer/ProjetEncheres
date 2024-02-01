@@ -19,7 +19,7 @@
         <input type="text" name="nom_article" required>
 
         <label for="description">Description :</label>
-        <input name="description" required>
+        <textarea  required></textarea>
 
         <label for="no_categorie">Catégorie :</label>
         <input type="number" name="no_categorie" required>
@@ -42,7 +42,7 @@
         <button type="submit">Enregister</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
-    
+    <footer> Copyright css Hiliesse</footer>
     <script>
         function annuler() {
             window.location.href = '<%=request.getContextPath()%>/index.jsp';
