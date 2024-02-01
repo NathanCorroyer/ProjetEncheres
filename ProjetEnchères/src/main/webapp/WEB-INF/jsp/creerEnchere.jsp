@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/stylecreerenchere.css">
+    <link rel="stylesheet" href="styles/stylecreerenchere.css"> 
     <link rel="icon" href="https://capecia-formations.fr/wp-content/uploads/2019/09/LogoENIcertification-print.png" type="image/x-icon">
     <title>Créer une Enchère</title>
 </head>
