@@ -13,7 +13,7 @@
 <%@ include file = "navbar.jsp" %>
 
 <section class="main">
-    <h2>Créer une Enchère</h2>
+    <h2>Nouvelle vente</h2>
     
     <form class="enchere-form" action="${pageContext.request.contextPath}/creer_enchere" method="post">
         <label for="nom_article">Article:</label>
@@ -34,7 +34,18 @@
         <label for="date_fin_encheres">Fin de l'enchère :</label>
         <input type="date" name="date_fin_encheres" required>
         
-        
+        <div class="retrait">
+	        <h2>Retrait</h2>
+	       	 <label for="rue">Rue :</label>
+       		 <input type="text" id="rue" name="rue"  value="${user.rue}" required>
+       		 
+       
+	        <label for="codePostal">Code postal :</label>
+	        <input type="text" id="codePostal" name="codePostal"  value="${user.code_postal}" required><br>
+	        
+	        <label for="ville">Ville :</label>
+	        <input type="text" id="ville" name="ville"  value="${user.ville}" required><br>
+        </div>
 <!--
         <label for="modalitesRetrait">Modalités de retrait :</label>
         <textarea name="modalitesRetrait"></textarea>
@@ -43,7 +54,6 @@
         <button type="submit">Enregister</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
-    <footer> Copyright css Hiliesse</footer>
     <script>
         function annuler() {
             window.location.href = '<%=request.getContextPath()%>/index.jsp';
