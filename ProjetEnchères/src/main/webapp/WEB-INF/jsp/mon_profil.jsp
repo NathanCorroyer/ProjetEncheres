@@ -17,12 +17,18 @@
     <p>Pseudo : ${user.pseudo}</p>
     <p>Nom : ${user.nom}</p>
     <p>Prénom : ${user.prenom}</p>
-    <p>Email : ${user.email}</p>
+    <p>Email : ${user.email}</p> 
     <p>Téléphone : ${user.telephone}</p>
     <p>Rue : ${user.rue}</p>
     <p>Ville : ${user.ville}</p>
     <p> Code postal : ${user.code_postal}</p>
     <h3>Crédit : ${user.credit}</h3> 
+    <form action="${pageContext.request.contextPath}/ServletAjoutCredit" method="post">
+    <label for="nombreCredit">Nombre de crédits :</label>
+    <input type="text" id="nombreCredit" name="nombreCredit" required>
+    <button type="submit">Ajouter du crédit</button>
+</form>
+
     <a class ="supprimer-compte" href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
     <a class="modifier-profil" href="${pageContext.request.contextPath}/ServletModificationProfil">Modifier mon profil </a>
 </div>
