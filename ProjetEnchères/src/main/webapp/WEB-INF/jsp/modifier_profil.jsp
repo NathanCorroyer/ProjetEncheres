@@ -72,12 +72,6 @@
         
     </form>
     
-    	<c:if test="${not empty requestScope.succesModif}">
-    	<p style="color : green">${requestScope.succesModif}</p>
-    </c:if>
-    <c:if test="${not empty requestScope.erreurModif}">
-    	<p style="color : red">${requestScope.erreurModif}</p>
-    </c:if>
     
 </body>
 </html>

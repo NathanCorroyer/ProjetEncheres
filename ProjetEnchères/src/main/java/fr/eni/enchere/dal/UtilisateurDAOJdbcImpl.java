@@ -11,8 +11,8 @@ import fr.eni.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private static final String SQL_REGISTER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
-			+ "									VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SQL_REGISTER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe) "
+			+ "									VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_DELETE_BY_EMAIL = "DELETE FROM Utilisateurs WHERE email like ?";
 	
@@ -44,8 +44,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(7 , utilisateur.getCode_postal());
 			pstmt.setString(8 , utilisateur.getVille());
 			pstmt.setString(9 , utilisateur.getPassword());
-			pstmt.setInt(10,utilisateur.getCredit());
-			pstmt.setInt(11, 0);
 			
 			pstmt.executeUpdate();
 			

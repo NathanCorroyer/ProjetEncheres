@@ -52,8 +52,7 @@ public class Utilisateur {
 		this.code_postal = code_postal;
 		this.ville = ville;
 		this.password = password;
-		this.credit = 0;
-		this.administrateur=false;
+
 	}
 	public Integer getNoUtilisateur() {
 		return noUtilisateur;

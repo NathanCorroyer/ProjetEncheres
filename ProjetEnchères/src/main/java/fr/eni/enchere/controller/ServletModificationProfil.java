@@ -68,7 +68,7 @@ public class ServletModificationProfil extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			request.setAttribute("user", userAffiche );
+			request.setAttribute("userConnected", userAffiche );
 			request.setAttribute("erreurModif", "L'ancien mot de passe que vous avez entré ne correspond pas.");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
 			rd.forward(request, response);
