@@ -21,7 +21,7 @@
     <p>Ville : ${user.ville}</p>
     <p> Code postal : ${user.code_postal}</p>
     <h3>Crédit : ${user.credit}</h3> 
-    <form action="${pageContext.request.contextPath}/ServletAjoutCredit" method="post">
+    <form action="${pageContext.request.contextPath}/ServletAjoutCredit" method="post"> 
     <label for="nombreCredit">Nombre de crédits :</label>
     <input type="text" id="nombreCredit" name="nombreCredit" required>
     <button type="submit">Ajouter du crédit</button>
