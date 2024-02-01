@@ -27,6 +27,7 @@ public class ServletCreerEnchere extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Aller chercher la liste de catégories et la renvoyer en attribut de requête
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/creerEnchere.jsp");
 		rd.forward(request, response);
 	}
