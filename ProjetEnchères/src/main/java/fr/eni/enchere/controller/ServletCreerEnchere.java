@@ -27,7 +27,8 @@ public class ServletCreerEnchere extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Aller chercher la liste de catégories et la renvoyer en attribut de requête
+		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
+		request.setAttribute("user", connectedUser);
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/creerEnchere.jsp");
 		rd.forward(request, response);
 	}
@@ -36,7 +37,8 @@ public class ServletCreerEnchere extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 	ArticleManager a = ArticleManager.getInstance();
+		 	
+			ArticleManager a = ArticleManager.getInstance();
 		 	Utilisateur user = (Utilisateur) request.getSession().getAttribute("userConnected");
 		 	int numeroVendeur = user.getNoUtilisateur();
 			String nom = request.getParameter("nom_article");
