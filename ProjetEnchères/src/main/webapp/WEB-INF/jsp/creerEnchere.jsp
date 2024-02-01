@@ -27,16 +27,17 @@
         <input type="number" name="prix_initial" required>
 
         <label for="date_debut_encheres">Date et heure d'ouverture :</label>
-        <input type="datetime-local" name="date_debut_encheres" required>
+        <input type="date" name="date_debut_encheres" required>
 
         <label for="date_fin_encheres">Date et heure de fermeture :</label>
-        <input type="datetime-local" name="date_fin_encheres" required>
+        <input type="date" name="date_fin_encheres" required>
         
         
 <!--
         <label for="modalitesRetrait">Modalités de retrait :</label>
         <textarea name="modalitesRetrait"></textarea>
 		 Modalité de retrait à modifier --> 
+		 
         <input type="submit" value="Créer Enchère">
     </form>
     
