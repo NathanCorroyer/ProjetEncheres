@@ -34,7 +34,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher(referer);
 		rd.forward(request, response);
-
+		
 	}
 
 	/**

@@ -6,20 +6,13 @@
 <%@page import="fr.eni.enchere.bo.Utilisateur" %>
 <%@page import="java.util.List" %>
 <%@page import="javax.servlet.RequestDispatcher" %>
-<c:if test="${requestScope.listeArticles eq null}">
+<link rel="stylesheet" href="styles/style.css">
+
+<c:if test="${empty requestScope.redirected}">
 	
 	<% 
-	   // Récupérer l'URL relative à l'application
-    String requestURI = request.getRequestURI();
-    
-    // Récupérer le chemin du contexte de l'application
-    String contextPath = request.getContextPath();
 
-    // Récupérer la portion de l'URL après l'URL de base du projet
-    String relativeURL = requestURI.substring(contextPath.length());
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletRecuperationListeEncheres");
-	request.setAttribute("referer", relativeURL);
-	dispatcher.forward(request,response); 
+	response.sendRedirect(request.getContextPath()+"/ServletTestAffichage");
 	
 	%>
 </c:if>

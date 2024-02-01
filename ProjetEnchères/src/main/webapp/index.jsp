@@ -46,7 +46,7 @@
         <option value="categorie4">Vêtement</option>
         <option value="categorie5">Sports et Loisirs</option>
       </select>
-      <jsp:include page="AffichageListeArticles.jsp" />
+      <jsp:include page="/WEB-INF/jsp/AffichageListeArticles.jsp" />
      
     </section>
 </body>
