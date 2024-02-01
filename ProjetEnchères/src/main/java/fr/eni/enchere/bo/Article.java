@@ -12,7 +12,7 @@ public class Article {
 	 private int prix_initial;
 	 private int prix_vente;
 	 private int categorie;
-	 private int noUtilisateur;
+	 private int noVendeur;
 	 private Utilisateur vendeur;
 	 private int no_acheteur;
 	 private Utilisateur acheteur;
@@ -24,8 +24,8 @@ public class Article {
 	public void setAcheteur(Utilisateur acheteur) {
 		this.acheteur = acheteur;
 	}
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public int getNoVendeur() {
+		return noVendeur;
 	}
 	public Utilisateur getVendeur() {
 		return vendeur;
@@ -39,7 +39,7 @@ public class Article {
 	
 	
 	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-			int prix_initial, int prix_vente, int categorie, int noUtilisateur, int no_acheteur) {
+			int prix_initial, int prix_vente, int noVendeur,int categorie, int no_acheteur) {
 		super();
 		this.nom_Article = nom_Article;
 		this.description = description;
@@ -48,11 +48,11 @@ public class Article {
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.categorie = categorie;
-		this.noUtilisateur = noUtilisateur;
+		this.noVendeur = noVendeur;
 		this.no_acheteur = no_acheteur;
 	}
 	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-			int prix_initial, int prix_vente, int noUtilisateur,int categorie) {
+			int prix_initial, int prix_vente, int noVendeur,int categorie) {
 		super();
 		this.nom_Article = nom_Article;
 		this.description = description;
@@ -60,11 +60,11 @@ public class Article {
 		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
-		this.noUtilisateur = noUtilisateur;
+		this.noVendeur = noVendeur;
 		this.categorie = categorie;
 	}
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setNoVendeur(int noVendeur) {
+		this.noVendeur = noVendeur;
 	}
 	public Integer getNoArticle() {
 		return no_article;
@@ -143,7 +143,7 @@ public class Article {
 	public String toString() {
 		StringBuilder chaine = new StringBuilder();
 		chaine.append(String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d || Vendeur : %s", no_article, nom_Article, description, date_debut_encheres.toString(), 
-																			date_fin_encheres.toString(), prix_initial, prix_vente, noUtilisateur, categorie, vendeur.getPseudo()));
+																			date_fin_encheres.toString(), prix_initial, prix_vente, noVendeur, categorie, vendeur.getPseudo()));
 		if(acheteur != null) {
 			chaine.append(String.format(" || Acheteur : %s", acheteur.getPseudo()));
 		}

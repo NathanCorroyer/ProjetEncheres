@@ -7,18 +7,16 @@
     <title>ENI-Encheres / Inscription</title>
    <link rel="stylesheet" href="styles/styleregister.css">
     <script>
-    // Fonction de validation du formulaire
     function validerFormulaire() {
       var motDePasse = document.getElementById('motDePasse').value;
       var confirmation = document.getElementById('confirmation').value;
 
-      // Vérifier si les champs de mot de passe sont identiques
       if (motDePasse !== confirmation) {
         alert("Les mots de passe ne correspondent pas.");
         return false; 
       }
 
-    e
+      window.location.href = '<%=request.getContextPath()%>/login';
       return true;
     }
   </script>
@@ -62,17 +60,14 @@
         <label for="ville">Ville :</label>
         <input type="text" id="ville" name="ville" required>
 
-        <button type="submit" onclick="redirigerVersConnexion()">Créer</button>
+        <button type="submit">Créer</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
 
     <script>
         function annuler() {
-            window.location.href = '<%=request.getContextPath()%>/login ';
+            window.location.href = '<%=request.getContextPath()%>/login';
         }
-        
-       
-        
     </script>
     
     </section>

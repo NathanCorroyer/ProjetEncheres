@@ -16,5 +16,6 @@ public interface ArticleDAO {
 	void update(Article a);
 	void deleteSingleArticleFromUser(Utilisateur u, Article a);
 	void deleteAllArticlesFromUser(Utilisateur u);
+	void ajouterAvecAcheteur(Article a) throws SQLException;
 }
 

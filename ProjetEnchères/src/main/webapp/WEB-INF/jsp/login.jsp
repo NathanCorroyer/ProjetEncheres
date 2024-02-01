@@ -31,9 +31,9 @@
           <input class="input" name="mdp" id="mdp" type="password" placeholder="Mot De Passe"required>
         </div>
         
-        <c:if test="${email ne null}">
- 	<p>Email ou mot de passe non valide</p>
- </c:if>
+        <c:if test="${not empty requestScope.erreur}">
+ 			<p>${requestScope.erreur}</p>
+ 		</c:if>
     
         <div>
           <button class="btn-login" type="submit">Connexion</button>
