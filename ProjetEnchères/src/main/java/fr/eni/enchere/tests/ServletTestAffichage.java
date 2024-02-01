@@ -1,4 +1,4 @@
-package fr.eni.enchere.controller;
+package fr.eni.enchere.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,22 +29,16 @@ public class ServletTestAffichage extends HttpServlet {
 			System.out.println("JE PASSE DANS LA SERVLET");
 			List<Article> listeArticles = new ArrayList<>();
 			ArticleManager am = ArticleManager.getInstance();
-			
+			System.out.println("Attribut referer : " +  request.getAttribute("referer").toString());
 			listeArticles = am.selectAll();
 			request.setAttribute("listeArticles", listeArticles);
-			
-		
-			String requestURI = request.getRequestURI();
-	    
-			// Récupérer le chemin du contexte de l'application
-			String contextPath = request.getContextPath();
-
-			// Récupérer la portion de l'URL après l'URL de base du projet
-			String relativeURL = requestURI.substring(contextPath.length());
+			String referer = (String) request.getAttribute("referer");
 			String redirected = "true";
 			request.setAttribute("redirected", redirected);
-			RequestDispatcher rd = request.getRequestDispatcher("/testAffichage.jsp");
-			rd.forward(request, response);
+		System.out.println(referer);
+		RequestDispatcher rd = request.getRequestDispatcher(referer);
+		rd.forward(request, response);
+
 			
 		}else {
 			

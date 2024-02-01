@@ -6,17 +6,26 @@
 <%@page import="fr.eni.enchere.bo.Utilisateur" %>
 <%@page import="java.util.List" %>
 <%@page import="javax.servlet.RequestDispatcher" %>
-<link rel="stylesheet" href="styles/style.css">
 
 <c:if test="${empty requestScope.redirected}">
 	
 	<% 
-
-	response.sendRedirect(request.getContextPath()+"/ServletTestAffichage");
+	   // Récupérer l'URL relative à l'application
+    String requestURI = request.getRequestURI();
+	System.out.println(requestURI);
+    // Récupérer le chemin du contexte de l'application
+    String contextPath = request.getContextPath();
+    System.out.println(contextPath);
+    // Récupérer la portion de l'URL après l'URL de base du projet
+    String relativeURL = requestURI.substring(contextPath.length());
+    System.out.println(relativeURL);
+	request.setAttribute("referer", relativeURL);
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletTestAffichage");
+	dispatcher.forward(request,response); 
 	
 	%>
 </c:if>
-	<% List<Article> listeArticles = (List<Article>)request.getAttribute("listeArticles");%>
+	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
 	<c:forEach var="a" items="${listeArticles}">
 		<section class="annonces">
         <ul>
