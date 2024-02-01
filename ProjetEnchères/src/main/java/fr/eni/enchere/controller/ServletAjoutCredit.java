@@ -34,7 +34,7 @@ public class ServletAjoutCredit extends HttpServlet {
     	try {
     	
     	UtilisateurManager.getInstance().update(connectedUser);
-    	request.setAttribute( "user" , connectedUser );
+    	request.setAttribute( "userConnected" , connectedUser );
     	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
     	
 			rd.forward(request, response);
