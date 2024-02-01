@@ -49,7 +49,7 @@
         <option value="categorie4">Vêtement</option>
         <option value="categorie5">Sports et Loisirs</option>
       </select>
-   
+  
 	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
 	<c:forEach var="a" items="${listeArticles}">
 		<section class="annonces">

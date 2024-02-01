@@ -29,10 +29,10 @@ public class ServletTestAffichage extends HttpServlet {
 			System.out.println("JE PASSE DANS LA SERVLET");
 			List<Article> listeArticles = new ArrayList<>();
 			ArticleManager am = ArticleManager.getInstance();
-			System.out.println("Attribut referer : " +  request.getAttribute("referer").toString());
+			System.out.println("Attribut referer : " +  request.getSession().getAttribute("callerPage"));
 			listeArticles = am.selectAll();
 			request.setAttribute("listeArticles", listeArticles);
-			String referer = (String) request.getAttribute("referer");
+			String referer = (String) request.getSession().getAttribute("callerPage");
 			String redirected = "true";
 			request.setAttribute("redirected", redirected);
 		System.out.println(referer);

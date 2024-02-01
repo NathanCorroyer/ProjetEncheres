@@ -3,6 +3,6 @@
   <display-name>ProjetEnchères</display-name>
   <welcome-file-list>
     <welcome-file>ServletRecuperationListeEncheres</welcome-file>
-
+	
   </welcome-file-list>
 </web-app>
