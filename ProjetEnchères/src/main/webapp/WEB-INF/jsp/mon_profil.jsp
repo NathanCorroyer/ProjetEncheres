@@ -14,14 +14,15 @@
      <%@ include file = "navbar.jsp" %>
      <section class="main">
     <div class="informations"><h2>Mon profil</h2>
-    <p>Pseudo : ${userConnected.pseudo}</p>
-    <p>Nom : ${userConnected.nom}</p>
-    <p>Prénom : ${userConnected.prenom}</p>
-    <p>Email : ${userConnected.email}</p>
-    <p>Téléphone : ${userConnected.telephone}</p>
-    <p>Rue : ${userConnected.rue}</p>
-    <p>Ville : ${userConnected.ville}</p>
-    <p> Code postal : ${userConnected.code_postal}</p>
+    <p>Pseudo : ${user.pseudo}</p>
+    <p>Nom : ${user.nom}</p>
+    <p>Prénom : ${user.prenom}</p>
+    <p>Email : ${user.email}</p>
+    <p>Téléphone : ${user.telephone}</p>
+    <p>Rue : ${user.rue}</p>
+    <p>Ville : ${user.ville}</p>
+    <p> Code postal : ${user.code_postal}</p>
+    <h3>Crédit : ${user.credit}</h3> 
     <a class ="supprimer-compte" href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
     <a class="modifier-profil" href="${pageContext.request.contextPath}/ServletModificationProfil">Modifier mon profil </a>
 </div>
