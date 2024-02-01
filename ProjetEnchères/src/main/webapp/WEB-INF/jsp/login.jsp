@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>ENI Enchère - Connexion</title>
 <link rel="stylesheet" href="styles/stylelogin.css">
+<link rel="icon" href="https://capecia-formations.fr/wp-content/uploads/2019/09/LogoENIcertification-print.png" type="image/x-icon">
 </head>
 <body>
 <%@ include file = "navbar.jsp" %>
