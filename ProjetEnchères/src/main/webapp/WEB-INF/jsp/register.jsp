@@ -26,7 +26,7 @@
     <%@ include file = "navbar.jsp" %>
     
     <section class="main">
-    <h2>Mon profil</h2>
+    <h2>Création de compte</h2>
     
     <form class="inscription-form" action="${pageContext.request.contextPath}/register" method="post" onsubmit="return validerFormulaire()">
         <label for="nom">Nom :</label>

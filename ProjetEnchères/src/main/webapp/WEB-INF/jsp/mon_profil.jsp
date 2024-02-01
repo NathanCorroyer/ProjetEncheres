@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="styles/styleprofile.css">
     
 </head>
-<body>
 
-</head>
 <body>
      <%@ include file = "navbar.jsp" %>
      <section class="main">
@@ -22,9 +20,18 @@
     <p>Rue : ${user.rue}</p>
     <p>Ville : ${user.ville}</p>
     <p> Code postal : ${user.code_postal}</p>
+    <h3>Crédit : ${user.credit}</h3> 
     <a class ="supprimer-compte" href="${pageContext.request.contextPath}/ServletSuppressionCompte" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
     <a class="modifier-profil" href="${pageContext.request.contextPath}/ServletModificationProfil">Modifier mon profil </a>
 </div>
     </section>
+    
+    	<c:if test="${not empty requestScope.succesModif}">
+    	<p style="color : green">${requestScope.succesModif}</p>
+    </c:if>
+    <c:if test="${not empty requestScope.erreurModif}">
+    	<p style="color : red">${requestScope.erreurModif}</p>
+    </c:if>
+    
 </body>
 </html>

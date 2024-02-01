@@ -24,6 +24,8 @@
         }
     });
 </script>
+
+ 	
     
     <form id="formulaireModif" class="modification-form" action="${pageContext.request.contextPath}/ServletModificationProfil" method="POST">
         <label for="pseudo">Pseudo :</label>
@@ -69,6 +71,7 @@
         </script>
         
     </form>
+    
     
 </body>
 </html>
