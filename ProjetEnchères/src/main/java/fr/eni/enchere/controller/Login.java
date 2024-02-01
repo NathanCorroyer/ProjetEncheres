@@ -25,40 +25,51 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+		}
 		
-	}
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
-		
-		
-		Utilisateur user;
-		String email = request.getParameter("email");
-		String mdp = request.getParameter("mdp");
-		user =UtilisateurManager.getInstance().login(email,mdp);
-		HttpSession ses;
-		ses= request.getSession();
-		if(user!=null)
-		{
-			ses.setAttribute("userConnected", user);
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-		}
-		else
-		{	
+		String email2 = (String) request.getAttribute("email");
+		String mdp2 = (String) request.getAttribute("motDePasse");
+		String succes_creation = (String) request.getAttribute("succes_creation");
+		if(email2 != null && mdp2 != null && succes_creation != null) {
+			Utilisateur user;
+			user =UtilisateurManager.getInstance().login(email2,mdp2);
+			HttpSession ses;
+			ses= request.getSession();
+			if(user!=null)
+			{
+				ses.setAttribute("userConnected", user);
+				request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
+				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
+			}
+		}else {
+			Utilisateur user;
+			String email = request.getParameter("email");
+			String mdp = request.getParameter("mdp");
+			user =UtilisateurManager.getInstance().login(email,mdp);
+			HttpSession ses;
+			ses= request.getSession();
+			if(user!=null)
+			{
+				ses.setAttribute("userConnected", user);
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}else{	
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			request.setAttribute("erreur", "Email ou mot de passe non valide.");
 			rd.forward(request, response);
 			
+			}
 		}
-
 	}
-
 }
 
