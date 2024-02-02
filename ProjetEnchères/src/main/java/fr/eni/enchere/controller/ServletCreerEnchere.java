@@ -49,13 +49,13 @@ public class ServletCreerEnchere extends HttpServlet {
 	        int prixInitial = Integer.parseInt(request.getParameter("prix_initial"));
 	        LocalDate dateDébut = LocalDate.parse(request.getParameter("date_debut_encheres"));
 	        LocalDate dateFin = LocalDate.parse(request.getParameter("date_fin_encheres"));
-	        String modalitesRetrait = request.getParameter("modalitesRetrait");
+	       // String modalitesRetrait = request.getParameter("modalitesRetrait");
 
 	        
 	        Article art = new Article (nom,description, dateDébut, dateFin, prixInitial, categorie, numeroVendeur);
-	        
+	        Integer key = null;
 	        try {
-				a.ajouter(art);
+				key = a.ajouter(art);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -63,11 +63,10 @@ public class ServletCreerEnchere extends HttpServlet {
 	        
 	        
 	    
-	        int no_article = Integer.parseInt(request.getParameter("no_article"));
 	        
 	        Article article = null;
 			try {
-				article = a.selectArticleById(no_article);
+				article = a.selectArticleById(key);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

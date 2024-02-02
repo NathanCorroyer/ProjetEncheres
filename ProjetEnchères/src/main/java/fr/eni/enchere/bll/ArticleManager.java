@@ -28,8 +28,8 @@ public List<Article> selectAll(){
 }
 
 
-public void ajouter(Article a) throws SQLException {
-	articleDAO.ajouter(a);
+public Integer ajouter(Article a) throws SQLException {
+	return articleDAO.ajouter(a);
 }
 
 public Article selectArticleById(int no_article) throws SQLException {
