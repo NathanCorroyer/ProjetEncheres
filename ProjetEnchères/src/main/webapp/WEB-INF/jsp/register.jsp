@@ -35,16 +35,20 @@
     
           <label for="email">Email :</label>
         <input type="email" id="email" name="email" required>
-        
-        
+               
         
           <label for="motDePasse">Mot de passe :</label>
         <input type="password" id="motDePasse" name="motDePasse" required>
         
         <label for="confirmation">Confirmation du mot de passe : </label>
-        <input type="password" id="confirmation" name="confirmation" required>
-        <hr />
-                  <label for="pseudo">Pseudo :</label>
+        <input type="password" id="confirmation" name="confirmation" required> 
+        <br>
+        <br>
+        
+        <hr>
+        <br>
+                           
+    <label for="pseudo">Pseudo :</label>
   	<input type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+"
 	 	title="Le pseudo doit contenir uniquement des caractères alphanumériques " required>
         
