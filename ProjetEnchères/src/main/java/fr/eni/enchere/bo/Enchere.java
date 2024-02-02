@@ -5,6 +5,8 @@ public class Enchere {
 	private String montant_enchere;
 	private Article article;
 	private Utilisateur utilisateur;
+	
+	
 	public String getDate_enchere() {
 		return date_enchere;
 		
@@ -31,7 +33,6 @@ public class Enchere {
 		this.utilisateur = utilisateur;
 	}
 	public Enchere(String date_enchere, String montant_enchere, Article article, Utilisateur utilisateur) {
-		super();
 		this.date_enchere = date_enchere;
 		this.montant_enchere = montant_enchere;
 		this.article = article;
@@ -45,8 +46,6 @@ public class Enchere {
 		return String.format("enchère || date enchère : %s, montant enchère %s, article %s, utilisateur %s", this.date_enchere, this.montant_enchere, this.article.getNom_Article(), this.utilisateur.getPseudo() );
 	}
 	
-	public Enchere() {
-		
-	}
+	public Enchere() {}
 	
 }

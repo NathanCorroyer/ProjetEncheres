@@ -20,7 +20,7 @@
         <input type="text" name="nom_article" required>
 
         <label for="description">Description :</label>
-        <textarea  required></textarea>
+        <textarea name="description" required></textarea>
 
         <label for="no_categorie">Catégorie :</label>
         <input type="number" name="no_categorie" required>
