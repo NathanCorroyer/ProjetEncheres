@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,8 +129,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	}
 
 	@Override
-	public void ajouter(Article a) throws SQLException {
-		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_AJOUTER)){
+	public Integer ajouter(Article a) throws SQLException {
+		Integer key = null;
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_AJOUTER, Statement.RETURN_GENERATED_KEYS)){
 			pstmt.setString(1, a.getNom_Article());
 			pstmt.setString(2, a.getDescription());
 			pstmt.setDate(3, Date.valueOf(a.getDate_debut_encheres()));
@@ -138,8 +140,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			pstmt.setInt(6, a.getNoVendeur());
 			pstmt.setInt(7, a.getCategorie());
 			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				key = rs.getInt(1);
+			}
 			
 		}
+		return key;
 		
 	}
 

@@ -12,7 +12,7 @@ public interface ArticleDAO {
 	List<Article> selectByName(); 		//Surement un name like ? pour filtre de recherche par nom
 	List<Article> selectArticlesFromUser(Utilisateur u); //Pour afficher tous les articles d'un même utilisateur
 	Article selectArticleById(int no_article) throws SQLException; 
-	void ajouter(Article a) throws SQLException;
+	Integer ajouter(Article a) throws SQLException;
 	void supprimer(Article a);
 	void update(Article a);
 	void deleteSingleArticleFromUser(Utilisateur u, Article a);
