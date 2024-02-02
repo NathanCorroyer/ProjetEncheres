@@ -49,8 +49,13 @@
         <option value="categorie4">Vêtement</option>
         <option value="categorie5">Sports et Loisirs</option>
       </select>
-  
+  	
+  	
 	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
+	<c:if test="${listeArticles eq null}">
+		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
+	</c:if>
+	<c:if test="${listeArticles ne null}">
 	<c:forEach var="a" items="${listeArticles}">
 		<section class="annonces">
         <ul>
@@ -67,6 +72,7 @@
         </ul>
     </section>
 	</c:forEach>
+	</c:if>
      
     </section>
 </body>
