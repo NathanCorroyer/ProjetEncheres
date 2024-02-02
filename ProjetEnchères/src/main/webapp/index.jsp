@@ -57,23 +57,23 @@
 		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
 	</c:if>
 	<c:if test="${listeArticles ne null}">
-	<c:forEach var="a" items="${listeArticles}">
 		<section class="annonces">
-        <ul>
-            <li>
-                <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
-                <div class="annonce-details">
-                    <h4>${a.getNom_Article()}</h4>
-                    <p>Prix : ${a.getPrix_initial()} points</p>
-                    <p>Fin de l'enchère : ${a.getDate_fin_encheres() }</p>
-                    <p>Vendeur : ${a.getVendeur().getPseudo()}</p>
-                    <p>Numéro d'article : ${a.getNoArticle()}
-                </div>
-            </li>
+		<c:forEach var="a" items="${listeArticles}">
+        	<ul>
+           	 <li>
+	              <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
+	              <div class="annonce-details">
+	                  <h4>${a.getNom_Article()}</h4>
+	                  <p>Prix : ${a.getPrix_initial()} points</p>
+	                  <p>Fin de l'enchère : ${a.getDate_fin_encheres() }</p>
+	                  <p>Vendeur : ${a.getVendeur().getPseudo()}</p>
+	                  <p>Numéro d'article : ${a.getNoArticle()}
+	               </div>
+	         </li>
 
-        </ul>
-    </section>
+        	</ul>
 	</c:forEach>
+    </section>
 	</c:if>
     </section>
 </body>
