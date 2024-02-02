@@ -18,20 +18,15 @@
         <th>Mise à prix:</th>
         <th>Début de l'enchère</th>
         <th>Fin de l'enchère</th>
-        <th>Rue</th>
-        <th>Code postal</th>
-        <th>Ville</th>
     </tr>
     <tr>
-        <td>${a.nom_article}</td>
-        <td>${a.description}</td>
-        <td>${a.no_categorie}</td>
-        <td>${a.prix_initial}</td>
-        <td>${a.date_debut_encheres}</td>
-        <td>${a.date_fin_encheres}</td>
-        <td>${a.rue}</td>
-        <td>${a.code_postal}</td>
-        <td>${a.ville}</td>
+        <td>${article.nom_Article}</td>
+        <td>${article.description}</td>
+        <td>${article.categorie}</td>
+        <td>${article.prix_initial}</td>
+        <td>${article.date_debut_encheres}</td>
+        <td>${article.date_fin_encheres}</td>
+      
     </tr>
     </table>
     </section>

@@ -39,8 +39,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	private static final String SQL_DELETE_ALL_ARTICLES_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_vendeur=?";
 	
-	private static final String SQL_SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_vendeur, no_categorie"
-			+  "FROM ARTICLES_VENDUS WHERE no_article = ?";
+	private static final String SQL_SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_vendeur, no_categorie, no_acheteur FROM ARTICLES_VENDUS WHERE no_article = ?";
 	private Article ArticleBuilder(ResultSet rs) {
 		Article a = null;
 		try {
@@ -116,7 +115,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			
 	
 	
-		if(rs != null ) {
+		if(rs.next() ) {
 			a = ArticleBuilder(rs);
 		}
 		
