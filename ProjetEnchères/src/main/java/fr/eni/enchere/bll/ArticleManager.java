@@ -31,4 +31,11 @@ public List<Article> selectAll(){
 public void ajouter(Article a) throws SQLException {
 	articleDAO.ajouter(a);
 }
+
+public Article selectArticleById(int no_article) throws SQLException {
+	return articleDAO.selectArticleById(no_article); 
 }
+
+}
+
+

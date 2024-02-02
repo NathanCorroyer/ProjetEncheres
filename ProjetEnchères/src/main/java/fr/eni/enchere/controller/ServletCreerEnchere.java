@@ -3,6 +3,7 @@ package fr.eni.enchere.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -58,7 +60,25 @@ public class ServletCreerEnchere extends HttpServlet {
 				e.printStackTrace();
 			}
 	        
-	        response.sendRedirect("confirmationArticle.jsp");
+	        
+	        
+	    
+	        int no_article = Integer.parseInt(request.getParameter("no_article"));
+	        
+	        Article article = null;
+			try {
+				article = a.selectArticleById(no_article);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        
+	        request.setAttribute("article", article);
+
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/confirmationArticle.jsp");
+
+	        dispatcher.forward(request, response);
+	        
+	        
 	}
 
 }
