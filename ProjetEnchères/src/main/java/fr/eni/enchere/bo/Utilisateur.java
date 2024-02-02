@@ -18,6 +18,7 @@ public class Utilisateur {
 	private boolean actif;
 	private List<Article> listeArticles;
 	
+	
 	public Utilisateur() {};
 	
 	

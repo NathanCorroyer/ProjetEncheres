@@ -41,6 +41,7 @@
         <input type="text" name="search" placeholder="Le nom de l'article contient">
     </form>
     
+    
     <h4>Catégorie :</h4>
     <select class="category-dropdown">
         <option value="categorie1">Toutes</option>
@@ -66,6 +67,7 @@
                     <p>Prix : ${a.getPrix_initial()} points</p>
                     <p>Fin de l'enchère : ${a.getDate_fin_encheres() }</p>
                     <p>Vendeur : ${a.getVendeur().getPseudo()}</p>
+                    <p>Numéro d'article : ${a.getNoArticle()}
                 </div>
             </li>
 
@@ -73,7 +75,6 @@
     </section>
 	</c:forEach>
 	</c:if>
-     
     </section>
 </body>
 </html>
