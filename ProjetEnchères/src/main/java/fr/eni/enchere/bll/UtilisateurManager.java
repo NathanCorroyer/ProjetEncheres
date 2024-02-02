@@ -144,14 +144,11 @@ public class UtilisateurManager {
 			ok = false;
 		}
 		
-		if ( u.getNoUtilisateur() == null || u.getNoUtilisateur() == 0 ) {
-			sb.append("Le pseudo ne doit pas être null." );
-			ok = false;
 			
 		if ( !ok ) {
 			throw new BLLException(sb.toString());
 		}
-		}
+		
 	}
 }
 

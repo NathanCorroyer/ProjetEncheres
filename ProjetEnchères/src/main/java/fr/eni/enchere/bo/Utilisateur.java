@@ -148,7 +148,7 @@ public class Utilisateur {
 	
 	@Override
 	public String toString() {
-		return String.format("%d || %s || %s|| %s || %s|| %s || %s|| %s || %s || %s || %d", noUtilisateur, pseudo,nom, prenom, email, telephone, rue,code_postal,ville, password, credit  );
+		return String.format(" noUser : %d ||pseudo : %s ||nom : %s||prenom : %s ||email : %s||telephone : %s ||rue : %s||codepostal : %s ||ville : %s ||pw : %s ||credit : %d", noUtilisateur, pseudo,nom, prenom, email, telephone, rue,code_postal,ville, password, credit  );
 	}
 	
 }
