@@ -41,6 +41,7 @@
         <input type="text" name="search" placeholder="Le nom de l'article contient">
     </form>
     
+    
     <h4>Catégorie :</h4>
     <select class="category-dropdown">
         <option value="categorie1">Toutes</option>
