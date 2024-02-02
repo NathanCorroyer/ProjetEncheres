@@ -19,6 +19,7 @@ public interface UtilisateurDAO {
 	List<Utilisateur> findAll() throws SQLException;
 
 	Utilisateur selectByPseudo(String pseudo) throws SQLException;
+	
 	Utilisateur selectByNumero(int numero) throws SQLException;
 	
 }
