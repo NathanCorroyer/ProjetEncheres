@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -39,36 +40,47 @@ public class Login extends HttpServlet {
 		String email2 = (String) request.getAttribute("email");
 		String mdp2 = (String) request.getAttribute("motDePasse");
 		String succes_creation = (String) request.getAttribute("succes_creation");
+		
 		if(email2 != null && mdp2 != null && succes_creation != null) {
 			Utilisateur user;
-			user =UtilisateurManager.getInstance().login(email2,mdp2);
 			HttpSession ses;
 			ses= request.getSession();
-			if(user!=null)
-			{
-				ses.setAttribute("userConnected", user);
-				request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
-				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-				rd.forward(request, response);
+			try {
+				user =UtilisateurManager.getInstance().login(email2,mdp2);
+				if( user!=null )
+				{
+					ses.setAttribute("userConnected", user );
+					request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
+					RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+					rd.forward(request, response);
+				}
+			} catch (BLLException e) {
+				e.printStackTrace();
 			}
-		}else {
+			
+			} else {
 			Utilisateur user;
 			String email = request.getParameter("email");
 			String mdp = request.getParameter("mdp");
-			user =UtilisateurManager.getInstance().login(email,mdp);
-			HttpSession ses;
-			ses= request.getSession();
-			if(user!=null)
-			{
-				ses.setAttribute("userConnected", user);
-				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			try {
+				user =UtilisateurManager.getInstance().login(email,mdp);
+				HttpSession ses;
+				ses= request.getSession();
+				if(user!=null)
+				{
+					ses.setAttribute("userConnected", user);
+					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+					rd.forward(request, response);
+				}else{	
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				request.setAttribute("erreur", "Email ou mot de passe non valide.");
 				rd.forward(request, response);
-			}else{	
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-			request.setAttribute("erreur", "Email ou mot de passe non valide.");
-			rd.forward(request, response);
-			
+				
+				}
+			} catch (BLLException e) {
+				e.printStackTrace();
 			}
+			
 		}
 	}
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -55,7 +56,7 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 			request.setAttribute("succes_creation", "Votre compte a été créé avec succès.");
 			request.getRequestDispatcher("/login").forward(request, response);
 			
-		} catch (SQLException e) {
+		} catch (SQLException | BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

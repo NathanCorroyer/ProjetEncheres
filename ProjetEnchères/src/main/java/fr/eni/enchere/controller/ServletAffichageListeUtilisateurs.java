@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -32,7 +33,7 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 					request.setAttribute("listeUtilisateurs", listeUtilisateurs );
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/listeUtilisateurs.jsp");
 					rd.forward(request, response);
-				} catch (SQLException e) {
+				} catch (SQLException | BLLException e) {
 					e.printStackTrace();
 				}
 	//}

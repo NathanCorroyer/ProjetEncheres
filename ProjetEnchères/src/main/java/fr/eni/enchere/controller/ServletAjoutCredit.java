@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur; 
 
@@ -38,7 +39,7 @@ public class ServletAjoutCredit extends HttpServlet {
     	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
     	
 			rd.forward(request, response);
-		} catch (ServletException | IOException | SQLException e) {
+		} catch (ServletException | IOException | SQLException | BLLException e) {
 			e.printStackTrace();
 		}
     	

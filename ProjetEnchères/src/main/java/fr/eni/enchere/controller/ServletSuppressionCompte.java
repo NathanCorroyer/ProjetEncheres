@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -33,7 +34,7 @@ public class ServletSuppressionCompte extends HttpServlet {
 			request.getSession().invalidate();
 			try {
 				userToDelete.deleteByMail(mail);
-			} catch (SQLException e) {
+			} catch (SQLException | BLLException e) {
 				e.printStackTrace();
 			}
 			request.setAttribute("succesSuppression", "L'utilisateur a été supprimé avec succès.");		
