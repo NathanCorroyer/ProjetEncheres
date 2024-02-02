@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -35,7 +36,7 @@ public class ServletAfficherMonProfil extends HttpServlet {
 			try {
 				
 				userAffiche= um.selectUserByNumero(idUser);
-			} catch (SQLException e) {
+			} catch (SQLException | BLLException e) {
 				e.printStackTrace();
 			}
 	

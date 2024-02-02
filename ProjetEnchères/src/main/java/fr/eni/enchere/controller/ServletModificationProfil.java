@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 
@@ -56,7 +57,7 @@ public class ServletModificationProfil extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mon_profil.jsp");
 				rd.forward(request, response);	
 			
-		} catch (SQLException e) {
+		} catch (SQLException | BLLException e) {
 			e.printStackTrace();
 		}
 		} else {		
@@ -67,7 +68,7 @@ public class ServletModificationProfil extends HttpServlet {
 				try {
 					userAffiche= um.selectUserByNumero(idUser);
 					
-				} catch (SQLException e) {
+				} catch (SQLException | BLLException e) {
 					e.printStackTrace();
 				}
 			request.setAttribute("userConnected", userAffiche );
