@@ -22,22 +22,36 @@ public class UtilisateurManager {
 	public static UtilisateurManager getInstance() {
 		if (instance == null) {
 			instance = new UtilisateurManager(DAOFactory.getUtilisateurDAO());
-
 		}
 		return instance;
 	}
 
+	
 	public void deleteByMail(String email) throws SQLException {
 		utilisateurDAO.deleteByMail(email);
 	}
 	
+	
 	public void update(Utilisateur u) throws SQLException {
-		utilisateurDAO.update(u);
+		try {
+			validerUser(u);
+			utilisateurDAO.update(u);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
+	
 	public void register (Utilisateur u) throws SQLException {
-		utilisateurDAO.register(u);
+		try {
+			validerUser(u);
+			utilisateurDAO.register(u);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	
 	public Utilisateur login(String email, String mdp) {
 		Utilisateur user = null;
@@ -49,14 +63,14 @@ public class UtilisateurManager {
 		return user;
 	}
 	
+	
 	public List<Utilisateur> findAll() throws SQLException{
 		return utilisateurDAO.findAll();
 	}
 	
+	
 	public Utilisateur selectUserByPseudo(String pseudo) throws SQLException {
-       
 		Utilisateur user = null;
-
         try {
 			user = utilisateurDAO.selectByPseudo(pseudo);
 		} catch (Exception e) {
@@ -65,10 +79,9 @@ public class UtilisateurManager {
         return user;
     }
 	
+	
 	public Utilisateur selectUserByNumero(int numero) throws SQLException {
-	       
 		Utilisateur user = null;
-
         try {
 			user = utilisateurDAO.selectByNumero(numero);
 		} catch (Exception e) {
@@ -76,5 +89,55 @@ public class UtilisateurManager {
 		}
         return user;
     }
+	
+	
+	public void validerUser( Utilisateur u ) throws BLLException {
+		boolean ok = true ;
+		StringBuffer sb = new StringBuffer();
+		
+		if ( u == null ) {
+			throw new BLLException("Utilisateur null");
+		}
+		
+		if ( u.getPseudo() == null || u.getPseudo().trim().length() == 0 ) {
+			sb.append("Le pseudo ne doit pas être null." );
+		}
+		
+		if ( u.getNom() == null || u.getNom().trim().length() == 0 ) {
+			sb.append("Le nom ne doit pas être null." );
+		}
+		
+		if ( u.getPrenom() == null || u.getPrenom().trim().length() == 0 ) {
+			sb.append("Le prenom ne doit pas être null." );
+		}
+		
+		if ( u.getEmail() == null || u.getEmail().trim().length() == 0 ) {
+			sb.append("Le mail ne doit pas être null." );
+		}
+		
+		if ( u.getTelephone() == null || u.getTelephone().trim().length() == 0 ) {
+			sb.append("Le téléphone ne doit pas être null." );
+		}
+		
+		if ( u.getRue() == null || u.getRue().trim().length() == 0 ) {
+			sb.append("La rue ne doit pas être null." );
+		}
+		
+		if ( u.getCode_postal() == null || u.getCode_postal().trim().length() == 0 ) {
+			sb.append("Le code postal ne doit pas être null." );
+		}
+		
+		if ( u.getVille() == null || u.getVille().trim().length() == 0 ) {
+			sb.append("La ville ne doit pas être null." );
+		}
+		
+		if ( u.getPassword() == null || u.getPassword().trim().length() == 0 ) {
+			sb.append("Le mot de passe ne doit pas être null." );
+		}
+		
+		if ( u.getNoUtilisateur() == null || u.getNoUtilisateur() == 0 ) {
+			sb.append("Le pseudo ne doit pas être null." );
+		}
+	}
 }
 
