@@ -77,7 +77,11 @@
         <button type="submit">Créer</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
-
+	
+	<c:if test="${not empty requestScope.echec_creation}">
+    	<p style="color : red ">${requestScope.echec_creation}</p>
+    </c:if>
+	
     <script>
         function annuler() {
             window.location.href = '<%=request.getContextPath()%>/login';

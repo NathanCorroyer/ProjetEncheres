@@ -51,13 +51,19 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 			String email = newUser.getEmail();
 			String motDePasse =newUser.getPassword();
 			um.register(newUser);
+			System.out.println(newUser.toString());
+			System.out.println(um.selectUserByPseudo(newUser.getPseudo()));
+			if ( newUser.getNoUtilisateur() != null ) {
 			request.setAttribute("email",email);
 			request.setAttribute("motDePasse", motDePasse);
 			request.setAttribute("succes_creation", "Votre compte a été créé avec succès.");
 			request.getRequestDispatcher("/login").forward(request, response);
+			} else {
+				request.setAttribute("echec_creation" , "Le compte que vous essayez de créer présente des similitudes avec un compte existant.");
+				request.getRequestDispatcher("/WEB-INF/jsp/register.jsp").forward(request, response);
+			}
 			
 		} catch (SQLException | BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

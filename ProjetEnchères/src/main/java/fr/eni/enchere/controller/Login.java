@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 		String succes_creation = (String) request.getAttribute("succes_creation");
 		
 		if(email2 != null && mdp2 != null && succes_creation != null) {
+			
 			Utilisateur user;
 			HttpSession ses;
 			ses= request.getSession();
@@ -59,6 +60,8 @@ public class Login extends HttpServlet {
 			}
 			
 			} else {
+				
+				
 			Utilisateur user;
 			String email = request.getParameter("email");
 			String mdp = request.getParameter("mdp");
