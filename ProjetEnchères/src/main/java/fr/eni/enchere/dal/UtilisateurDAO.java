@@ -22,4 +22,6 @@ public interface UtilisateurDAO {
 	
 	Utilisateur selectByNumero(int numero) throws SQLException;
 	
+	Utilisateur selectByMail ( String mail ) throws SQLException;
+	
 }

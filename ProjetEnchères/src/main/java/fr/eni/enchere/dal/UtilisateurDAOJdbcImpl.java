@@ -27,6 +27,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private final String SELECT_BY_PSEUDO = "SELECT * FROM Utilisateurs WHERE pseudo = ?";
 	private final String SELECT_BY_NUMERO = "SELECT * FROM Utilisateurs WHERE no_utilisateur = ?";
+	private final String SELECT_BY_MAIL = "SELECT * FROM Utilisateurs WHERE email = ?";
 
 	
 	
@@ -187,6 +188,28 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_NUMERO)) {
 
 	            preparedStatement.setInt(1, numero);
+
+	            try (ResultSet rs = preparedStatement.executeQuery()) {
+	                if (rs.next()) {
+	                    utilisateur = mapResultSetToUtilisateur(rs);
+	                }
+	            }
+
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+	            
+
+			return utilisateur;
+	    }
+	 
+	 public Utilisateur selectByMail(String mail ) {
+	        Utilisateur utilisateur = null;
+
+	        try (Connection connection = ConnectionProvider.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_MAIL)) {
+
+	            preparedStatement.setString(1, mail );
 
 	            try (ResultSet rs = preparedStatement.executeQuery()) {
 	                if (rs.next()) {

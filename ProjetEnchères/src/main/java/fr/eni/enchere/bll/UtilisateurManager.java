@@ -90,6 +90,17 @@ public class UtilisateurManager {
         return user;
     }
 	
+	public Utilisateur selectUserByMail(String mail) throws SQLException , BLLException {
+		Utilisateur user = null;
+        try {
+			user = utilisateurDAO.selectByMail(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return user;
+    }
+	
+	
 	
 	public void validerUser( Utilisateur u ) throws BLLException {
 		boolean ok = true ;
