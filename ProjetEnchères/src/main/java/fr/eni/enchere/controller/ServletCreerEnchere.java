@@ -73,7 +73,7 @@ public class ServletCreerEnchere extends HttpServlet {
 	        
 	        request.setAttribute("article", article);
 
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("/confirmationArticle.jsp");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/confirmationArticle.jsp");
 
 	        dispatcher.forward(request, response);
 	        

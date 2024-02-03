@@ -51,6 +51,7 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 			String pseudo = newUser.getPseudo();
 			String motDePasse = newUser.getPassword();
 			
+
 			boolean okPseudo = false ;
 			boolean okMail = false ;
 
@@ -69,10 +70,10 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 				request.setAttribute("succes_creation", "Votre compte a été créé avec succès.");
 				request.getRequestDispatcher("/login").forward(request, response);
 			} else {
+
 				request.setAttribute("echec_creation" , "Le compte que vous essayez de créer présente des similitudes avec un compte existant.");
 				request.getRequestDispatcher("/WEB-INF/jsp/register.jsp").forward(request, response);
 			}
-			
 		} catch (SQLException | BLLException e) {
 			e.printStackTrace();
 		}
