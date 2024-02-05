@@ -27,7 +27,22 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		System.out.println(request.getAttribute("succes_creation"));
+		System.out.println(request.getAttribute("succesSuppression"));
+		System.out.println(request.getAttribute("erreurSuppression"));
+		if(request.getAttribute("succes_creation") != null) {
+			request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
+		}
+		if(request.getAttribute("succesSuppression") != null) {
+			request.setAttribute("succesSuppression", request.getAttribute("succesSuppression"));
+		}
+		if(request.getAttribute("erreurSuppression") != null) {
+			request.setAttribute("erreurSuppression", request.getAttribute("erreurSuppression"));
+		}
+		
 		System.out.println("JE PASSE DANS LA SERVLET");
+
 		List<Article> listeArticles = new ArrayList<>();
 		ArticleManager am = ArticleManager.getInstance();
 		listeArticles = am.selectAll();
