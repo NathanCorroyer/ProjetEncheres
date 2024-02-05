@@ -68,7 +68,7 @@
 	<c:if test="${listeCategorie ne null}">
 		<form action="${pageContext.request.contextPath}/ServletRecuperationListeEncheresTestTri" method="POST">
 	    	<select class="category-dropdown search-form" name="categorie">
-		   		<option value="all" ${empty categorie || categorie eq 'all' ? 'selected' :''}>Toutes</option>
+		   		<option value="all" ${empty categorie || categorie eq -1 ? 'selected' :''}>Toutes</option>
 		       		<c:forEach var="c" items="${listeCategorie}">      
 		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
 		         	</c:forEach>

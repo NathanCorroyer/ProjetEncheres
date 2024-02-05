@@ -49,8 +49,13 @@ public class ServletRecuperationListeEncheresTestTri extends HttpServlet {
     	
         String categorie = request.getParameter("categorie");
         Integer no_categorie = null;
-        if(categorie != null && !(categorie.equals("all")))
-        	no_categorie = Integer.parseInt(request.getParameter("categorie"));
+        if(categorie != null) {
+        	if(categorie.equals("all")) {
+        		no_categorie = -1;
+        	}else {
+        		no_categorie = Integer.parseInt(request.getParameter("categorie"));        		
+        	}
+        }
         
         
         System.out.println(no_categorie);

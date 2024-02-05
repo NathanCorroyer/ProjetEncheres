@@ -1,6 +1,7 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
+		
 		if(request.getAttribute("succes_creation") != null) {
 			request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
 		}
@@ -39,15 +39,70 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 			request.setAttribute("erreurSuppression", request.getAttribute("erreurSuppression"));
 		}
 		
-		System.out.println("JE PASSE DANS LA SERVLET");
-
-		List<Article> listeArticles = new ArrayList<>();
-		ArticleManager am = ArticleManager.getInstance();
-		listeArticles = am.selectAll();
 		CategorieManager cm = CategorieManager.getInstance();
 		List<Categorie> listeCategorie = cm.selectAll(); 
         request.setAttribute("listeCategorie" , listeCategorie);
-
+		
+        
+    	List<Article> listeArticles = new ArrayList<>();
+    	ArticleManager am = ArticleManager.getInstance();
+    	
+        String categorie = request.getParameter("categorie");
+        Integer no_categorie = null;
+        if(categorie != null) {
+        	if(categorie.equals("all")) {
+        		no_categorie = -1;
+        	}else {
+        		no_categorie = Integer.parseInt(request.getParameter("categorie"));        		
+        	}
+        }
+        
+        
+        System.out.println(no_categorie);
+        
+        
+        String nomTri = request.getParameter("search");
+        System.out.println("nomtri : " + nomTri);
+        if(categorie == null || categorie.equals("all")) {
+        	if(nomTri == null || nomTri.trim().equals("")) {
+        		System.out.println("Je passe dans le selectAll");
+        		listeArticles = am.selectAll();
+        	}else {
+        		try {
+        			System.out.println("Je passe au selectByName");
+					listeArticles = am.selectByName(nomTri.trim());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        }else {
+        	if(nomTri == null || nomTri.trim().equals("")) {
+	        	try {
+	        		System.out.println("Je passe dans le selectArticleByCategorie");
+					listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		}else {
+        		try {
+        			System.out.println("Je passe dans le selectArticleByCategorieAndByName");
+					listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        }
+        
+        request.setAttribute("categorie", no_categorie);
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
