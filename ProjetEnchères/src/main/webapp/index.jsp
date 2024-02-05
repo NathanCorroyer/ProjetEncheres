@@ -36,12 +36,15 @@
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
     
     <c:if test="${not empty requestScope.succesSuppression}">
+    	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>
     	<p style="color : green">${requestScope.succesSuppression}</p>
     </c:if>
     <c:if test="${not empty requestScope.erreurSuppression}">
+   		 <% request.setAttribute("erreurSuppression", "Erreur lors de la suppression de votre compte"); %>
     	<p style="color : red">${requestScope.erreurSuppression}</p>
     </c:if>
     <c:if test="${not empty requestScope.succes_creation}">
+    	<% request.setAttribute("succes_creation", "Votre compte a bien été créé"); %>
     	<p style="color : green">${requestScope.succes_creation}</p>
     </c:if>
     <h2>Liste des enchères</h2>
@@ -57,7 +60,10 @@
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     %>   
 	<c:if test="${listeCategorie eq null or listeArticles eq null}">
-		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
+		<%
+		String contextPath = request.getContextPath();
+		request.getRequestDispatcher("/ServletRecuperationListeEncheres").forward(request,response); 
+		%>
 	</c:if>
 	<c:if test="${listeCategorie ne null}">
     <select class="category-dropdown">
