@@ -45,8 +45,9 @@
     
     <h4>Catégorie :</h4>
     <% List<Categorie> listeCategorie = (List<Categorie>) request.getAttribute("listeCategorie");%>
-	<c:if test="${listeCategorie eq null}">
-		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeCategorie"); %>
+    	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>   
+	<c:if test="${listeCategorie eq null or listeArticles eq null}">
+		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
 	</c:if>
 	<c:if test="${listeCategorie ne null}">
     <select class="category-dropdown">
@@ -58,10 +59,8 @@
       </c:if>
   	
   	
-	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
-	<c:if test="${listeArticles eq null}">
-		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
-	</c:if>
+	
+	
 	<c:if test="${listeArticles ne null}">
 		<section class="annonces">
 		<c:forEach var="a" items="${listeArticles}">

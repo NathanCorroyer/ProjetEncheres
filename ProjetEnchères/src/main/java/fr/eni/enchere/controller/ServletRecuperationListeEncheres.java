@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
 
 /**
  * Servlet implementation class ServletRecuperationListeEncheres
@@ -30,6 +32,9 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 		ArticleManager am = ArticleManager.getInstance();
 		
 		listeArticles = am.selectAll();
+		CategorieManager cm = CategorieManager.getInstance();
+		List<Categorie> listeCategorie = cm.selectAll(); 
+        request.setAttribute("listeCategorie" , listeCategorie);
 		//String referer = (String) request.getAttribute("referer");
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
