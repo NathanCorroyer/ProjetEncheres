@@ -12,34 +12,41 @@ public class Article {
 	 private int prix_initial;
 	 private int prix_vente;
 	 private int categorie;
-	 private int noVendeur;
-	 private Utilisateur vendeur;
-	 private int no_acheteur;
-	 private Utilisateur acheteur;
+	 private int no_utilisateur;
+	 private Utilisateur utilisateur;
+
 	 
 	 
-	public Utilisateur getAcheteur() {
-		return acheteur;
+
+
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setAcheteur(Utilisateur acheteur) {
-		this.acheteur = acheteur;
+
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
-	public int getNoVendeur() {
-		return noVendeur;
+
+
+	public int getNo_utilisateur() {
+		return no_utilisateur;
 	}
-	public Utilisateur getVendeur() {
-		return vendeur;
+
+
+	public void setNo_utilisateur(int no_utilisateur) {
+		this.no_utilisateur = no_utilisateur;
 	}
-	public void setVendeur(Utilisateur vendeur) {
-		this.vendeur = vendeur;
-	}
+
+
 	public Article() {
 		super();
 	}
 	
 	
 	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-			int prix_initial, int prix_vente, int noVendeur,int categorie, int no_acheteur) {
+			int prix_initial, int prix_vente, int no_utilisateur,int categorie) {
 		super();
 		this.nom_Article = nom_Article;
 		this.description = description;
@@ -48,25 +55,11 @@ public class Article {
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.categorie = categorie;
-		this.noVendeur = noVendeur;
-		this.no_acheteur = no_acheteur;
-	}
-	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-			int prix_initial, int prix_vente, int noVendeur,int categorie) {
-		super();
-		this.nom_Article = nom_Article;
-		this.description = description;
-		this.date_debut_encheres = date_debut_encheres;
-		this.date_fin_encheres = date_fin_encheres;
-		this.prix_initial = prix_initial;
-		this.prix_vente = prix_vente;
-		this.noVendeur = noVendeur;
-		this.categorie = categorie;
+		this.no_utilisateur = no_utilisateur;	
 	}
 	
-	
 	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-			int prix_initial, int categorie, int noVendeur) {
+			int prix_initial, int categorie, int no_utilisateur) {
 		super();
 		this.nom_Article = nom_Article;
 		this.description = description;
@@ -74,11 +67,9 @@ public class Article {
 		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.categorie = categorie;
-		this.noVendeur = noVendeur;
+		this.no_utilisateur = no_utilisateur;
 	}
-	public void setNoVendeur(int noVendeur) {
-		this.noVendeur = noVendeur;
-	}
+
 	public Integer getNoArticle() {
 		return no_article;
 	}
@@ -94,12 +85,7 @@ public class Article {
 	public String getNom_Article() {
 		return nom_Article;
 	}
-	public int getNo_acheteur() {
-		return no_acheteur;
-	}
-	public void setNo_acheteur(int no_acheteur) {
-		this.no_acheteur = no_acheteur;
-	}
+
 	public void setNom_Article(String nom_Article) {
 		this.nom_Article = nom_Article;
 	}
@@ -139,27 +125,14 @@ public class Article {
 	public void setCategorie(int categorie) {
 		this.categorie = categorie;
 	}
-//	public Utilisateur getVendeur() {
-//		return vendeur;
-//	}
-//	public void setVendeur(Utilisateur vendeur) {
-//		this.vendeur = vendeur;
-//	}
-//	public Utilisateur getAcheteur() {
-//		return acheteur;
-//	}
-//	public void setAcheteur(Utilisateur acheteur) {
-//		this.acheteur = acheteur;
-//	}
+
 //	 
 	@Override
 	public String toString() {
 		StringBuilder chaine = new StringBuilder();
 		chaine.append(String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d || Vendeur : %s", no_article, nom_Article, description, date_debut_encheres.toString(), 
-																			date_fin_encheres.toString(), prix_initial, prix_vente, noVendeur, categorie, vendeur.getPseudo()));
-		if(acheteur != null) {
-			chaine.append(String.format(" || Acheteur : %s", acheteur.getPseudo()));
-		}
+																			date_fin_encheres.toString(), prix_initial, prix_vente, no_utilisateur, categorie, utilisateur.getPseudo()));
+		
 		return chaine.toString();
 	}
 	 

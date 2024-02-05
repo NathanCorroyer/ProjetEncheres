@@ -28,15 +28,15 @@ public class TestCreationArticle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	Article a = new Article("Ordinateur", "Un ordinateur", LocalDate.of(2023, 12, 5), LocalDate.of(2024,01,25),50,150,9,2);
-		Article art = new Article("Clavier", "Un clavier", LocalDate.of(2023, 10, 2), LocalDate.of(2024,01,15),70,180,9,2,1002);
-	//	Utilisateur acheteur = new Utilisateur("JDER","Derulo","Jason","jder@gmail.com","0222222222" , "KOUKOU", "05205", "Konoha", "glacevanillefraise",0,false);
+		Article a = new Article("Ordinateur", "Un ordinateur", LocalDate.of(2023, 12, 5), LocalDate.of(2024,01,25),50,150,9,2);
+		Article art = new Article("Clavier", "Un clavier", LocalDate.of(2023, 10, 2), LocalDate.of(2024,01,15),70,180,9,2);
+		Utilisateur acheteur = new Utilisateur("JDER","Derulo","Jason","jder@gmail.com","0222222222" , "KOUKOU", "05205", "Konoha", "glacevanillefraise",0,false);
 		ArticleDAO aDAO = DAOFactory.getArticleDAO();
-		//UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
+		UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
 	try {
-			//uDAO.register(acheteur);
-			aDAO.ajouterAvecAcheteur(art);
-			//aDAO.ajouter(a);
+			uDAO.register(acheteur);
+			aDAO.ajouter(a);
+			
 		
 			
 		} catch (SQLException e) {
