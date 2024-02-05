@@ -32,10 +32,10 @@
         <input type="number" name="prix_initial" required>
 
         <label for="date_debut_encheres">Début de l'enchère :</label>
-        <input type="date" name="date_debut_encheres" required>
+        <input type="datetime-local" name="date_debut_encheres" required>
 
         <label for="date_fin_encheres">Fin de l'enchère :</label>
-        <input type="date" name="date_fin_encheres" required>
+        <input type="datetime-local" name="date_fin_encheres" required>
         
         <div class="retrait">
 	        <h2>Retrait</h2>

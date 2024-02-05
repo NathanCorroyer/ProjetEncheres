@@ -3,6 +3,7 @@ package fr.eni.enchere.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -47,8 +48,8 @@ public class ServletCreerEnchere extends HttpServlet {
 	        String description = request.getParameter("description");
 	        int categorie = Integer.parseInt(request.getParameter("no_categorie"));
 	        int prixInitial = Integer.parseInt(request.getParameter("prix_initial"));
-	        LocalDate dateDébut = LocalDate.parse(request.getParameter("date_debut_encheres"));
-	        LocalDate dateFin = LocalDate.parse(request.getParameter("date_fin_encheres"));
+	        LocalDateTime dateDébut = LocalDateTime.parse(request.getParameter("date_debut_encheres"));
+	        LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("date_fin_encheres"));
 	       // String modalitesRetrait = request.getParameter("modalitesRetrait");
 
 	        

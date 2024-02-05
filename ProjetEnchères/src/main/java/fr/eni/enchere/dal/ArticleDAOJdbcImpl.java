@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
@@ -42,11 +45,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		Article a = null;
 		try {
 			a=new Article();
+			
 			a.setNoArticle(rs.getInt("no_article"));
 			a.setNom_Article(rs.getString("nom_article"));
 			a.setDescription(rs.getString("description"));
-			a.setDate_debut_encheres(rs.getDate("date_debut_encheres").toLocalDate());
-			a.setDate_fin_encheres(rs.getDate("date_fin_encheres").toLocalDate());
+			a.setDate_debut_encheres((rs.getTimestamp("date_debut_encheres").toLocalDateTime()));
+			a.setDate_fin_encheres((rs.getTimestamp("date_fin_encheres").toLocalDateTime()));
 			a.setPrix_initial(rs.getInt("prix_initial"));
 			a.setCategorie(rs.getInt("no_categorie"));
 			UtilisateurManager um = UtilisateurManager.getInstance();
@@ -123,11 +127,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	@Override
 	public Integer ajouter(Article a) throws SQLException {
 		Integer key = null;
+		
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_AJOUTER, Statement.RETURN_GENERATED_KEYS)){
 			pstmt.setString(1, a.getNom_Article());
 			pstmt.setString(2, a.getDescription());
-			pstmt.setDate(3, Date.valueOf(a.getDate_debut_encheres()));
-			pstmt.setDate(4, Date.valueOf(a.getDate_fin_encheres()));
+			pstmt.setTimestamp(3, Timestamp.valueOf(a.getDate_debut_encheres()));
+			pstmt.setTimestamp(4, Timestamp.valueOf(a.getDate_fin_encheres()));
 			pstmt.setInt(5, a.getPrix_initial());
 			pstmt.setInt(6, a.getNo_utilisateur());
 			pstmt.setInt(7, a.getCategorie());
