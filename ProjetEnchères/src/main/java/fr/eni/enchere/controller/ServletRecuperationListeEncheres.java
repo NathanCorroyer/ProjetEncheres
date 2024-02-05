@@ -28,9 +28,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println(request.getAttribute("succes_creation"));
-		System.out.println(request.getAttribute("succesSuppression"));
-		System.out.println(request.getAttribute("erreurSuppression"));
+	
 		if(request.getAttribute("succes_creation") != null) {
 			request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
 		}

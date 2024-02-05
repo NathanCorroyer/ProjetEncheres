@@ -15,7 +15,7 @@
 <section class="main">
     <h2>Nouvelle vente</h2>
     
-    <form class="enchere-form" action="${pageContext.request.contextPath}/creer_enchere" method="post">
+    <form class="enchere-form" action="${pageContext.request.contextPath}/creer_enchere" method="post" enctype="multipart/form-data">
         <label for="nom_article">Article:</label>
         <input type="text" name="nom_article" required>
 
@@ -26,7 +26,7 @@
         <input type="number" name="no_categorie" required>
         
         <label for="file">Photo de l'article :</label>
-        <input type="file" name="imageFile" accept="image/*">
+        <input type="file" name="photoArticle" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
         <input type="number" name="prix_initial" required>
