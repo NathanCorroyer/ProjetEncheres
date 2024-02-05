@@ -88,6 +88,7 @@
            	 <li>
 	             
 	              <div class="annonce-details">
+	              	  <img src="${a.getImagePath()}" width="300" height="200" alt="TestImage">
 	                  <h4>${a.getNom_Article()}</h4>
 	                  <p>Prix : ${a.getPrix_initial()} points</p>
 	                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>

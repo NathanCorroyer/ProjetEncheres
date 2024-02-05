@@ -18,17 +18,16 @@ import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS";
 	
-	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_categorie = ?";
+	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_categorie = ?";
 	
-	private static final String SQL_SELECT_BY_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE nom_article LIKE ?";
+	private static final String SQL_SELECT_BY_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE nom_article LIKE ?";
 	
-	private static final String SQL_SELECT_FROM_USER = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
+	private static final String SQL_SELECT_FROM_USER = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image"
 													+  "FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
 	
-	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie, path_image )"
-											+ "VALUES (?,?,?,?,?,?,?,?)";
+	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie, path_image) VALUES (?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_SUPPRIMER = "DELETE FROM ARTICLES_VENDUS WHERE no_Article = ?";
 	
@@ -38,9 +37,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	private static final String SQL_DELETE_ALL_ARTICLES_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=?";
 	
-	private static final String SQL_SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?";
+	private static final String SQL_SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_article = ?";
 	
-	private static final String SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_categorie = ? AND nom_article like ?";
+	private static final String SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_categorie = ? AND nom_article like ?";
 	
 	private Article ArticleBuilder(ResultSet rs) {
 		Article a = null;
@@ -58,7 +57,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			Utilisateur utilisateur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
-			a.setImagePath(rs.getString("imagePath"));
+			a.setImagePath(rs.getString("path_image"));
 
 			
 		} catch (SQLException | BLLException e) {
