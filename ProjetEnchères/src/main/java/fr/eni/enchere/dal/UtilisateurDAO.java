@@ -3,6 +3,7 @@ package fr.eni.enchere.dal;
 import java.sql.SQLException;
 import java.util.List;
 
+import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
@@ -23,5 +24,4 @@ public interface UtilisateurDAO {
 	Utilisateur selectByNumero(int numero) throws SQLException;
 	
 	Utilisateur selectByMail ( String mail ) throws SQLException;
-	
 }

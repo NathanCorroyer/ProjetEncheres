@@ -20,11 +20,9 @@ import fr.eni.enchere.bo.Utilisateur;
 public class ArticleDAOJdbcImpl implements ArticleDAO{
 	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 	
-	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
-												+ "FROM ARTICLES_VENDUS WHERE no_categorie = ?";
+	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_categorie = ?";
 	
-	private static final String SQL_SELECT_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
-												+ "FROM ARTICLES_VENDUS WHERE nom_article LIKE ?";
+	private static final String SQL_SELECT_BY_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE nom_article LIKE ?";
 	
 	private static final String SQL_SELECT_FROM_USER = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
 													+  "FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
@@ -41,6 +39,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	private static final String SQL_DELETE_ALL_ARTICLES_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=?";
 	
 	private static final String SQL_SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?";
+	
+	private static final String SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_categorie = ? AND nom_article like ?";
+	
 	private Article ArticleBuilder(ResultSet rs) {
 		Article a = null;
 		try {
@@ -172,5 +173,66 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Article> selectArticleByCategorie(int no_categorie) throws SQLException {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_BY_CATEGORIE)){
+			pstmt.setInt(1, no_categorie);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);
+				listeArticles.add(a);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+
+	@Override
+	public List<Article> selectByName(String nomTri) throws SQLException {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_BY_NAME)){
+			pstmt.setString(1, nomTri);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);
+				listeArticles.add(a);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+
+	@Override
+	public List<Article> selectArticleByCategorieAndByName(int no_categorie, String nomTri) throws SQLException {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME)){
+			pstmt.setInt(1, no_categorie);
+			pstmt.setString(2, nomTri);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);
+				listeArticles.add(a);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+	
+	
 	
 }
