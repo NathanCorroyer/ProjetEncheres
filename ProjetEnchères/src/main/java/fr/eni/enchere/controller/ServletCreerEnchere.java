@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -36,6 +38,9 @@ public class ServletCreerEnchere extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
+		CategorieManager cm = CategorieManager.getInstance();
+		List<Categorie> listeCategorie = cm.selectAll(); 
+        request.setAttribute("listeCategorie" , listeCategorie);
 		request.setAttribute("user", connectedUser);
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/creerEnchere.jsp");
 		rd.forward(request, response);

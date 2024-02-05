@@ -16,6 +16,7 @@ public class Article {
 	 private int no_utilisateur;
 	 private Utilisateur utilisateur;
 	 private String imagePath ;
+	 private Categorie categorieComplete;
 
 	 
 	 
@@ -160,6 +161,16 @@ public class Article {
 																			date_fin_encheres.toString(), prix_initial, prix_vente, no_utilisateur, categorie, utilisateur.getPseudo() ));
 		
 		return chaine.toString();
+	}
+
+
+	public Categorie getCategorieComplete() {
+		return categorieComplete;
+	}
+
+
+	public void setCategorieComplete(Categorie cat) {
+		this.categorieComplete = cat;
 	}
 	 
 }	

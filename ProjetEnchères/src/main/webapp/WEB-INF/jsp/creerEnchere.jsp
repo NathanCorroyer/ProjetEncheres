@@ -23,7 +23,11 @@
         <textarea name="description" required></textarea>
 
         <label for="no_categorie">Catégorie :</label>
-        <input type="number" name="no_categorie" required>
+        <select class="category-dropdown search-form" name="categorie">
+		       		<c:forEach var="c" items="${listeCategorie}">      
+		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
+		         	</c:forEach>
+	      </select>
         
         <label for="file">Photo de l'article :</label>
         <input type="file" name="photoArticle" accept="image/*">

@@ -26,5 +26,7 @@ public class CategorieManager {
 		return CategorieDAO.selectAll();
 	}
 	
-
+	 public Categorie selectByNoCategorie(int no_categorie) {
+		return CategorieDAO.selectByNoCategorie(no_categorie);
+	 }
 }

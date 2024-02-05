@@ -13,8 +13,10 @@ import java.util.List;
 import java.sql.Timestamp;
 
 import fr.eni.enchere.bll.BLLException;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
@@ -53,11 +55,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setDate_fin_encheres((rs.getTimestamp("date_fin_encheres").toLocalDateTime()));
 			a.setPrix_initial(rs.getInt("prix_initial"));
 			a.setCategorie(rs.getInt("no_categorie"));
+			CategorieManager cm = CategorieManager.getInstance();
+			Categorie cat = cm.selectByNoCategorie(rs.getInt("no_categorie"));
+			System.out.println(cat.getLibelle());
+			a.setCategorieComplete(cat);
 			UtilisateurManager um = UtilisateurManager.getInstance();
 			Utilisateur utilisateur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
 			a.setImagePath(rs.getString("path_image"));
+
 
 			
 		} catch (SQLException | BLLException e) {
@@ -85,12 +92,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 
-
-	@Override
-	public List<Article> selectByCategorie() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Article> selectByName() {
@@ -198,7 +199,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	public List<Article> selectByName(String nomTri) throws SQLException {
 		List<Article> listeArticles = new ArrayList<>();
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_BY_NAME)){
-			pstmt.setString(1, nomTri);
+			pstmt.setString(1, nomTri+"%");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
@@ -218,7 +219,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		List<Article> listeArticles = new ArrayList<>();
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME)){
 			pstmt.setInt(1, no_categorie);
-			pstmt.setString(2, nomTri);
+			pstmt.setString(2, nomTri+"%");
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {

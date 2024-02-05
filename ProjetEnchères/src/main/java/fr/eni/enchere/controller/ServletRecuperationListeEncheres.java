@@ -1,6 +1,7 @@
 package fr.eni.enchere.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
+		//Messages d'erreur ou de succès qui s'affichent en cas de suppression de compte ou création
 		if(request.getAttribute("succes_creation") != null) {
 			request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
 		}
@@ -39,15 +39,74 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 			request.setAttribute("erreurSuppression", request.getAttribute("erreurSuppression"));
 		}
 		
-		System.out.println("JE PASSE DANS LA SERVLET");
-
-		List<Article> listeArticles = new ArrayList<>();
-		ArticleManager am = ArticleManager.getInstance();
-		listeArticles = am.selectAll();
+		
+		
+		
+		//Dans tous les cas je veux récupérer ma liste de catégories pour l'afficher sur l'index
 		CategorieManager cm = CategorieManager.getInstance();
 		List<Categorie> listeCategorie = cm.selectAll(); 
         request.setAttribute("listeCategorie" , listeCategorie);
-
+		
+        //Initialisation de la variable qui me permet de récupérer la liste d'articles à afficher
+    	List<Article> listeArticles = new ArrayList<>();
+    	ArticleManager am = ArticleManager.getInstance();
+    	
+    	//La catégorie qu'a choisi l'utilisateur
+        String categorie = request.getParameter("categorie");
+        Integer no_categorie = null;
+        //Si elle n'est pas nulle et qu'elle vaut "all", ça correspond à la catégorie "toutes"
+        if(categorie != null) {
+        	if(categorie.equals("all")) {
+        		no_categorie = -1;
+        	}else {
+        		//Sinon je lui donne la valeur du no_categorie
+        		no_categorie = Integer.parseInt(request.getParameter("categorie"));        		
+        	}
+        }
+        
+        
+        //Je récupère le mot tapé pour filtrer les enchères
+        String nomTri = request.getParameter("search");
+        
+        //Si je n'ai pas reçu de catégorie ou si on ne trie pas par catégorie
+        if(categorie == null || no_categorie==-1){
+        	//Et qu'en plus je ne trie pas par mot-clé
+        	if(nomTri == null || nomTri.trim().equals("")) {
+        		//Je récupère tous les articles
+        		listeArticles = am.selectAll();
+        	}else {
+        		//J'ai un mot clé donc je sélectionne par mot-clé
+        		try {
+					listeArticles = am.selectByName(nomTri.trim());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        	}
+        }else {
+        	//Si j'ai une sélection de catégorie mais pas de mot-clé
+        	if(nomTri == null || nomTri.trim().equals("")) {	        	
+					try {
+						//Simple sélection par catégorie
+						listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
+					} catch (NumberFormatException | SQLException e) {
+						//Gestion d'erreur 
+						e.printStackTrace();
+					}
+			
+        		}else {
+        			//J'ai une sélection de catégorie ET un mot-clé
+					try {
+						//Je sélectionne seulement les articles de la catégorie et du mot-clé donnés
+						listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
+					} catch (NumberFormatException | SQLException e) {
+						// Gestion d'erreur
+						e.printStackTrace();
+					}
+		
+        	}
+        }
+        
+        request.setAttribute("categorie", no_categorie);
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
