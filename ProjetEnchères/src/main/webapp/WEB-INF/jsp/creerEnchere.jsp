@@ -32,19 +32,26 @@
         <input type="number" name="prix_initial" required>
 
         <label for="date_debut_encheres">Début de l'enchère :</label>
-        <input type="date" name="date_debut_encheres" required>
+        <input type="datetime-local" name="date_debut_encheres" required>
 
         <label for="date_fin_encheres">Fin de l'enchère :</label>
-        <input type="date" name="date_fin_encheres" required>
+        <input type="datetime-local" name="date_fin_encheres" required>
         
         <div class="retrait">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        
 	        <h2>Retrait</h2>
 	       	 <label for="rue">Rue :</label>
        		 <input type="text" id="rue" name="rue"  value="${user.rue}" required>
        		 
        
 	        <label for="codePostal">Code postal :</label>
-	        <input type="text" id="codePostal" name="codePostal" pattern="[0-9]{5}" title="Entrez un code postal valide à 5 chiffres" maxlength="5" required>
+	        <input type="text" id="codePostal" name="codePostal" value ="${user.code_postal}" pattern="[0-9]{5}" title="Entrez un code postal valide à 5 chiffres" maxlength="5" required>
+	        
 <br>
 	        
 	        <label for="ville">Ville :</label>
