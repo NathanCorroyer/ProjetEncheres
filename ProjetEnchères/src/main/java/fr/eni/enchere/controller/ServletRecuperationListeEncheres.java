@@ -30,12 +30,11 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 		System.out.println("JE PASSE DANS LA SERVLET");
 		List<Article> listeArticles = new ArrayList<>();
 		ArticleManager am = ArticleManager.getInstance();
-		
 		listeArticles = am.selectAll();
 		CategorieManager cm = CategorieManager.getInstance();
 		List<Categorie> listeCategorie = cm.selectAll(); 
         request.setAttribute("listeCategorie" , listeCategorie);
-		//String referer = (String) request.getAttribute("referer");
+
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);

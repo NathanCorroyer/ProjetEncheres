@@ -60,18 +60,18 @@
   	
   	
 	
-	
+	<!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
 	<c:if test="${listeArticles ne null}">
 		<section class="annonces">
 		<c:forEach var="a" items="${listeArticles}">
         	<ul>
            	 <li>
-	             <!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
+	             
 	              <div class="annonce-details">
 	                  <h4>${a.getNom_Article()}</h4>
 	                  <p>Prix : ${a.getPrix_initial()} points</p>
 	                  <p>Fin de l'enchère : ${a.getDate_fin_encheres() }</p>
-	                  <p>Vendeur : ${a.getUtilisateur().getPseudo()}</p>
+	                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
 	                  <p>Numéro d'article : ${a.getNoArticle()}
 	               </div>
 	         </li>
