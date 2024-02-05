@@ -26,16 +26,16 @@
         <input type="number" name="no_categorie" required>
         
         <label for="file">Photo de l'article :</label>
-        <input type="file" name="file" accept="image/*">
+        <input type="file" name="imageFile" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
         <input type="number" name="prix_initial" required>
 
         <label for="date_debut_encheres">Début de l'enchère :</label>
-        <input type="datetime-local" name="date_debut_encheres" required>
+        <input type="date" name="date_debut_encheres" required>
 
         <label for="date_fin_encheres">Fin de l'enchère :</label>
-        <input type="datetime-local" name="date_fin_encheres" required>
+        <input type="date" name="date_fin_encheres" required>
         
         <div class="retrait">
 	        <h2>Retrait</h2>
@@ -44,7 +44,8 @@
        		 
        
 	        <label for="codePostal">Code postal :</label>
-	        <input type="text" id="codePostal" name="codePostal"  value="${user.code_postal}" required><br>
+	        <input type="text" id="codePostal" name="codePostal" pattern="[0-9]{5}" title="Entrez un code postal valide à 5 chiffres" maxlength="5" required>
+<br>
 	        
 	        <label for="ville">Ville :</label>
 	        <input type="text" id="ville" name="ville"  value="${user.ville}" required><br>
