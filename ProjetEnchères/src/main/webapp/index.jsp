@@ -6,6 +6,7 @@
 <%@page import="fr.eni.enchere.bo.Utilisateur" %>
 <%@page import="java.util.List" %>
 <%@page import="javax.servlet.RequestDispatcher" %>
+<%@page import="fr.eni.enchere.bo.Categorie" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -43,25 +44,29 @@
     
     
     <h4>Catégorie :</h4>
-    <select class="category-dropdown">
-        <option value="categorie1">Toutes</option>
-        <option value="categorie2">Informatique</option>
-        <option value="categorie3">Ameublement</option>
-        <option value="categorie4">Vêtement</option>
-        <option value="categorie5">Sports et Loisirs</option>
-      </select>
-  	
-  	
-	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
-	<c:if test="${listeArticles eq null}">
+    <% List<Categorie> listeCategorie = (List<Categorie>) request.getAttribute("listeCategorie");%>
+    	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>   
+	<c:if test="${listeCategorie eq null or listeArticles eq null}">
 		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeEncheres"); %>
 	</c:if>
+	<c:if test="${listeCategorie ne null}">
+    <select class="category-dropdown">
+   
+       <c:forEach var="c" items="${listeCategorie}">      
+        <option value="${c.no_categorie}">${c.libelle}</option>
+         </c:forEach>
+      </select>
+      </c:if>
+  	
+  	
+	
+	<!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
 	<c:if test="${listeArticles ne null}">
 		<section class="annonces">
 		<c:forEach var="a" items="${listeArticles}">
         	<ul>
            	 <li>
-	              <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
+	             
 	              <div class="annonce-details">
 	                  <h4>${a.getNom_Article()}</h4>
 	                  <p>Prix : ${a.getPrix_initial()} points</p>
