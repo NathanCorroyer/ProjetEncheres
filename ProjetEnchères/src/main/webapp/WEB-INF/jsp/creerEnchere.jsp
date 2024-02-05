@@ -24,6 +24,9 @@
 
         <label for="no_categorie">Catégorie :</label>
         <input type="number" name="no_categorie" required>
+        
+        <label for="file">Photo de l'article :</label>
+        <input type="file" name="file" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
         <input type="number" name="prix_initial" required>
