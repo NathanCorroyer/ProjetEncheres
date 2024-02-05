@@ -39,12 +39,12 @@
     <c:if test="${not empty requestScope.succesSuppression}">
     	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>
     	<p style="color : green" id ="succesSuppression">${requestScope.succesSuppression}</p>
-    	<script>hideParagraph("succesSuppression")</script>
+    	<script>fadeOut("succesSuppression")</script>
     </c:if>
     <c:if test="${not empty requestScope.erreurSuppression}">
    		 <% request.setAttribute("erreurSuppression", "Erreur lors de la suppression de votre compte"); %>
     	<p style="color : red" id ="erreurSuppression">${requestScope.erreurSuppression}</p>
-    	<script>hideParagraph("erreurSuppression")</script>
+    	<script>fadeOut("erreurSuppression")</script>
     </c:if>
     <c:if test="${not empty requestScope.succes_creation}">
     	<% request.setAttribute("succes_creation", "Votre compte a bien été créé"); %>
