@@ -10,6 +10,7 @@
 <%@page import="fr.eni.enchere.bo.Categorie" %>
 <%@page import ="java.time.format.DateTimeFormatter"%>
 <%@ page import="java.time.LocalDateTime" %>
+
 <%! 
     String formatLocalDateTime(LocalDateTime localDateTime, String pattern) {
         return localDateTime.format(java.time.format.DateTimeFormatter.ofPattern(pattern));
@@ -24,7 +25,7 @@
    <link rel="icon" href="https://capecia-formations.fr/wp-content/uploads/2019/09/LogoENIcertification-print.png" type="image/x-icon">
 
     <link rel="stylesheet" href="styles/style.css">
-	
+	<script src="javascript/hideParagraph.js"></script>
 
     
 </head>
@@ -37,15 +38,18 @@
     
     <c:if test="${not empty requestScope.succesSuppression}">
     	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>
-    	<p style="color : green">${requestScope.succesSuppression}</p>
+    	<p style="color : green" id ="succesSuppression">${requestScope.succesSuppression}</p>
+    	<script>hideParagraph("succesSuppression")</script>
     </c:if>
     <c:if test="${not empty requestScope.erreurSuppression}">
    		 <% request.setAttribute("erreurSuppression", "Erreur lors de la suppression de votre compte"); %>
-    	<p style="color : red">${requestScope.erreurSuppression}</p>
+    	<p style="color : red" id ="erreurSuppression">${requestScope.erreurSuppression}</p>
+    	<script>hideParagraph("erreurSuppression")</script>
     </c:if>
     <c:if test="${not empty requestScope.succes_creation}">
     	<% request.setAttribute("succes_creation", "Votre compte a bien été créé"); %>
-    	<p style="color : green">${requestScope.succes_creation}</p>
+    	<p style="color : green" id="succes_creation">${requestScope.succes_creation}</p>
+    	<script>fadeOut("succes_creation")</script>
     </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
