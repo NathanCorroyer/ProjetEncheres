@@ -53,11 +53,7 @@
     </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
-    <form class="search-form" action="#" method="get">
-        <input type="text" name="search" placeholder="Le nom de l'article contient">
-    </form>
-    
-    
+        
     <h4>Catégorie :</h4>
     <% List<Categorie> listeCategorie = (List<Categorie>) request.getAttribute("listeCategorie");%>
     <% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");
@@ -65,17 +61,23 @@
     %>   
 	<c:if test="${listeCategorie eq null or listeArticles eq null}">
 		<%
-		request.getRequestDispatcher("/ServletRecuperationListeEncheres").forward(request,response); 
+		String contextPath = request.getContextPath();
+		request.getRequestDispatcher("/ServletRecuperationListeEncheresTestTri").forward(request,response); 
 		%>
 	</c:if>
 	<c:if test="${listeCategorie ne null}">
-    <select class="category-dropdown" >
-   		<option value="all" selected>Toutes</option>
-       <c:forEach var="c" items="${listeCategorie}">      
-        <option value="${c.no_categorie}">${c.libelle}</option>
-         </c:forEach>
-      </select>
-      </c:if>
+		<form action="${pageContext.request.contextPath}/ServletRecuperationListeEncheresTestTri" method="POST">
+	    	<select class="category-dropdown search-form" name="categorie">
+		   		<option value="all" ${empty categorie || categorie eq 'all' ? 'selected' :''}>Toutes</option>
+		       		<c:forEach var="c" items="${listeCategorie}">      
+		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
+		         	</c:forEach>
+	      </select>
+	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
+     		<input type="submit" value="Filtrer">
+     	</form> 
+     </c:if>
+      
   	
   	
 	
@@ -93,9 +95,6 @@
 	                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
 	                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
 	                  <p>Numéro d'article : ${a.getNoArticle()}
-	                  <br>
-	                  <br>
-	                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNo_utilisateur()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
 	               </div>
 	         </li>
 

@@ -36,6 +36,18 @@ public Article selectArticleById(int no_article) throws SQLException {
 	return articleDAO.selectArticleById(no_article); 
 }
 
+public List<Article> selectArticleByCategorie(int no_categorie) throws SQLException {
+	return articleDAO.selectArticleByCategorie(no_categorie);
+}
+
+public List<Article> selectByName(String nomTri) throws SQLException {
+	return articleDAO.selectByName(nomTri);
+}
+
+public List<Article> selectArticleByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
+	return articleDAO.selectArticleByCategorieAndByName(no_categorie,nomTri);
+}
+
 }
 
 
