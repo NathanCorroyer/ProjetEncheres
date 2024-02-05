@@ -6,6 +6,7 @@
 <%@page import="fr.eni.enchere.bo.Utilisateur" %>
 <%@page import="java.util.List" %>
 <%@page import="javax.servlet.RequestDispatcher" %>
+<%@page import="fr.eni.enchere.bo.Categorie" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -43,13 +44,18 @@
     
     
     <h4>Catégorie :</h4>
+    <% List<Categorie> listeCategorie = (List<Categorie>) request.getAttribute("listeCategorie");%>
+	<c:if test="${listeCategorie eq null}">
+		<%response.sendRedirect(request.getContextPath()+"/ServletRecuperationListeCategorie"); %>
+	</c:if>
+	<c:if test="${listeCategorie ne null}">
     <select class="category-dropdown">
-        <option value="categorie1">Toutes</option>
-        <option value="categorie2">Informatique</option>
-        <option value="categorie3">Ameublement</option>
-        <option value="categorie4">Vêtement</option>
-        <option value="categorie5">Sports et Loisirs</option>
+   
+       <c:forEach var="c" items="${listeCategorie}">      
+        <option value="${c.no_categorie}">${c.libelle}</option>
+         </c:forEach>
       </select>
+      </c:if>
   	
   	
 	<% List<Article> listeArticles = (List<Article>) request.getAttribute("listeArticles");%>
@@ -61,7 +67,7 @@
 		<c:forEach var="a" items="${listeArticles}">
         	<ul>
            	 <li>
-	              <img src="https://i.imgur.com/sGTINHD.jpg" alt="Image de l'annonce">
+	             <!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
 	              <div class="annonce-details">
 	                  <h4>${a.getNom_Article()}</h4>
 	                  <p>Prix : ${a.getPrix_initial()} points</p>
