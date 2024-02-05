@@ -54,10 +54,11 @@ public class ServletCreerEnchere extends HttpServlet {
 			Part filePart = request.getPart("photoArticle"); //Récupération du fichier 
 			String nomFichier = filePart.getSubmittedFileName(); //Récupération du nom du fichier 
 			String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
-			String cheminAbsoluImage = directoryPath + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
+			String directoryAbsolute = directoryPath + nomFichier ;
+			String cheminAbsoluImage = "/ProjetEnchères/images/imagesArticles/" + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
 			
 			InputStream is = filePart.getInputStream(); // InputStream sert à lire les infos, un flux 
-			FileOutputStream os = new FileOutputStream(cheminAbsoluImage); // OutputStream sert à écrire les infos
+			FileOutputStream os = new FileOutputStream(directoryAbsolute); // OutputStream sert à écrire les infos
 			
 			int bytesLus = -1 ;   //Déclare une variable pour stocker le nombre d'octets lus à chaque itération
 			byte[] buffer = new byte[4096]; // Déclare un tampon de 4096 octets pour stocker les données du flux
@@ -67,7 +68,7 @@ public class ServletCreerEnchere extends HttpServlet {
 			
 			is.close(); //fermeture des flux
 			os.close();
-			System.out.println("file path : " + cheminAbsoluImage );
+			
 			//Fin de récupération image 
 		 	
 			ArticleManager a = ArticleManager.getInstance();
@@ -75,7 +76,7 @@ public class ServletCreerEnchere extends HttpServlet {
 		 	int numeroVendeur = user.getNoUtilisateur();
 			String nom = request.getParameter("nom_article");
 	        String description = request.getParameter("description");
-	        int categorie = Integer.parseInt(request.getParameter("no_categorie"));
+	        int categorie = Integer.parseInt(request.getParameter("categorie"));
 	        int prixInitial = Integer.parseInt(request.getParameter("prix_initial"));
 	        LocalDateTime dateDébut = LocalDateTime.parse(request.getParameter("date_debut_encheres"));
 	        LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("date_fin_encheres"));
@@ -87,7 +88,8 @@ public class ServletCreerEnchere extends HttpServlet {
 	        Integer key = null;
 	        try {
 				key = a.ajouter(art);
-				System.out.println("image path : " + art.getImagePath());
+				art.setFileName(nomFichier);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -99,7 +101,7 @@ public class ServletCreerEnchere extends HttpServlet {
 	        Article article = null;
 			try {
 				article = a.selectArticleById(key);
-				System.out.println("image path : " + art.getImagePath());
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -57,13 +57,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setCategorie(rs.getInt("no_categorie"));
 			CategorieManager cm = CategorieManager.getInstance();
 			Categorie cat = cm.selectByNoCategorie(rs.getInt("no_categorie"));
-			System.out.println(cat.getLibelle());
+			
 			a.setCategorieComplete(cat);
 			UtilisateurManager um = UtilisateurManager.getInstance();
 			Utilisateur utilisateur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
 			a.setImagePath(rs.getString("path_image"));
+			
+			System.out.println("img path : " + rs.getString("path_image"));
 
 
 			
