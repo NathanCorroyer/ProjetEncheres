@@ -27,8 +27,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	private static final String SQL_SELECT_FROM_USER = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie"
 													+  "FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
 	
-	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie)"
-											+ "VALUES (?,?,?,?,?,?,?)";
+	private static final String SQL_AJOUTER = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie, path_image )"
+											+ "VALUES (?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_SUPPRIMER = "DELETE FROM ARTICLES_VENDUS WHERE no_Article = ?";
 	
@@ -58,6 +58,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			Utilisateur utilisateur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
+			a.setImagePath(rs.getString("imagePath"));
 
 			
 		} catch (SQLException | BLLException e) {
@@ -137,6 +138,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			pstmt.setInt(5, a.getPrix_initial());
 			pstmt.setInt(6, a.getNo_utilisateur());
 			pstmt.setInt(7, a.getCategorie());
+			pstmt.setString(8 , a.getImagePath());
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if(rs.next()) {

@@ -95,6 +95,9 @@
 	                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
 	                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
 	                  <p>Numéro d'article : ${a.getNoArticle()}
+	                  <br>
+	                  <br>
+	                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNo_utilisateur()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
 	               </div>
 	         </li>
 

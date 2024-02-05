@@ -15,12 +15,23 @@ public class Article {
 	 private int categorie;
 	 private int no_utilisateur;
 	 private Utilisateur utilisateur;
+	 private String imagePath ;
 
 	 
 	 
 
 
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
@@ -46,6 +57,20 @@ public class Article {
 	}
 	
 	
+	public Article(String nom_Article, String description, LocalDateTime date_debut_encheres,
+			LocalDateTime date_fin_encheres, int prix_initial, int categorie, int no_utilisateur, String imagePath) {
+		super();
+		this.nom_Article = nom_Article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.categorie = categorie;
+		this.no_utilisateur = no_utilisateur;
+		this.imagePath = imagePath;
+	}
+
+
 	public Article(String nom_Article, String description, LocalDateTime date_debut_encheres, LocalDateTime date_fin_encheres,
 			int prix_initial, int prix_vente, int no_utilisateur,int categorie) {
 		super();
@@ -131,8 +156,8 @@ public class Article {
 	@Override
 	public String toString() {
 		StringBuilder chaine = new StringBuilder();
-		chaine.append(String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d || Vendeur : %s", no_article, nom_Article, description, date_debut_encheres.toString(), 
-																			date_fin_encheres.toString(), prix_initial, prix_vente, no_utilisateur, categorie, utilisateur.getPseudo()));
+		chaine.append(String.format("%d || %s || %s || %s || %s || %d || %d || %d || %d || Vendeur : %s %n %s", no_article, nom_Article, description, date_debut_encheres.toString(), 
+																			date_fin_encheres.toString(), prix_initial, prix_vente, no_utilisateur, categorie, utilisateur.getPseudo() ));
 		
 		return chaine.toString();
 	}
