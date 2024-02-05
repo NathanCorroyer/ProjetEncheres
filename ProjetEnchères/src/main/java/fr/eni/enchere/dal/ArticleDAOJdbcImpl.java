@@ -13,8 +13,10 @@ import java.util.List;
 import java.sql.Timestamp;
 
 import fr.eni.enchere.bll.BLLException;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
@@ -59,6 +61,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
 			a.setImagePath(rs.getString("imagePath"));
+			CategorieManager cm = CategorieManager.getInstance();
+			Categorie cat = cm.selectByNoCategorie(rs.getInt("no_categorie"));
+			System.out.println(cat.getLibelle());
+			a.setCategorieComplete(cat);
 
 			
 		} catch (SQLException | BLLException e) {

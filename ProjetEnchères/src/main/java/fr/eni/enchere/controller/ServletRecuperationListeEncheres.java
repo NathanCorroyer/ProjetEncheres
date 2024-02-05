@@ -28,7 +28,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//Messages d'erreur ou de succès qui s'affichent en cas de suppression de compte ou création
 		if(request.getAttribute("succes_creation") != null) {
 			request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
 		}
@@ -39,66 +39,70 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 			request.setAttribute("erreurSuppression", request.getAttribute("erreurSuppression"));
 		}
 		
+		
+		
+		
+		//Dans tous les cas je veux récupérer ma liste de catégories pour l'afficher sur l'index
 		CategorieManager cm = CategorieManager.getInstance();
 		List<Categorie> listeCategorie = cm.selectAll(); 
         request.setAttribute("listeCategorie" , listeCategorie);
 		
-        
+        //Initialisation de la variable qui me permet de récupérer la liste d'articles à afficher
     	List<Article> listeArticles = new ArrayList<>();
     	ArticleManager am = ArticleManager.getInstance();
     	
+    	//La catégorie qu'a choisi l'utilisateur
         String categorie = request.getParameter("categorie");
         Integer no_categorie = null;
+        //Si elle n'est pas nulle et qu'elle vaut "all", ça correspond à la catégorie "toutes"
         if(categorie != null) {
         	if(categorie.equals("all")) {
         		no_categorie = -1;
         	}else {
+        		//Sinon je lui donne la valeur du no_categorie
         		no_categorie = Integer.parseInt(request.getParameter("categorie"));        		
         	}
         }
         
         
-        System.out.println(no_categorie);
-        
-        
+        //Je récupère le mot tapé pour filtrer les enchères
         String nomTri = request.getParameter("search");
-        System.out.println("nomtri : " + nomTri);
-        if(categorie == null || categorie.equals("all")) {
+        
+        //Si je n'ai pas reçu de catégorie ou si on ne trie pas par catégorie
+        if(categorie == null || no_categorie==-1){
+        	//Et qu'en plus je ne trie pas par mot-clé
         	if(nomTri == null || nomTri.trim().equals("")) {
-        		System.out.println("Je passe dans le selectAll");
+        		//Je récupère tous les articles
         		listeArticles = am.selectAll();
         	}else {
+        		//J'ai un mot clé donc je sélectionne par mot-clé
         		try {
-        			System.out.println("Je passe au selectByName");
 					listeArticles = am.selectByName(nomTri.trim());
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
         	}
         }else {
-        	if(nomTri == null || nomTri.trim().equals("")) {
-	        	try {
-	        		System.out.println("Je passe dans le selectArticleByCategorie");
-					listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+        	//Si j'ai une sélection de catégorie mais pas de mot-clé
+        	if(nomTri == null || nomTri.trim().equals("")) {	        	
+					try {
+						//Simple sélection par catégorie
+						listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
+					} catch (NumberFormatException | SQLException e) {
+						//Gestion d'erreur 
+						e.printStackTrace();
+					}
+			
         		}else {
-        		try {
-        			System.out.println("Je passe dans le selectArticleByCategorieAndByName");
-					listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+        			//J'ai une sélection de catégorie ET un mot-clé
+					try {
+						//Je sélectionne seulement les articles de la catégorie et du mot-clé donnés
+						listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
+					} catch (NumberFormatException | SQLException e) {
+						// Gestion d'erreur
+						e.printStackTrace();
+					}
+		
         	}
         }
         
