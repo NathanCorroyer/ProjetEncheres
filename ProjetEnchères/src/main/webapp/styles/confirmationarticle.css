@@ -1,0 +1,64 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+h2, h3 {
+    text-align: center;
+}
+
+.main {
+	padding-bottom: 5%;
+}
+
+.tableau {
+	max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) ;
+}
+
+
+table {
+	display: flex;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+   	border: none;
+   	    
+}
+  th, td {
+    border: 1px solid #272727; /* Couleur de la bordure verte */
+    border-radius: 8px; 
+    padding: 10px; /* Ajoutez un peu de rembourrage pour l'espace intérieur */
+  }
+
+  th {
+    background-color: #272727; /* Couleur de fond verte pour les en-têtes */
+    color: white; /* Couleur du texte blanc pour les en-têtes */
+  }
+
+#accueil {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+}
+button {
+    background-color: #4caf50;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
