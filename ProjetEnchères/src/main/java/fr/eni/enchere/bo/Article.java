@@ -1,14 +1,15 @@
 package fr.eni.enchere.bo;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 public class Article {
 	 private boolean vendu;
 	 private Integer no_article;
 	 private String nom_Article;
 	 private String description;
-	 private LocalDate date_debut_encheres;
-	 private LocalDate date_fin_encheres;
+	 private LocalDateTime date_debut_encheres;
+	 private LocalDateTime date_fin_encheres;
 	 private int prix_initial;
 	 private int prix_vente;
 	 private int categorie;
@@ -45,7 +46,7 @@ public class Article {
 	}
 	
 	
-	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
+	public Article(String nom_Article, String description, LocalDateTime date_debut_encheres, LocalDateTime date_fin_encheres,
 			int prix_initial, int prix_vente, int no_utilisateur,int categorie) {
 		super();
 		this.nom_Article = nom_Article;
@@ -58,7 +59,7 @@ public class Article {
 		this.no_utilisateur = no_utilisateur;	
 	}
 	
-	public Article(String nom_Article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
+	public Article(String nom_Article, String description, LocalDateTime date_debut_encheres, LocalDateTime date_fin_encheres,
 			int prix_initial, int categorie, int no_utilisateur) {
 		super();
 		this.nom_Article = nom_Article;
@@ -95,16 +96,16 @@ public class Article {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public LocalDate getDate_debut_encheres() {
+	public LocalDateTime getDate_debut_encheres() {
 		return date_debut_encheres;
 	}
-	public void setDate_debut_encheres(LocalDate date_debut_encheres) {
+	public void setDate_debut_encheres(LocalDateTime date_debut_encheres) {
 		this.date_debut_encheres = date_debut_encheres;
 	}
-	public LocalDate getDate_fin_encheres() {
+	public LocalDateTime getDate_fin_encheres() {
 		return date_fin_encheres;
 	}
-	public void setDate_fin_encheres(LocalDate date_fin_encheres) {
+	public void setDate_fin_encheres(LocalDateTime date_fin_encheres) {
 		this.date_fin_encheres = date_fin_encheres;
 	}
 	public int getPrix_initial() {
