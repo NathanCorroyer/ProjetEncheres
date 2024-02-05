@@ -105,6 +105,7 @@
 	           	 <li>	
 		              <div class="annonce-details">
 		                  <h4>${a.getNom_Article()}</h4>
+		                  <img src="${a.getImagePath()}" width="300" height="200" alt="TestImage">
 		                  <p>Prix : ${a.getPrix_initial()} points</p>
 		                  <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
 		                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
@@ -120,6 +121,7 @@
 	
 			</c:forEach>
         </ul>
+
     </section>
 	</c:if>
     </section>

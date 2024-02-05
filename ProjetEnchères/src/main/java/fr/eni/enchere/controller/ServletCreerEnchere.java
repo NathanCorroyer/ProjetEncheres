@@ -99,6 +99,7 @@ public class ServletCreerEnchere extends HttpServlet {
 	        Article article = null;
 			try {
 				article = a.selectArticleById(key);
+				System.out.println("image path : " + art.getImagePath());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
