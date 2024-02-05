@@ -88,12 +88,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 
 
 	@Override
-	public List<Article> selectByCategorie() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Article> selectByName() {
 		// TODO Auto-generated method stub
 		return null;
