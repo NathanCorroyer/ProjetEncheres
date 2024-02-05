@@ -56,15 +56,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setDate_fin_encheres((rs.getTimestamp("date_fin_encheres").toLocalDateTime()));
 			a.setPrix_initial(rs.getInt("prix_initial"));
 			a.setCategorie(rs.getInt("no_categorie"));
+			CategorieManager cm = CategorieManager.getInstance();
+			Categorie cat = cm.selectByNoCategorie(rs.getInt("no_categorie"));
+			System.out.println(cat.getLibelle());
+			a.setCategorieComplete(cat);
 			UtilisateurManager um = UtilisateurManager.getInstance();
 			Utilisateur utilisateur = um.selectUserByNumero(rs.getInt("no_utilisateur"));
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
 			a.setImagePath(rs.getString("imagePath"));
-			CategorieManager cm = CategorieManager.getInstance();
-			Categorie cat = cm.selectByNoCategorie(rs.getInt("no_categorie"));
-			System.out.println(cat.getLibelle());
-			a.setCategorieComplete(cat);
+		
 
 			
 		} catch (SQLException | BLLException e) {
