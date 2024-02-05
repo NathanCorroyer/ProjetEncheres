@@ -54,7 +54,8 @@
     </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
-        
+    
+       
     <h4>Catégorie :</h4>
     
     <!-- Recherche des listes de catégories et d'articles, si l'une d'elles est nulle on forward vers la servlet pour les récupérer -->
@@ -87,7 +88,7 @@
      	</form> 
      </c:if>
       
-  	
+  
   	
 	
 	<!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
@@ -103,9 +104,10 @@
 	        	
 	        	<%-- Pour chaque article présent dans la liste, une balise li est créée et on y utilise les données qui nous intéressent en utilisant les getters de la classe Article  --%>
 	           	 <li>	
+	           	 	
 		              <div class="annonce-details">
 		                  <h4>${a.getNom_Article()}</h4>
-		                  <img src="${a.getImagePath()}" width="300" height="200" alt="TestImage">
+		                  <img src="${a.getImagePath()}" alt="TestImage">
 		                  <p>Prix : ${a.getPrix_initial()} points</p>
 		                  <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
 		                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>

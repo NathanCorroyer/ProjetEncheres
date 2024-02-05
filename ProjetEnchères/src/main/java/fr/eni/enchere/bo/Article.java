@@ -17,12 +17,23 @@ public class Article {
 	 private Utilisateur utilisateur;
 	 private String imagePath ;
 	 private Categorie categorieComplete;
+	 private String fileName ;
 
 	 
 	 
 
 
 	
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
 	public String getImagePath() {
 		return imagePath;
 	}
