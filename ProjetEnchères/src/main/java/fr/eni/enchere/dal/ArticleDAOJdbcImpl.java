@@ -199,7 +199,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	public List<Article> selectByName(String nomTri) throws SQLException {
 		List<Article> listeArticles = new ArrayList<>();
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_BY_NAME)){
-			pstmt.setString(1, nomTri);
+			pstmt.setString(1, nomTri+"%");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
@@ -219,7 +219,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		List<Article> listeArticles = new ArrayList<>();
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ARTICLE_BY_CATEGORIE_AND_NAME)){
 			pstmt.setInt(1, no_categorie);
-			pstmt.setString(2, nomTri);
+			pstmt.setString(2, nomTri+"%");
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
