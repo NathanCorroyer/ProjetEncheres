@@ -15,7 +15,7 @@
 <section class="main">
     <h2>Nouvelle vente</h2>
     
-    <form class="enchere-form" action="${pageContext.request.contextPath}/creer_enchere" method="post">
+    <form class="enchere-form" action="${pageContext.request.contextPath}/creer_enchere" method="post" enctype="multipart/form-data">
         <label for="nom_article">Article:</label>
         <input type="text" name="nom_article" required>
 
@@ -26,7 +26,7 @@
         <input type="number" name="no_categorie" required>
         
         <label for="file">Photo de l'article :</label>
-        <input type="file" name="file" accept="image/*">
+        <input type="file" name="photoArticle" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
         <input type="number" name="prix_initial" required>
@@ -38,13 +38,21 @@
         <input type="datetime-local" name="date_fin_encheres" required>
         
         <div class="retrait">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        
 	        <h2>Retrait</h2>
 	       	 <label for="rue">Rue :</label>
        		 <input type="text" id="rue" name="rue"  value="${user.rue}" required>
        		 
        
 	        <label for="codePostal">Code postal :</label>
-	        <input type="text" id="codePostal" name="codePostal"  value="${user.code_postal}" required><br>
+	        <input type="text" id="codePostal" name="codePostal" value ="${user.code_postal}" pattern="[0-9]{5}" title="Entrez un code postal valide à 5 chiffres" maxlength="5" required>
+	        
+<br>
 	        
 	        <label for="ville">Ville :</label>
 	        <input type="text" id="ville" name="ville"  value="${user.ville}" required><br>
