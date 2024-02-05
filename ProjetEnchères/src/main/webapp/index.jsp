@@ -60,13 +60,13 @@
   	
   	
 	
-	
+	<!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
 	<c:if test="${listeArticles ne null}">
 		<section class="annonces">
 		<c:forEach var="a" items="${listeArticles}">
         	<ul>
            	 <li>
-	             <!--<img src="${a.imagePath}" alt="Image de l'annonce">  -->
+	             
 	              <div class="annonce-details">
 	                  <h4>${a.getNom_Article()}</h4>
 	                  <p>Prix : ${a.getPrix_initial()} points</p>
