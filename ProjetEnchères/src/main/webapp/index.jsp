@@ -34,7 +34,8 @@
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
 <section class="main">
-    <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
+
+   <!-- <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a> --> 
     
     <!-- Tests d'existence des messages, appel d'une fonction js qui les fait disparaitre progressivement en 3sec -->
     <c:if test="${not empty requestScope.succesSuppression}">
