@@ -27,6 +27,9 @@ public List<Article> selectAll(){
 	return articleDAO.selectAll();
 }
 
+public List<Article> selectAllFinies(){
+	return articleDAO.selectAllFinies();
+}
 
 public Integer ajouter(Article a) throws SQLException {
 	return articleDAO.ajouter(a);
@@ -47,6 +50,7 @@ public List<Article> selectByName(String nomTri) throws SQLException {
 public List<Article> selectArticleByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
 	return articleDAO.selectArticleByCategorieAndByName(no_categorie,nomTri);
 }
+
 
 }
 

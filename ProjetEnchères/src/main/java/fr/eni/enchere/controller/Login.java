@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.MD5;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -66,7 +67,7 @@ public class Login extends HttpServlet {
 			String email = request.getParameter("email");
 			String mdp = request.getParameter("mdp");
 			try {
-				user =UtilisateurManager.getInstance().login(email,mdp);
+				user =UtilisateurManager.getInstance().login(email,MD5.getMd5(mdp));
 				HttpSession ses;
 				ses= request.getSession();
 				if(user!=null)

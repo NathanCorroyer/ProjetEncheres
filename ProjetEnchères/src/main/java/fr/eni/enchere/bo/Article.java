@@ -11,7 +11,7 @@ public class Article {
 	 private LocalDateTime date_debut_encheres;
 	 private LocalDateTime date_fin_encheres;
 	 private int prix_initial;
-	 private int prix_vente;
+	 private Integer prix_vente;
 	 private int categorie;
 	 private int no_utilisateur;
 	 private Utilisateur utilisateur;
@@ -151,10 +151,10 @@ public class Article {
 	public void setPrix_initial(int prix_initial) {
 		this.prix_initial = prix_initial;
 	}
-	public int getPrix_vente() {
+	public Integer getPrix_vente() {
 		return prix_vente;
 	}
-	public void setPrix_vente(int prix_vente) {
+	public void setPrix_vente(Integer prix_vente) {
 		this.prix_vente = prix_vente;
 	}
 	public int getCategorie() {

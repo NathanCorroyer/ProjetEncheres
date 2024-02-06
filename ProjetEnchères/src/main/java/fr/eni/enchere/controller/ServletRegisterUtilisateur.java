@@ -50,7 +50,7 @@ public class ServletRegisterUtilisateur extends HttpServlet {
 			String email= newUser.getEmail();
 			String pseudo = newUser.getPseudo();
 			String motDePasse = newUser.getPassword();
-			
+			System.out.println(motDePasse);
 
 			boolean okPseudo = false ;
 			boolean okMail = false ;

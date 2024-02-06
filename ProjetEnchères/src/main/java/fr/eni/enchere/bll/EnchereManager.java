@@ -40,4 +40,8 @@ public class EnchereManager {
 	public List<Enchere> selectByNoUtilisateur(int no_utilisateur){
 		return enchereDAO.SelectByNoUtilisateur(no_utilisateur);
 	}
+	
+	public Enchere selectLatestEnchereFromArticle(int no_article) {
+		return enchereDAO.SelectLatestEnchereFromArticle(no_article);
+	}
 }

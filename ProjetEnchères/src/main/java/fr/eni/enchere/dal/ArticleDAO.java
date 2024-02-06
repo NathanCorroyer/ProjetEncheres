@@ -19,6 +19,7 @@ public interface ArticleDAO {
 	void deleteAllArticlesFromUser(Utilisateur u);
 	List<Article> selectByName(String nomTri) throws SQLException;
 	List<Article> selectArticleByCategorieAndByName(int no_categorie, String nomTri) throws SQLException;
+	List<Article> selectAllFinies();
 
 	
 }

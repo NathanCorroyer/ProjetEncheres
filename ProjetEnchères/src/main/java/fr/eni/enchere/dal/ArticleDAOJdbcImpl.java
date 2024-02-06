@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 
 import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.CategorieManager;
+import fr.eni.enchere.bll.EnchereManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Categorie;
@@ -35,6 +36,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=? , description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?"
 											+ ", no_utilisateur=?, no_categorie=?";
+	private static final String SQL_UPDATE_VENTE = "UPDATE ARTICLES_VENDUS SET prix_vente = ?, no_utilisateur = ? WHERE no_article = ?";
 	private static final String SQL_DELETE_SINGLE_ARTICLE_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=? and no_article=?";
 	
 	private static final String SQL_DELETE_ALL_ARTICLES_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=?";
@@ -83,8 +85,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
-				listeArticles.add(a);
-			}
+				a = verifDate(a);
+				if(a.getPrix_vente() == null)					
+					listeArticles.add(a);
+				}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -94,7 +98,26 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 
-
+	@Override
+	public List<Article> selectAllFinies() {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ALL)){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);
+				a = verifDate(a);
+				if(a.getPrix_vente() != null)					
+					listeArticles.add(a);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+	
 	@Override
 	public List<Article> selectByName() {
 		// TODO Auto-generated method stub
@@ -118,8 +141,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 		if(rs.next() ) {
 			a = ArticleBuilder(rs);
-		}
-		
+			verifDate(a);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +188,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void updateVente(int prix, int no_utilisateur, int no_article) {
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE_VENTE)){
+			pstmt.setInt(1,prix);
+			pstmt.setInt(2,no_utilisateur);
+			pstmt.setInt(3, no_article);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	@Override
 	public void deleteSingleArticleFromUser(Utilisateur u, Article a) {
 		// TODO Auto-generated method stub
@@ -237,6 +272,26 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 	
-	
+	public Article verifDate (Article a) {
+		if( LocalDateTime.now().isAfter(a.getDate_fin_encheres())) {
+			EnchereManager em = EnchereManager.getInstance();
+			Integer prixVente = null;
+			Utilisateur u = null;
+			if(em.selectLatestEnchereFromArticle(a.getNoArticle()) == null) {
+				prixVente = a.getPrix_initial();
+			}else {
+				prixVente= em.selectLatestEnchereFromArticle(a.getNoArticle()).getMontant_enchere();
+				u = em.selectLatestEnchereFromArticle(a.getNoArticle()).getUtilisateur();
+			}
+			if(u == null) {
+				updateVente(prixVente, a.getUtilisateur().getNoUtilisateur(),a.getNoArticle());
+			}else {
+				updateVente(prixVente, u.getNoUtilisateur(),a.getNoArticle());
+				a.setNo_utilisateur(u.getNoUtilisateur());
+			}
+			a.setPrix_vente(prixVente);
+		}
+		return a;
+	}
 	
 }
