@@ -1,23 +1,35 @@
 package fr.eni.enchere.bo;
 
+import java.time.LocalDateTime;
+
 public class Enchere {
-	private String date_enchere;
-	private String montant_enchere;
+	private int no_enchere;
+	private LocalDateTime date_enchere;
+	private int montant_enchere;
 	private Article article;
 	private Utilisateur utilisateur;
 	
 	
-	public String getDate_enchere() {
+	
+	
+	public int getNo_enchere() {
+		return no_enchere;
+	}
+	public void setNo_enchere(int no_enchere) {
+		this.no_enchere = no_enchere;
+	}
+
+	public LocalDateTime getDate_enchere() {
 		return date_enchere;
 		
 	}
-	public void setDate_enchere(String date_enchere) {
+	public void setDate_enchere(LocalDateTime date_enchere) {
 		this.date_enchere = date_enchere;
 	}
-	public String getMontant_enchere() {
+	public int getMontant_enchere() {
 		return montant_enchere;
 	}
-	public void setMontant_enchere(String montant_enchere) {
+	public void setMontant_enchere(int montant_enchere) {
 		this.montant_enchere = montant_enchere;
 	}
 	public Article getArticle() {
@@ -32,7 +44,7 @@ public class Enchere {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-	public Enchere(String date_enchere, String montant_enchere, Article article, Utilisateur utilisateur) {
+	public Enchere(LocalDateTime date_enchere, int montant_enchere, Article article, Utilisateur utilisateur) {
 		this.date_enchere = date_enchere;
 		this.montant_enchere = montant_enchere;
 		this.article = article;
@@ -47,5 +59,15 @@ public class Enchere {
 	}
 	
 	public Enchere() {}
+	public Enchere(int no_enchere, LocalDateTime date_enchere, int montant_enchere, Article article,
+			Utilisateur utilisateur) {
+		super();
+		this.no_enchere = no_enchere;
+		this.date_enchere = date_enchere;
+		this.montant_enchere = montant_enchere;
+		this.article = article;
+		this.utilisateur = utilisateur;
+	}
+	
 	
 }

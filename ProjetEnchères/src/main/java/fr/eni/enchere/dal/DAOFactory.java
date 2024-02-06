@@ -13,4 +13,8 @@ public class DAOFactory {
 	public static DAOCategories getCategorieDAO() {	
 		return new DAOCategoriesJdbcImpl();
 	}
+	
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJdbcImpl();
+	}
 }

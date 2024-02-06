@@ -16,18 +16,18 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private static final String SQL_DELETE_BY_EMAIL = "DELETE FROM Utilisateurs WHERE email like ?";
 	
-	private final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? "
+	private static final String SQL_UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? "
 			+ "							WHERE no_Utilisateur=?";
 	
-	private final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
+	private static final String SQL_FIND_ALL = "SELECT * FROM Utilisateurs";
 	
-	private final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
+	private static final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
 	
-	private final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
+	private static final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
 
-	private final String SELECT_BY_PSEUDO = "SELECT * FROM Utilisateurs WHERE pseudo = ?";
-	private final String SELECT_BY_NUMERO = "SELECT * FROM Utilisateurs WHERE no_utilisateur = ?";
-	private final String SELECT_BY_MAIL = "SELECT * FROM Utilisateurs WHERE email = ?";
+	private static final String SELECT_BY_PSEUDO = "SELECT * FROM Utilisateurs WHERE pseudo = ?";
+	private static final String SELECT_BY_NUMERO = "SELECT * FROM Utilisateurs WHERE no_utilisateur = ?";
+	private static final String SELECT_BY_MAIL = "SELECT * FROM Utilisateurs WHERE email = ?";
 
 	
 	
