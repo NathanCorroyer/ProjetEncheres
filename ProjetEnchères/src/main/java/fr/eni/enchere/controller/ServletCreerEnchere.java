@@ -53,8 +53,14 @@ public class ServletCreerEnchere extends HttpServlet {
 			// Upload de l'image 
 			Part filePart = request.getPart("photoArticle"); //Récupération du fichier 
 			String nomFichier = filePart.getSubmittedFileName(); //Récupération du nom du fichier 
-			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
-			String directoryPath = "C:\\Users\\mlecam2023\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+
+
+			// le path de sushie : C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\
+
+			//String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
+			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
+			//String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
+			String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
 			String directoryAbsolute = directoryPath + nomFichier ;
 			String cheminAbsoluImage = "/ProjetEnchères/images/imagesArticles/" + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
 			

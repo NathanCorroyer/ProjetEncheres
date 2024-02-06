@@ -49,7 +49,23 @@
    			 cursor: pointer; 
     		border-radius: 8px; 
     		margin-top: 4%;
-}
+		}
+		
+		button {
+			background-color: grey; 
+    		border: none; 
+   			 color: white; 
+    		padding: 10px 20px; 
+   			text-align: center; 
+    		text-decoration: none; 
+   			 display: inline-block; 
+   			 font-size: 16px; 
+   			 margin: 4px 2px; 
+   			 cursor: pointer; 
+    		border-radius: 8px; 
+    		margin-top: 2%;
+		
+		}
     </style>
 </head>
 <body>
@@ -84,6 +100,9 @@
         <input type="number" name="prix_initial" required> 
         <br>        
                 <button class="encherir-bouton">Enchérir</button>
+                <br>
+                <button type="button" onclick="annuler()">Retour à l'accueil</button>
+                
             </div>
         </c:if>
 
@@ -91,6 +110,12 @@
         <c:if test="${empty article}">
             <p>Les détails de l'enchère ne sont pas disponibles.</p>
         </c:if>
+         <script>
+        function annuler() {
+            window.location.href = '<%=request.getContextPath()%>/index.jsp ';
+        }
+        
+        </script>
     </section>
 </body>
 </html>
