@@ -112,5 +112,24 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		}
 		return listeEncheres;
 	}
-
+	
+	public Enchere SelectLatestEnchereFromArticle(int no_article) {
+		Enchere best = null;
+		List<Enchere> listeEncheres = SelectByNoArticle(no_article);
+		int prix = 0;
+		int no_best_enchere = 0;
+		for(Enchere e : listeEncheres) {
+			if(e.getMontant_enchere()>prix) {
+				prix = e.getMontant_enchere();
+				no_best_enchere = e.getNo_enchere();
+			}
+		}
+		try {
+			best = SelectByNoEnchere(no_best_enchere);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return best;
+	}
 }

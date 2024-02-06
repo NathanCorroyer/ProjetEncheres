@@ -39,14 +39,14 @@ public class ServletDetailsEnchere extends HttpServlet {
 		
 		ArticleManager articleManager = ArticleManager.getInstance();
 				
-				 try {
-			            article = articleManager.selectArticleById(no_article);     
-			        } catch (SQLException e) {
-			            e.printStackTrace();
+		 try {
+			  article = articleManager.selectArticleById(no_article);     
+			 } catch (SQLException e) {
+			   e.printStackTrace();
 			            
-			        }
-				 request.setAttribute("Vendeur",vendeur);				
-				request.setAttribute("article", article);
-		            request.getRequestDispatcher("/WEB-INF/jsp/details_enchere.jsp").forward(request, response);
-			    }
-			}
+			 }
+		request.setAttribute("Vendeur",vendeur);				
+		request.setAttribute("article", article);
+		request.getRequestDispatcher("/WEB-INF/jsp/details_enchere.jsp").forward(request, response);
+		}
+	}
