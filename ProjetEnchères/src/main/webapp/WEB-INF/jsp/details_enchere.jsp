@@ -27,8 +27,28 @@
         
         .description {
         	border: 1px dashed grey;
-        	margin-bottom: 10%;
+        	margin-bottom: 7%;
         }
+        .prix_initial {
+        	margin-top: 10%;
+        }
+        .retrait {
+        	margin-top: 10%
+        }
+        
+        .encherir-bouton {
+    		background-color: #4CAF50; 
+    		border: none; 
+   			 color: white; 
+    		padding: 10px 20px; 
+   			text-align: center; 
+    		text-decoration: none; 
+   			 display: inline-block; 
+   			 font-size: 16px; 
+   			 margin: 4px 2px; 
+   			 cursor: pointer; 
+    		border-radius: 8px; 
+}
     </style>
 </head>
 <body>
@@ -47,7 +67,7 @@
                 <p>Description : </p>
                 <p>${article.getDescription()}</p>
                 </div>
-                <p>Catégorie : ${article.getCategorie()}</p>
+                <p>Catégorie : ${article.getCategorieComplete().getLibelle()}</p>
                 <p> Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <p>Prix initial : ${article.getPrix_initial()} points</p>
@@ -55,9 +75,14 @@
                 <h4>Retrait : </h4>
                 <p> Adresse : ${Vendeur.getRue()}, ${Vendeur.getCode_postal()}, ${Vendeur.getVille()}  </p>
                 <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
-                
-                
-                
+                <hr>
+                <div class="retrait">
+                <label for="prix_initial">Ma proposition :</label>
+                </div>
+                <br>           
+        <input type="number" name="prix_initial" required> 
+        <br>        
+                <button class="encherir-bouton">Enchérir</button>
             </div>
         </c:if>
 
