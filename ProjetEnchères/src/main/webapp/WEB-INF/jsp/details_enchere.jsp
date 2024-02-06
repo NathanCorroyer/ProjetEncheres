@@ -15,6 +15,7 @@
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 	%>
     <c:set var="localDateTime" value="${article.getDate_fin_encheres()}" />
+    <c:set var="localDateTimeDebut" value="${article.getDate_debut_encheres()}" />
     <title>Détails de l'enchère</title>
 </head>
 <body>
@@ -25,10 +26,11 @@
 
         <c:if test="${not empty article}">
             <div class="annonce-details">
+            	<img src="${article.getImagePath()}" alt="TestImage">
                 <h4>${article.getNom_Article()}</h4>
                 <p>Description : ${article.getDescription()}</p>
                 <p>Catégorie : ${article.getCategorie()}</p>
-                <p> Début de l'enchère : ${article.getDate_debut_encheres()}</p>
+                <p> Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <p>Prix initial : ${article.getPrix_initial()} points</p>
                 <h4>Retrait : </h4>
