@@ -53,9 +53,14 @@ public class ServletCreerEnchere extends HttpServlet {
 			// Upload de l'image 
 			Part filePart = request.getPart("photoArticle"); //Récupération du fichier 
 			String nomFichier = filePart.getSubmittedFileName(); //Récupération du nom du fichier 
+<<<<<<< HEAD
 			// le path de sushie : C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\
 			
 			String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+=======
+			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+>>>>>>> branch 'main' of https://github.com/NathanCorroyer/ProjetEncheres.git
 			String directoryAbsolute = directoryPath + nomFichier ;
 			String cheminAbsoluImage = "/ProjetEnchères/images/imagesArticles/" + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
 			
@@ -63,7 +68,7 @@ public class ServletCreerEnchere extends HttpServlet {
 			FileOutputStream os = new FileOutputStream(directoryAbsolute); // OutputStream sert à écrire les infos
 			
 			int bytesLus = -1 ;   //Déclare une variable pour stocker le nombre d'octets lus à chaque itération
-			byte[] buffer = new byte[4096]; // Déclare un tampon de 4096 octets pour stocker les données du flux
+			byte[] buffer = new byte[8192]; // Déclare un tampon de 4096 octets pour stocker les données du flux
 			while (( bytesLus = is.read( buffer )) != -1 ) { //lit les données du flux d'entrée, et les écrit dans le flux de sortie
 				os.write( buffer, 0 , bytesLus );
 			}
@@ -86,11 +91,11 @@ public class ServletCreerEnchere extends HttpServlet {
 	       // String modalitesRetrait = request.getParameter("modalitesRetrait");
 
 	        
-	        Article art = new Article (nom,description, dateDébut, dateFin, prixInitial, categorie, numeroVendeur, cheminAbsoluImage );
+	        Article art = new Article (nom,description, dateDébut, dateFin, prixInitial, categorie, numeroVendeur, cheminAbsoluImage ); //cheminAbsoluImage
 	        Integer key = null;
 	        try {
 				key = a.ajouter(art);
-				art.setFileName(nomFichier);
+				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.sql.Timestamp;
 
@@ -77,9 +78,51 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		}
 		return a;
 	}
-
+	
+	
+	public Article verifDate (Article a) {
+		if( LocalDateTime.now().isAfter(a.getDate_fin_encheres())) {
+			EnchereManager em = EnchereManager.getInstance();
+			Integer prixVente = null;
+			Utilisateur u = null;
+			if(em.selectLatestEnchereFromArticle(a.getNoArticle()) == null) {
+				prixVente = a.getPrix_initial();
+			}else {
+				prixVente= em.selectLatestEnchereFromArticle(a.getNoArticle()).getMontant_enchere();
+				u = em.selectLatestEnchereFromArticle(a.getNoArticle()).getUtilisateur();
+			}
+			if(u == null) {
+				updateVente(prixVente, a.getUtilisateur().getNoUtilisateur(),a.getNoArticle());
+			}else {
+				updateVente(prixVente, u.getNoUtilisateur(),a.getNoArticle());
+				a.setNo_utilisateur(u.getNoUtilisateur());
+			}
+			a.setPrix_vente(prixVente);
+		}
+		return a;
+	}
+	
+// ------------------------ Selections sans tri quelconque de catégories ou par mot-clé	
 	@Override
 	public List<Article> selectAll() {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ALL)){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);			
+				listeArticles.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+	
+	
+	@Override
+	public List<Article> selectAllEnCours() {
 		List<Article> listeArticles = new ArrayList<>();
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ALL)){
 			ResultSet rs = pstmt.executeQuery();
@@ -118,17 +161,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 	
-	@Override
-	public List<Article> selectByName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
+	
+	// ------------------ USELESS POUR LE MOMENT ----------------------------------------------
 	@Override
 	public List<Article> selectArticlesFromUser(Utilisateur u) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	// ------------------Select random d'un seul article----------------------------------------
 	
 	@Override
 	public Article selectArticleById(int no_article) throws SQLException {
@@ -151,6 +193,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		
 	}
 
+	
+	// --------------------- Ajout d'article en BDD ----------------------------------
 	@Override
 	public Integer ajouter(Article a) throws SQLException {
 		Integer key = null;
@@ -175,7 +219,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		
 	}
 
-
+	// -------- TO DO --------------------
 
 	@Override
 	public void supprimer(Article a) {
@@ -201,6 +245,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		}
 		
 	}
+	
+	//-------------------- PAS D'UTILITÉ POUR LE MOMENT -----------------
 	@Override
 	public void deleteSingleArticleFromUser(Utilisateur u, Article a) {
 		// TODO Auto-generated method stub
@@ -213,6 +259,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		
 	}
 
+	
+	// ---------------- SELECT PAR CATEGORIE OU PAR MOT-CLÉ ----------------
 	@Override
 	public List<Article> selectArticleByCategorie(int no_categorie) throws SQLException {
 		List<Article> listeArticles = new ArrayList<>();
@@ -272,26 +320,89 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 	
-	public Article verifDate (Article a) {
-		if( LocalDateTime.now().isAfter(a.getDate_fin_encheres())) {
-			EnchereManager em = EnchereManager.getInstance();
-			Integer prixVente = null;
-			Utilisateur u = null;
-			if(em.selectLatestEnchereFromArticle(a.getNoArticle()) == null) {
-				prixVente = a.getPrix_initial();
-			}else {
-				prixVente= em.selectLatestEnchereFromArticle(a.getNoArticle()).getMontant_enchere();
-				u = em.selectLatestEnchereFromArticle(a.getNoArticle()).getUtilisateur();
+	// ------------------- SELECT PAR NOM ET CATEGORIE DANS CEUX DEJA TERMINES ------------------
+	
+	@Override
+	public List<Article> selectEnchereFinieByCategorie(int no_categorie){
+		List<Article> listeArticles = selectAllFinies();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getCategorie() == no_categorie)) {
+				iterator.remove();
 			}
-			if(u == null) {
-				updateVente(prixVente, a.getUtilisateur().getNoUtilisateur(),a.getNoArticle());
-			}else {
-				updateVente(prixVente, u.getNoUtilisateur(),a.getNoArticle());
-				a.setNo_utilisateur(u.getNoUtilisateur());
-			}
-			a.setPrix_vente(prixVente);
 		}
-		return a;
+		return listeArticles;
 	}
+	
+	@Override
+	public List<Article> selectEnchereFinieByName(String keyword){
+		List<Article> listeArticles = selectAllFinies();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getNom_Article().contains(keyword))) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+	
+	
+	@Override 
+	public List<Article> selectEnchereFinieByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
+		List<Article> listeArticles = selectAllFinies();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getCategorie() == no_categorie) || !(a.getNom_Article().contains(nomTri))) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+	
+	
+	// --------------- Pareil avec enchères en cours ---------------------
+	@Override
+	public List<Article> selectEnchereEnCoursByCategorie(int no_categorie){
+		List<Article> listeArticles = selectAllEnCours();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getCategorie() == no_categorie)) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+
+	@Override
+	public List<Article> selectEnchereEnCoursByName(String keyword){
+		List<Article> listeArticles = selectAllEnCours();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getNom_Article().contains(keyword))) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+	
+
+	@Override 
+	public List<Article> selectEnchereEnCoursByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
+		List<Article> listeArticles = selectAllEnCours();
+		Iterator<Article> iterator = listeArticles.iterator();
+	    while (iterator.hasNext()) {
+	        Article a = iterator.next();
+	        if (!(a.getCategorie() == no_categorie) || !(a.getNom_Article().contains(nomTri))) {
+	            iterator.remove();
+	        }
+		}
+		return listeArticles;
+	}
+	
 	
 }

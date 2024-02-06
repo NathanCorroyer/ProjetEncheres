@@ -101,7 +101,7 @@ input[type="submit"]:hover {
 }
 
 .annonce-details {
-    flex: 1;
+    flex: 1;   
 }
 
 .annonce-details h4 {

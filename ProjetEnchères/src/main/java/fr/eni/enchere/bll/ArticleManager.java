@@ -26,6 +26,9 @@ public static ArticleManager getInstance() {
 public List<Article> selectAll(){
 	return articleDAO.selectAll();
 }
+public List<Article> selectAllEnCours(){
+	return articleDAO.selectAllEnCours();
+}
 
 public List<Article> selectAllFinies(){
 	return articleDAO.selectAllFinies();
@@ -51,7 +54,30 @@ public List<Article> selectArticleByCategorieAndByName(int no_categorie, String 
 	return articleDAO.selectArticleByCategorieAndByName(no_categorie,nomTri);
 }
 
+public List<Article> selectEnchereFinieByCategorie(int no_categorie){
+	return articleDAO.selectEnchereFinieByCategorie(no_categorie);
+}
 
+public List<Article> selectEnchereFinieByName(String keyword){
+	return articleDAO.selectEnchereFinieByName(keyword);
+}
+
+public List<Article> selectEnchereFinieByCategorieAndByName(int no_categorie, String keyword) throws SQLException{
+	return articleDAO.selectEnchereFinieByCategorieAndByName(no_categorie, keyword);
+}
+
+
+public List<Article> selectEnchereEnCoursByCategorie(int no_categorie){
+	return articleDAO.selectEnchereEnCoursByCategorie(no_categorie);
+}
+
+public List<Article> selectEnchereEnCoursByName(String keyword){
+	return articleDAO.selectEnchereEnCoursByName(keyword);
+}
+
+public List<Article> selectEnchereEnCoursByCategorieAndByName(int no_categorie, String keyword) throws SQLException{
+	return articleDAO.selectEnchereEnCoursByCategorieAndByName(no_categorie,keyword);
+}
 }
 
 

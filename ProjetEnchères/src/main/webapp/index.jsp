@@ -83,6 +83,13 @@
 		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
 		         	</c:forEach>
 	      </select>
+	      	<label for="radioAll" >Toutes les enchères</label>
+	      	<input type="radio" name="etat_enchere" value="all" id="radioAll">
+	      	<label for="radioEnCours" >Enchères en cours</label>
+	      	<input type="radio" name="etat_enchere" value="enCours" id="radioEnCours">
+	      	<label for="radioFinies" >Enchères terminées</label>
+	      	<input type="radio" name="etat_enchere" value="finies" id="radioFinies">
+	      	
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
      	</form> 
@@ -107,18 +114,25 @@
 	           	 	
 		              <div class="annonce-details">
 		                  <h4>${a.getNom_Article()}</h4>
-		                  <img src="${a.getImagePath()}" alt="TestImage">
-		                  <p>Prix : ${a.getPrix_initial()} points</p>
-		                  <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
-		                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-		                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
-		                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
-		                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}
-		                  <br>
-		                  <br>
-		                  <%-- Lien vers toutes les informations de l'article--%>
-		                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
+		                  
+		                  <div class = "annonce-img">
+		                  	<img src="${a.getImagePath()}" alt="TestImage">
+		                  </div>
+		                  <div class = "annonce-infos">
+			                  <p>Prix : ${a.getPrix_initial()} points</p>
+			                  <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
+			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
+			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
+			                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}
+			                  <br>
+			                  <br>
+			                  
+			                  <%-- Lien vers toutes les informations de l'article--%>
+			                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
+			              </div>
 		               </div>
+		               
 		         </li>
 	
 			</c:forEach>
