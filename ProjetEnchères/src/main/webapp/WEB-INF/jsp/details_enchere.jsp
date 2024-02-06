@@ -48,6 +48,7 @@
    			 margin: 4px 2px; 
    			 cursor: pointer; 
     		border-radius: 8px; 
+    		margin-top: 4%;
 }
     </style>
 </head>
@@ -70,7 +71,7 @@
                 <p>Catégorie : ${article.getCategorieComplete().getLibelle()}</p>
                 <p> Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-                <p>Prix initial : ${article.getPrix_initial()} points</p>
+                <p>Prix initial :<b> ${article.getPrix_initial()} points </b></p>
                 <hr>
                 <h4>Retrait : </h4>
                 <p> Adresse : ${Vendeur.getRue()}, ${Vendeur.getCode_postal()}, ${Vendeur.getVille()}  </p>
