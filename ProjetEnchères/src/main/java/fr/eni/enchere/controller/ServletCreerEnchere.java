@@ -61,8 +61,8 @@ public class ServletCreerEnchere extends HttpServlet {
 
 			//String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
 			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
-			//String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
-			String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
+			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			String directoryAbsolute = directoryPath + nomFichier ;
 			String cheminAbsoluImage = "/ProjetEnchères/images/imagesArticles/" + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
 			
@@ -93,27 +93,32 @@ public class ServletCreerEnchere extends HttpServlet {
 	        String code_postal = request.getParameter("codePostal");
 	        String ville = request.getParameter("ville");
 	        
-
+	        
 	        Article art = new Article (nom,description, dateDébut, dateFin, prixInitial, categorie, numeroVendeur, cheminAbsoluImage ); //cheminAbsoluImage
 	        Integer key = null;
 	        try {
 				key = a.ajouter(art);
-				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	        
 	        Article article = null;
+	        Retrait ret = null;
 			try {
 				article = a.selectArticleById(key);
-				
+				RetraitManager r = RetraitManager.getInstance();
+				ret = new Retrait (rue, code_postal, ville, article);
+				r.create(ret);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	        
+			
 	        request.setAttribute("article", article);
-
+	        request.setAttribute("retrait", ret );
+	        
+	        
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/confirmationArticle.jsp");
 
 	        dispatcher.forward(request, response);

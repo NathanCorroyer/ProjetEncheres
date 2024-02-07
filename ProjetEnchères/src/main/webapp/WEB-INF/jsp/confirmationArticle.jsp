@@ -22,7 +22,7 @@
     <% 
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     %>   
-<h2><i class="fa-solid fa-circle-check"></i> Votre enchère a été ajouté aves succès !</h2>
+<h2> Votre enchère a été ajouté aves succès <i class="fa-solid fa-circle-check"></i></h2>
 
 <div class="tableau">
 <h3>Voici votre récapitulatif :</h3>
@@ -34,9 +34,7 @@
 	<c:set var="date-debut" value="${article.date_debut_encheres}" />
     <tr>
         <th>Article</th>
-      
         <th>Description</th>
-        
         <th>Catégorie</th>
         <th>Mise à prix</th>
         <th>Début de l'enchère</th>
@@ -49,6 +47,20 @@
         <td>${article.prix_initial}</td>
         <td><%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("date-debut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></td>
         <td><%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("date-fin"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></td>
+      
+    </tr>
+    </table>
+    <h3>Votre adresse de retrait <i class="fa-solid fa-location-dot"></i></h3>
+    <table border="1">
+    <tr>
+        <th>Rue</th>
+        <th>Code postal</th>
+        <th>Ville</th>
+    </tr>
+    <tr>
+        <td>${retrait.rue}</td>
+        <td>${retrait.code_postal}</td>
+        <td>${retrait.ville}</td>
       
     </tr>
     </table>
