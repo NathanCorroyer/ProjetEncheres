@@ -67,8 +67,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			a.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			a.setUtilisateur(utilisateur);
 			a.setImagePath(rs.getString("path_image"));
-			
-			System.out.println("img path : " + rs.getString("path_image"));
+		
 
 
 			
@@ -98,6 +97,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				a.setNo_utilisateur(u.getNoUtilisateur());
 			}
 			a.setPrix_vente(prixVente);
+			a.setVendu(true);
 		}
 		return a;
 	}
@@ -109,7 +109,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ALL)){
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Article a = ArticleBuilder(rs);			
+				Article a = ArticleBuilder(rs);
+				a=verifDate(a);
 				listeArticles.add(a);
 			}
 		} catch (SQLException e) {
@@ -129,6 +130,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
 				a = verifDate(a);
+				a.setVendu(false);
 				if(a.getPrix_vente() == null)					
 					listeArticles.add(a);
 				}
@@ -149,6 +151,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			while(rs.next()) {
 				Article a = ArticleBuilder(rs);
 				a = verifDate(a);
+				a.setVendu(true);
 				if(a.getPrix_vente() != null)					
 					listeArticles.add(a);
 				}

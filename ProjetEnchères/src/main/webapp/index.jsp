@@ -125,7 +125,8 @@
 			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
 			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
 			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
-			                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}
+			                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
+			                  <p>État de la vente : ${a.vendu eq true ? 'Enchère terminée.' : 'Enchère en cours.' } </p>
 			                  <br>
 			                  <br>
 			                  
