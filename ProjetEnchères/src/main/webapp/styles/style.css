@@ -96,32 +96,58 @@ input[type="submit"]:hover {
 }
 
 .annonces img {
-    max-width: 100px; /* Ajustez la taille de l'image selon vos besoins */
-    margin-right: 10px;
+    max-width: 200px; 
+    margin-right: 20px;
+    display: block;
+    
 }
 
 .annonce-details {
-    width: 250px; 
-    height: 300px; 
-    margin: 10px; 
-    float: left; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    padding: 10px; 
-    box-sizing: border-box; 
-    background-color: #f9f9f9; 
+    flex: 1;   
 }
 
 .annonce-details h4 {
-    font-size: 18px; 
-    margin-bottom: 10px; 
+    margin: 0;
+    font-size: 1.2em;
 }
 
+    .annonces ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+    }
+    
+    .annonces ul li {
+        width: 30%; 
+        margin-bottom: 20px; 
+        margin-top: 2%;
+    }
+    
+    .annonce-details {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .annonce-details h4 {
+        margin-top: 1%;
+        text-align: center;
+    }
+    
+    .annonce-img img {
+        width: 100%; 
+        height: auto;
+        margin: auto;
+        margin-top: 1%;
+    
+    
+    }
+    
+    .annonce-infos {
+            border: 1px grey;
+    
+    }
 
-
-
-
-.annonce-details p {
-    font-size: 14px; 
-    margin-bottom: 5px; 
-}
