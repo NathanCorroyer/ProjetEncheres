@@ -52,6 +52,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         List<Article> listeArticles = new ArrayList<>();
     	List<Article> listeEncheresEnCours = new ArrayList<>();
     	List<Article> listeEncheresFinies = new ArrayList<>();
+    	List<Article> listeEncheresNotStarted = new ArrayList<>();
     	
     	//La catégorie qu'a choisi l'utilisateur
         String categorie = request.getParameter("categorie");
@@ -78,6 +79,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         		listeArticles = am.selectAll();
         		listeEncheresEnCours = am.selectAllEnCours();
             	listeEncheresFinies = am.selectAllFinies();
+            	listeEncheresNotStarted = am.selectAllNotStarted();
         		
         	}else {
         		//J'ai un mot clé donc je sélectionne par mot-clé
@@ -85,6 +87,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 					listeArticles = am.selectByName(nomTri.trim());
 					listeEncheresEnCours = am.selectEnchereEnCoursByName(nomTri.trim());
 					listeEncheresFinies = am.selectEnchereFinieByName(nomTri.trim());
+					listeEncheresNotStarted = am.selectEnchereNotStartedByName(nomTri.trim());
 					// Je dois faire le tri des expressions dans les listes en cours et finies
 					
 				} catch (SQLException e) {
@@ -99,6 +102,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 						listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
 						listeEncheresEnCours = am.selectEnchereEnCoursByCategorie(Integer.parseInt(request.getParameter("categorie")));
 						listeEncheresFinies = am.selectEnchereFinieByCategorie(Integer.parseInt(request.getParameter("categorie")));
+						listeEncheresNotStarted = am.selectEnchereNotStartedByCategorie(Integer.parseInt(request.getParameter("categorie")));
 					} catch (NumberFormatException | SQLException e) {
 						//Gestion d'erreur 
 						e.printStackTrace();
@@ -111,6 +115,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 						listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 						listeEncheresEnCours = am.selectEnchereEnCoursByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 						listeEncheresFinies = am.selectEnchereFinieByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
+						listeEncheresNotStarted = am.selectEnchereNotStartedByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 					} catch (NumberFormatException | SQLException e) {
 						// Gestion d'erreur
 						e.printStackTrace();
@@ -120,13 +125,14 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         }
         
         request.setAttribute("categorie", no_categorie);
-        if(request.getParameter("etat_enchere") == null ||  request.getParameter("etat_enchere").equals("all")) {
+        if(request.getParameter("tri_etat_enchere") == null ||  request.getParameter("tri_etat_enchere").equals("all")) {
         	request.setAttribute("listeArticles", listeArticles); 
-        }else if(request.getParameter("etat_enchere").equals("enCours")) {
+        }else if(request.getParameter("tri_etat_enchere").equals("enCours")) {
         	request.setAttribute("listeArticles", listeEncheresEnCours);
-        }else {
+        }else if(request.getParameter("tri_etat_enchere").equals("finies")){
         	request.setAttribute("listeArticles", listeEncheresFinies);
-        	    
+        }else {
+        	request.setAttribute("listeArticles", listeEncheresNotStarted);
         }
         
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
