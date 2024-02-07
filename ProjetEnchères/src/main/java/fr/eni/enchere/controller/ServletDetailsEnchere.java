@@ -34,6 +34,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 		Retrait retrait = null;
 		UtilisateurManager um = UtilisateurManager.getInstance(); 
 		Utilisateur vendeur = null;
+		 
 		try {
 		vendeur = um.selectUserByPseudo(request.getParameter("nomVendeur"));
 		} catch (SQLException e) {
@@ -44,13 +45,16 @@ public class ServletDetailsEnchere extends HttpServlet {
 		
 		ArticleManager articleManager = ArticleManager.getInstance();
 		RetraitManager retraitManager = RetraitManager.getInstance();		
+		Integer enchereProposee = null ;	
 		 try {
 			  article = articleManager.selectArticleById(no_article);
 			  retrait = retraitManager.selectByArticle(article);
+			  enchereProposee = article.getPrix_initial() + 1 ;
 			 } catch (SQLException e) {
 			   e.printStackTrace();
 			            
 			 }
+		request.setAttribute("prixInitialEnchere", enchereProposee);
 		request.setAttribute("Vendeur",vendeur);				
 		request.setAttribute("article", article);
 		request.setAttribute("retrait", retrait);

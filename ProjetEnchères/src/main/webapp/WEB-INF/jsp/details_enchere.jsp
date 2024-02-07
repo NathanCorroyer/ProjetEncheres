@@ -75,37 +75,56 @@
         <h2>Détails de l'enchère</h2>
 
         <c:if test="${not empty article}">
-            <div class="annonce-details">                    	
+        	<form action="${pageContext.request.contextPath}/ServletAugmentationEnchere" method="post">
+            <div class="annonce-details">
+            	
+            		
+   					 
+   					<c:if test="${not empty requestScope.echec_paiement}">
+    				<p style="color : red">${requestScope.echec_paiement}</p>
+   					</c:if>
+    				
+            	                    	
                 <h4>${article.getNom_Article()}</h4>
                 <div class="image-container">
                 <img src="${article.getImagePath()}" width="300" height="300" alt="TestImage">                
                 </div>         
                 <div class="description">               
                 <p>Description : </p>
+                
                 <p>${article.getDescription()}</p>
+                <input type="hidden" name="noArticle" value="${article.getNoArticle()}">
+                
                 </div>
                 <p>Catégorie : ${article.getCategorieComplete().getLibelle()}</p>
-                <p> Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+                <p>Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+                <input type="hidden" name="debutEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
                 <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-                <p>Prix initial :<b> ${article.getPrix_initial()} points </b></p>
+                <input type="hidden" name="finEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
+                <p>Prix actuel :<b> ${article.getPrix_initial()} points </b></p>
+                <input type="hidden" name="prixInitial" value="${article.getPrix_initial()}">
                 <hr>
+                <div class="retrait">
                 <h4>Retrait : </h4>
                 <p> Adresse : ${retrait.rue}, ${retrait.code_postal}, ${retrait.ville}  </p>
                 <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
+                <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
                 <hr>
-                <div class="retrait">
+                
                 <label for="prix_initial">Ma proposition :</label>
                 </div>
                 <br>           
-        <input type="number" name="prix_initial" required> 
-        <br>        
-                <button class="encherir-bouton">Enchérir</button>
+        		<input type="number" name="enchereProposee" id="enchere" required min="${prixInitialEnchere}" value="${prixInitialEnchere}"> 
+        		<br>        
+                <button class="submit">Enchérir</button>
+                
                 <br>
                 <button type="button" onclick="annuler()">Retour à l'accueil</button>
                 
             </div>
+            </form>
         </c:if>
-
+			
        
         <c:if test="${empty article}">
             <p>Les détails de l'enchère ne sont pas disponibles.</p>
