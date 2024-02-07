@@ -142,12 +142,15 @@ input[type="submit"]:hover {
         height: auto;
         margin: auto;
         margin-top: 1%;
+        border: 1px solid grey;
     
     
     }
     
     .annonce-infos {
-            border: 1px grey;
+            text-align: center;
+            margin-top: 10%;
     
     }
+  
 
