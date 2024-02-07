@@ -92,12 +92,21 @@
 		         	</c:forEach>
 	      </select>
 	      	<label for="radioAll" >Toutes les enchères</label>
-	      	<input type="radio" name="etat_enchere" value="all" id="radioAll">
+	      	<input type="radio" name="tri_etat_enchere" value="all" id="radioAll"><br>
+	      	<label for="radioEnCours" >Enchères à venir</label>
+	      	<input type="radio" name="tri_etat_enchere" value="aVenir" id="radioAVenir"><br>
 	      	<label for="radioEnCours" >Enchères en cours</label>
-	      	<input type="radio" name="etat_enchere" value="enCours" id="radioEnCours">
+	      	<input type="radio" name="tri_etat_enchere" value="enCours" id="radioEnCours"><br>
 	      	<label for="radioFinies" >Enchères terminées</label>
-	      	<input type="radio" name="etat_enchere" value="finies" id="radioFinies">
-	      	
+	      	<input type="radio" name="tri_etat_enchere" value="finies" id="radioFinies"><br>
+				      	
+	      	<c:if test="${userConnected ne null}">
+	      		<p>Voulez-vous limiter les résultats aux enchères auxquelles vous participez?</p>	
+	      		 <label for="radioOui" >Oui</label>
+	      		<input type="radio" name="tri_encheres_user" value="tri" id="radioOui"><br>
+	      		<label for="radioNon" >Non</label>
+	      		<input type="radio" name="tri_encheres_user" value="pas_tri" id="radioNon"><br>
+	      	</c:if>
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
      	</form> 
@@ -115,7 +124,10 @@
 		<%-- On parcourt la liste avec un forEach --%>
 		<ul>
 			<c:forEach var="a" items="${listeArticles}">
+				
+				<c:set var="maintenant" value="${LocalDateTime.now()}"/>
 				<c:set var="localDateTime" value="${a.getDate_fin_encheres()}" />
+	        	<c:set var="localDebutTime" value="${a.getDate_debut_encheres()}" />
 	        	
 	        	<%-- Pour chaque article présent dans la liste, une balise li est créée et on y utilise les données qui nous intéressent en utilisant les getters de la classe Article  --%>
 	           	 <li>	
@@ -124,21 +136,39 @@
 		                  <h4>${a.getNom_Article()}</h4>
 		                  
 		                  <div class = "annonce-img">
+		                  <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
 		                  	<img src="${a.getImagePath()}" alt="TestImage">
+		                  	</a>
 		                  </div>
+		                  <br>
+			                  <hr>
 		                  <div class = "annonce-infos">
-			                  <p>Prix : ${a.getPrix_initial()} points</p>
-			                  <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
-			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			               
 			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
-			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
-			                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
-			                  <p>État de la vente : ${a.vendu eq true ? 'Enchère terminée.' : 'Enchère en cours.' } </p>
-			                  <br>
-			                  <br>
 			                  
+			                   <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
+			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
+                
+			                   <c:choose>
+			                  	<c:when test="${a.vendu eq true}">
+			                  		<p>Enchère terminée.</p>
+			                  	</c:when>
+			                  	<c:when test="${a.vendu eq false and localDebutTime.compareTo(maintenant) < 0}">
+			                  		<p>Enchère en cours.</p>
+			                  	</c:when>
+			                  	<c:otherwise>
+			                  		<p>L'enchère commencera le : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDebutTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                  	</c:otherwise>
+			                  </c:choose>
+			                 
+			                   <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
+			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                   <p>Prix : <b>${a.getPrix_initial()} points </b></p>
+			                  
+			                   <br>
+			                  <br>
 			                  <%-- Lien vers toutes les informations de l'article--%>
-			                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
+			               
 			              </div>
 		               </div>
 		               

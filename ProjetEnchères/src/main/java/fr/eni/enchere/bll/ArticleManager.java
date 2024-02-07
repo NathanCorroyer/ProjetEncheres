@@ -82,6 +82,22 @@ public List<Article> selectEnchereEnCoursByName(String keyword){
 public List<Article> selectEnchereEnCoursByCategorieAndByName(int no_categorie, String keyword) throws SQLException{
 	return articleDAO.selectEnchereEnCoursByCategorieAndByName(no_categorie,keyword);
 }
+
+public List<Article> selectAllNotStarted(){
+	return articleDAO.selectAllNotStarted();
+}
+
+public List<Article> selectEnchereNotStartedByCategorie(int no_categorie){
+	return articleDAO.selectEnchereNotStartedByCategorie(no_categorie);
+}
+
+public List<Article> selectEnchereNotStartedByName(String keyword){
+	return articleDAO.selectEnchereEnCoursByName(keyword);
+}
+
+public List<Article> selectEnchereNotStartedByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
+	return articleDAO.selectEnchereNotStartedByCategorieAndByName(no_categorie, nomTri);
+}
 }
 
 

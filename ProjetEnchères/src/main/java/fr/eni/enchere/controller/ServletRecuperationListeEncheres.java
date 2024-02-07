@@ -11,11 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletRecuperationListeEncheres
@@ -52,6 +54,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         List<Article> listeArticles = new ArrayList<>();
     	List<Article> listeEncheresEnCours = new ArrayList<>();
     	List<Article> listeEncheresFinies = new ArrayList<>();
+    	List<Article> listeEncheresNotStarted = new ArrayList<>();
     	
     	//La catégorie qu'a choisi l'utilisateur
         String categorie = request.getParameter("categorie");
@@ -78,6 +81,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         		listeArticles = am.selectAll();
         		listeEncheresEnCours = am.selectAllEnCours();
             	listeEncheresFinies = am.selectAllFinies();
+            	listeEncheresNotStarted = am.selectAllNotStarted();
         		
         	}else {
         		//J'ai un mot clé donc je sélectionne par mot-clé
@@ -85,6 +89,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 					listeArticles = am.selectByName(nomTri.trim());
 					listeEncheresEnCours = am.selectEnchereEnCoursByName(nomTri.trim());
 					listeEncheresFinies = am.selectEnchereFinieByName(nomTri.trim());
+					listeEncheresNotStarted = am.selectEnchereNotStartedByName(nomTri.trim());
 					// Je dois faire le tri des expressions dans les listes en cours et finies
 					
 				} catch (SQLException e) {
@@ -99,6 +104,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 						listeArticles = am.selectArticleByCategorie(Integer.parseInt(request.getParameter("categorie")));
 						listeEncheresEnCours = am.selectEnchereEnCoursByCategorie(Integer.parseInt(request.getParameter("categorie")));
 						listeEncheresFinies = am.selectEnchereFinieByCategorie(Integer.parseInt(request.getParameter("categorie")));
+						listeEncheresNotStarted = am.selectEnchereNotStartedByCategorie(Integer.parseInt(request.getParameter("categorie")));
 					} catch (NumberFormatException | SQLException e) {
 						//Gestion d'erreur 
 						e.printStackTrace();
@@ -111,6 +117,7 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 						listeArticles = am.selectArticleByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 						listeEncheresEnCours = am.selectEnchereEnCoursByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 						listeEncheresFinies = am.selectEnchereFinieByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
+						listeEncheresNotStarted = am.selectEnchereNotStartedByCategorieAndByName(Integer.parseInt(request.getParameter("categorie")),nomTri.trim());
 					} catch (NumberFormatException | SQLException e) {
 						// Gestion d'erreur
 						e.printStackTrace();
@@ -120,20 +127,40 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
         }
         
         request.setAttribute("categorie", no_categorie);
-        if(request.getParameter("etat_enchere") == null ||  request.getParameter("etat_enchere").equals("all")) {
-        	request.setAttribute("listeArticles", listeArticles); 
-        }else if(request.getParameter("etat_enchere").equals("enCours")) {
-        	request.setAttribute("listeArticles", listeEncheresEnCours);
-        }else {
-        	request.setAttribute("listeArticles", listeEncheresFinies);
-        	    
+        Utilisateur userConnected = ((Utilisateur) request.getSession().getAttribute("userConnected"));
+        Integer no_utilisateur = null;
+        if(userConnected != null) {
+        	no_utilisateur = userConnected.getNoUtilisateur();
         }
+        if(request.getParameter("tri_encheres_user") == null || request.getParameter("tri_encheres_user").equals("pas_tri")) {
+        	if(request.getParameter("tri_etat_enchere") == null ||  request.getParameter("tri_etat_enchere").equals("all")) {
+            	request.setAttribute("listeArticles", listeArticles); 
+            }else if(request.getParameter("tri_etat_enchere").equals("enCours")) {
+            	request.setAttribute("listeArticles", listeEncheresEnCours);
+            }else if(request.getParameter("tri_etat_enchere").equals("finies")){
+            	request.setAttribute("listeArticles", listeEncheresFinies);
+            }else {
+            	request.setAttribute("listeArticles", listeEncheresNotStarted);
+            }
+        }else {
+        	if(request.getParameter("tri_etat_enchere") == null ||  request.getParameter("tri_etat_enchere").equals("all")) {
+            	request.setAttribute("listeArticles", trierParNoUtilisateur(listeArticles, no_utilisateur)); 
+            }else if(request.getParameter("tri_etat_enchere").equals("enCours")) {
+            	request.setAttribute("listeArticles", trierParNoUtilisateur(listeEncheresEnCours, no_utilisateur));
+            }else if(request.getParameter("tri_etat_enchere").equals("finies")){
+            	request.setAttribute("listeArticles", trierParNoUtilisateur(listeEncheresFinies, no_utilisateur));
+            }else {
+            	request.setAttribute("listeArticles", trierParNoUtilisateur(listeEncheresNotStarted, no_utilisateur));
+            }
+        }
+        
         
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
 
 	}
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -141,5 +168,16 @@ public class ServletRecuperationListeEncheres extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
+	
+	// -------------------------- TRI D'UNE LISTE PAR NO-UTILISATEUR --------------------------------
+		protected List<Article> trierParNoUtilisateur (List<Article> listeArticles, int no_utilisateur){
+			List<Article> listeResult = new ArrayList<>();
+			for(Article a : listeArticles) {
+				if(a.getNo_utilisateur() == no_utilisateur) {
+					listeResult.add(a);				
+					}
+			}
+			return listeResult;
+		}
 }
