@@ -23,7 +23,7 @@ h2 {
   background-color: rgb(40,36,36);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgb(192, 192, 192);
     border: 2px solid #ddd; 
 }
 label {
@@ -39,6 +39,8 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-left: 13%;
+    background-color: grey;
+    color:white;
    
 }
 
