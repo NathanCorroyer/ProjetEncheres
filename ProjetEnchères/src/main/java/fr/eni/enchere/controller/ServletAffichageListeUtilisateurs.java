@@ -26,7 +26,8 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*if ( request.getSession().getAttribute("userConnected") != null ) {*/
+		Utilisateur user = 	(Utilisateur) request.getSession().getAttribute("userConnected");
+		if ( user.isAdministrateur()) {
 			List<Utilisateur> listeUtilisateurs ; 
 				try {
 					listeUtilisateurs = UtilisateurManager.getInstance().findAll();
@@ -36,7 +37,9 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 				} catch (SQLException | BLLException e) {
 					e.printStackTrace();
 				}
-	//}
+		}else {
+			response.sendRedirect("/index.jsp");
+		}
 	}
 
 }
