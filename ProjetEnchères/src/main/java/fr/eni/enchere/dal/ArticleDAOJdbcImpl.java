@@ -22,7 +22,7 @@ import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS ORDER BY date_fin_encheres DESC";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_categorie = ?";
 	
@@ -131,7 +131,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				Article a = ArticleBuilder(rs);
 				a = verifDate(a);
 				a.setVendu(false);
-				if(a.getPrix_vente() == null)					
+				if(a.getPrix_vente() == null && a.getDate_debut_encheres().isBefore(LocalDateTime.now()))					
 					listeArticles.add(a);
 				}
 			
@@ -407,5 +407,5 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return listeArticles;
 	}
 	
-	
+	//----------------------- SELECT EncheresNonCommencees -----------------------------------
 }
