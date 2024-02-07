@@ -90,7 +90,7 @@
                 <p>Prix initial :<b> ${article.getPrix_initial()} points </b></p>
                 <hr>
                 <h4>Retrait : </h4>
-                <p> Adresse : ${Vendeur.getRue()}, ${Vendeur.getCode_postal()}, ${Vendeur.getVille()}  </p>
+                <p> Adresse : ${retrait.rue}, ${retrait.code_postal}, ${retrait.ville}  </p>
                 <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
                 <hr>
                 <div class="retrait">

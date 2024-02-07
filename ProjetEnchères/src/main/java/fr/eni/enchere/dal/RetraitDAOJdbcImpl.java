@@ -97,12 +97,12 @@ List<Retrait> listeRetrait = new ArrayList();
 				if (rs.next()) {
 					
 					
-					Retrait r = new Retrait();
+					retrait = new Retrait();
 					
-					r.setRue(rs.getString("rue"));
-					r.setCode_postal(rs.getString("code_postal"));
-					r.setVille(rs.getString("ville"));
-					r.setArticle(article);
+					retrait.setRue(rs.getString("rue"));
+					retrait.setCode_postal(rs.getString("code_postal"));
+					retrait.setVille(rs.getString("ville"));
+					retrait.setArticle(article);
 				}
 			} catch (SQLException e) {
 	        	e.printStackTrace();
