@@ -29,6 +29,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 		Article article = null;
 		UtilisateurManager um = UtilisateurManager.getInstance(); 
 		Utilisateur vendeur = null;
+		 
 		try {
 		vendeur = um.selectUserByPseudo(request.getParameter("nomVendeur"));
 		} catch (SQLException e) {
@@ -38,13 +39,15 @@ public class ServletDetailsEnchere extends HttpServlet {
 		}
 		
 		ArticleManager articleManager = ArticleManager.getInstance();
-				
+		Integer enchereProposee = null ;	
 		 try {
-			  article = articleManager.selectArticleById(no_article);     
+			  article = articleManager.selectArticleById(no_article);  
+			  enchereProposee = article.getPrix_initial() + 1 ;
 			 } catch (SQLException e) {
 			   e.printStackTrace();
 			            
 			 }
+		request.setAttribute("prixInitialEnchere", enchereProposee);
 		request.setAttribute("Vendeur",vendeur);				
 		request.setAttribute("article", article);
 		request.getRequestDispatcher("/WEB-INF/jsp/details_enchere.jsp").forward(request, response);
