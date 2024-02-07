@@ -121,14 +121,18 @@
 		                  <h4>${a.getNom_Article()}</h4>
 		                  
 		                  <div class = "annonce-img">
+		                  <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
 		                  	<img src="${a.getImagePath()}" alt="TestImage">
+		                  	</a>
 		                  </div>
+		                  <br>
+			                  <hr>
 		                  <div class = "annonce-infos">
-			                  <p>Prix : ${a.getPrix_initial()} points</p>
 			               
 			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
+			                  
+			                   <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
 			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
-			                  <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
                 
 			                   <c:choose>
 			                  	<c:when test="${a.vendu eq true}">
@@ -144,11 +148,12 @@
 			                 
 			                   <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
 			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                   <p>Prix : <b>${a.getPrix_initial()} points </b></p>
 			                  
 			                   <br>
 			                  <br>
 			                  <%-- Lien vers toutes les informations de l'article--%>
-			                 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">Détails de l'article</a>
+			               
 			              </div>
 		               </div>
 		               

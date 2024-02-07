@@ -19,9 +19,11 @@ import javax.servlet.http.Part;
 
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
+import fr.eni.enchere.bll.RetraitManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Retrait;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -55,12 +57,13 @@ public class ServletCreerEnchere extends HttpServlet {
 			String nomFichier = filePart.getSubmittedFileName(); //Récupération du nom du fichier 
 
 
+
 			// le path de sushie : C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\
 
 			//String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
 			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\"
 			//String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
-			String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			String directoryAbsolute = directoryPath + nomFichier ;
 			String cheminAbsoluImage = "/ProjetEnchères/images/imagesArticles/" + nomFichier ; //chemin absolu = nom du dossier récupérant les images + nom image 
 			
@@ -87,10 +90,11 @@ public class ServletCreerEnchere extends HttpServlet {
 	        int prixInitial = Integer.parseInt(request.getParameter("prix_initial"));
 	        LocalDateTime dateDébut = LocalDateTime.parse(request.getParameter("date_debut_encheres"));
 	        LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("date_fin_encheres"));
+	        String rue = request.getParameter("rue");
+	        String code_postal = request.getParameter("codePostal");
+	        String ville = request.getParameter("ville");
 	        
-	       // String modalitesRetrait = request.getParameter("modalitesRetrait");
 
-	        
 	        Article art = new Article (nom,description, dateDébut, dateFin, prixInitial, categorie, numeroVendeur, cheminAbsoluImage ); //cheminAbsoluImage
 	        Integer key = null;
 	        try {
