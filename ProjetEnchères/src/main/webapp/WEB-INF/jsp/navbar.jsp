@@ -9,7 +9,7 @@
 	 <c:when test="${userConnected ne null}">
 	    <nav class="navbar">
 	    
-	    <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp">ENI Encheres</a></h1>
+	    <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logo.png"></a></h1>
 	      <div class="navbar-links">
 
 	          <ul>
@@ -29,7 +29,7 @@
 
 	 <c:otherwise>
 	 <nav class="navbar">
-	 <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp">ENI Encheres</a></h1>
+	 <h1 id="title"><a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logo.png"></a></h1>
 	        <div class="navbar-links">
 	            <ul>
 	                <li><a href="<%=request.getContextPath()%>/register"><i class="fa-solid fa-address-card"></i> Créer Un Compte </a></li>
