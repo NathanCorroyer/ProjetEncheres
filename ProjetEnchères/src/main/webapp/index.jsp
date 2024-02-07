@@ -52,6 +52,14 @@
     	<p style="color : green" id="succes_creation">${requestScope.succes_creation}</p>
     	<script>fadeOut("succes_creation")</script>
     </c:if>
+    <c:if test="${not empty requestScope.reussite_enchere}">
+    	<p style="color : green">${requestScope.reussite_enchere}</p>
+    	<script>fadeOut("reussite_enchere")</script>
+    </c:if>
+    <c:if test="${not empty requestScope.echec_enchere}">
+    <p style="color : red">${requestScope.echec_enchere}</p>
+    <script>fadeOut("echec_enchere")</script>
+    </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     
@@ -131,7 +139,7 @@
 		                  <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
 		                  	<img src="${a.getImagePath()}" alt="TestImage">
 		                  	</a>
-		                  </div>
+		                  </div>  
 		                  <br>
 			                  <hr>
 		                  <div class = "annonce-infos">

@@ -13,7 +13,7 @@ import fr.eni.enchere.bo.Retrait;
 
 public class RetraitDAOJdbcImpl implements RetraitDAO {
 	
-	private static final String SQL_CREATE = "INSERT INTO RETRAITS (rue,code_postal,ville) VALUES (?,?,?,?)";
+	private static final String SQL_CREATE = "INSERT INTO RETRAITS (no_article, rue,code_postal,ville) VALUES (?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE UTILISATEURS SET rue=?,code_postal=?,ville=? WHERE no_article=?";
 	private static final String SQL_DELETE_ALL = "DELETE FROM Retraits";
 	private static final String SQL_FIND_ALL = "SELECT * FROM Retraits";
@@ -21,9 +21,10 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	@Override
 	public void create(Retrait retrait) throws SQLException {
 		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_CREATE) ){
-			pstmt.setString(1, retrait.getRue());
-			pstmt.setString(2 , retrait.getCode_postal());
-			pstmt.setString(3 , retrait.getVille());
+			pstmt.setInt(1 , retrait.getArticle().getNoArticle());
+			pstmt.setString(2, retrait.getRue());
+			pstmt.setString(3 , retrait.getCode_postal());
+			pstmt.setString(4 , retrait.getVille());
 			
 			pstmt.executeUpdate();
 		} catch ( SQLException e ) {
@@ -96,12 +97,12 @@ List<Retrait> listeRetrait = new ArrayList();
 				if (rs.next()) {
 					
 					
-					Retrait r = new Retrait();
+					retrait = new Retrait();
 					
-					r.setRue(rs.getString("rue"));
-					r.setCode_postal(rs.getString("code_postal"));
-					r.setVille(rs.getString("ville"));
-					r.setArticle(article);
+					retrait.setRue(rs.getString("rue"));
+					retrait.setCode_postal(rs.getString("code_postal"));
+					retrait.setVille(rs.getString("ville"));
+					retrait.setArticle(article);
 				}
 			} catch (SQLException e) {
 	        	e.printStackTrace();

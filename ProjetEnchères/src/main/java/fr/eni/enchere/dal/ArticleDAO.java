@@ -17,6 +17,7 @@ public interface ArticleDAO {
 	Integer ajouter(Article a) throws SQLException;
 	void supprimer(Article a);
 	void update(Article a);
+	void updateEnchere( int prix , int no_article );
 	void deleteSingleArticleFromUser(Utilisateur u, Article a);
 	void deleteAllArticlesFromUser(Utilisateur u);
 	List<Article> selectByName(String nomTri) throws SQLException;
