@@ -23,6 +23,10 @@ public static ArticleManager getInstance() {
 		return instance;
 	}
 
+public void updateEnchere( int prixEnchere , int no_article ) {
+	articleDAO.updateEnchere( prixEnchere , no_article );
+}
+
 public List<Article> selectAll(){
 	return articleDAO.selectAll();
 }

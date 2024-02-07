@@ -38,7 +38,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=? , description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?"
 											+ ", no_utilisateur=?, no_categorie=?";
-	private static final String SQL_UPDATE_VENTE = "UPDATE ARTICLES_VENDUS SET prix_vente = ?, no_utilisateur = ? WHERE no_article = ?";
+	private static final String SQL_UPDATE_ENCHERE = "UPDATE ARTICLES_VENDUS SET prix_initial = ? WHERE no_article = ?";
 	private static final String SQL_DELETE_SINGLE_ARTICLE_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=? and no_article=?";
 	
 	private static final String SQL_DELETE_ALL_ARTICLES_FROM_USER = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur=?";
@@ -92,15 +92,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				u = em.selectLatestEnchereFromArticle(a.getNoArticle()).getUtilisateur();
 			}
 			if(u == null) {
-				updateVente(prixVente, a.getUtilisateur().getNoUtilisateur(),a.getNoArticle());
+				updateVente(prixVente, a.getNoArticle());
 			}else {
-				updateVente(prixVente, u.getNoUtilisateur(),a.getNoArticle());
+				updateVente(prixVente, a.getNoArticle());
 				a.setNo_utilisateur(u.getNoUtilisateur());
 			}
 			a.setPrix_vente(prixVente);
 			a.setVendu(true);
 		}
 		return a;
+	}
+	
+	public void updateVente(int prix , int noArticle) {
+		
 	}
 	
 // ------------------------ Selections sans tri quelconque de catégories ou par mot-clé	
@@ -237,11 +241,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		
 	}
 	
-	public void updateVente(int prix, int no_utilisateur, int no_article) {
-		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE_VENTE)){
+	public void updateEnchere(int prix, int no_article) {
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE_ENCHERE)){
 			pstmt.setInt(1,prix);
-			pstmt.setInt(2,no_utilisateur);
-			pstmt.setInt(3, no_article);
+			pstmt.setInt(2, no_article);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
