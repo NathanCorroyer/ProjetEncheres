@@ -470,5 +470,4 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		}
 		return listeArticles;
 	}
-	
 }	
