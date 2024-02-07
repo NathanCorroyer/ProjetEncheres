@@ -84,11 +84,13 @@
 		         	</c:forEach>
 	      </select>
 	      	<label for="radioAll" >Toutes les enchères</label>
-	      	<input type="radio" name="etat_enchere" value="all" id="radioAll">
+	      	<input type="radio" name="tri_etat_enchere" value="all" id="radioAll"><br>
+	      	<label for="radioEnCours" >Enchères à venir</label>
+	      	<input type="radio" name="tri_etat_enchere" value="aVenir" id="radioAVenir"><br>
 	      	<label for="radioEnCours" >Enchères en cours</label>
-	      	<input type="radio" name="etat_enchere" value="enCours" id="radioEnCours">
+	      	<input type="radio" name="tri_etat_enchere" value="enCours" id="radioEnCours"><br>
 	      	<label for="radioFinies" >Enchères terminées</label>
-	      	<input type="radio" name="etat_enchere" value="finies" id="radioFinies">
+	      	<input type="radio" name="tri_etat_enchere" value="finies" id="radioFinies"><br>
 	      	
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
@@ -132,7 +134,7 @@
 			                  	<c:when test="${a.vendu eq true}">
 			                  		<p>Enchère terminée.</p>
 			                  	</c:when>
-			                  	<c:when test="${a.vendu eq false and localDebutTime.compareTo(maintenant) > 0}">
+			                  	<c:when test="${a.vendu eq false and localDebutTime.compareTo(maintenant) < 0}">
 			                  		<p>Enchère en cours.</p>
 			                  	</c:when>
 			                  	<c:otherwise>

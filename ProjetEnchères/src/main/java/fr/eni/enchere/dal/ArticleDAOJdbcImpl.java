@@ -23,6 +23,7 @@ import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
 	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS ORDER BY date_fin_encheres DESC";
+	private static final String SQL_SELECT_ALL_NOT_STARTED = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS WHERE date_debut_encheres > GETDATE() ORDER BY date_fin_encheres DESC";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_categorie = ?";
 	
@@ -408,4 +409,66 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	}
 	
 	//----------------------- SELECT EncheresNonCommencees -----------------------------------
-}
+	
+	@Override
+	public List<Article> selectAllNotStarted() {
+		List<Article> listeArticles = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_ALL_NOT_STARTED)){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Article a = ArticleBuilder(rs);
+				a = verifDate(a);
+				a.setVendu(false);					
+				listeArticles.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeArticles;
+	}
+	
+	
+	@Override
+	public List<Article> selectEnchereNotStartedByCategorie(int no_categorie){
+		List<Article> listeArticles = selectAllNotStarted();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getCategorie() == no_categorie)) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+	
+	@Override
+	public List<Article> selectEnchereNotStartedByName(String keyword){
+		List<Article> listeArticles = selectAllNotStarted();
+		Iterator<Article> iterator = listeArticles.iterator();
+		 while (iterator.hasNext()) {
+		    Article a = iterator.next();
+			if(!(a.getNom_Article().contains(keyword))) {
+				iterator.remove();
+			}
+		}
+		return listeArticles;
+	}
+	
+	
+
+	@Override 
+	public List<Article> selectEnchereNotStartedByCategorieAndByName(int no_categorie, String nomTri) throws SQLException{
+		List<Article> listeArticles = selectAllNotStarted();
+		Iterator<Article> iterator = listeArticles.iterator();
+	    while (iterator.hasNext()) {
+	        Article a = iterator.next();
+	        if (!(a.getCategorie() == no_categorie) || !(a.getNom_Article().contains(nomTri))) {
+	            iterator.remove();
+	        }
+		}
+		return listeArticles;
+	}
+	
+}	

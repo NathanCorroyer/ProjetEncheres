@@ -27,6 +27,10 @@ public interface ArticleDAO {
 	List<Article> selectEnchereEnCoursByName(String keyword);
 	List<Article> selectEnchereEnCoursByCategorie(int no_categorie);
 	List<Article> selectEnchereEnCoursByCategorieAndByName(int no_categorie, String nomTri) throws SQLException;
+	List<Article> selectAllNotStarted();
+	List<Article> selectEnchereNotStartedByCategorie(int no_categorie);
+	List<Article> selectEnchereNotStartedByName(String keyword);
+	List<Article> selectEnchereNotStartedByCategorieAndByName(int no_categorie, String nomTri) throws SQLException;
 
 	
 }
