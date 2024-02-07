@@ -139,7 +139,7 @@
 		                  <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
 		                  	<img src="${a.getImagePath()}" alt="TestImage">
 		                  	</a>
-		                  </div> 
+		                  </div>  
 		                  <br>
 			                  <hr>
 		                  <div class = "annonce-infos">
