@@ -91,7 +91,14 @@
 	      	<input type="radio" name="tri_etat_enchere" value="enCours" id="radioEnCours"><br>
 	      	<label for="radioFinies" >Enchères terminées</label>
 	      	<input type="radio" name="tri_etat_enchere" value="finies" id="radioFinies"><br>
-	      	
+				      	
+	      	<c:if test="${userConnected ne null}">
+	      		<p>Voulez-vous limiter les résultats aux enchères auxquelles vous participez?</p>	
+	      		 <label for="radioOui" >Oui</label>
+	      		<input type="radio" name="tri_encheres_user" value="tri" id="radioOui"><br>
+	      		<label for="radioNon" >Non</label>
+	      		<input type="radio" name="tri_encheres_user" value="pas_tri" id="radioNon"><br>
+	      	</c:if>
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
      	</form> 
