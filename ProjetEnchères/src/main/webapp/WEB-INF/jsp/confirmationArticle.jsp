@@ -26,12 +26,17 @@
 
 <div class="tableau">
 <h3>Voici votre récapitulatif :</h3>
+<div id="img">
+<img src="${article.getImagePath()}" alt="TestImage" width="40%" height="40%">
+</div>
 <table border="1">
 	<c:set var="date-fin" value="${article.date_fin_encheres}" />
 	<c:set var="date-debut" value="${article.date_debut_encheres}" />
     <tr>
         <th>Article</th>
+      
         <th>Description</th>
+        
         <th>Catégorie</th>
         <th>Mise à prix</th>
         <th>Début de l'enchère</th>

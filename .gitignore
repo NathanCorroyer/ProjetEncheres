@@ -64,6 +64,8 @@ local.properties
 .project
 .classpath
 context.xml
+.jpg
+.png
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
