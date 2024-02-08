@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background-color: rgb(18,18,18,255);
     margin: 0;
     padding: 0;
     text-align: center;
@@ -16,6 +16,7 @@ button {
     border-radius: 5px;
 }
 
+
  
 .main {
 	padding: 20px 
@@ -29,13 +30,14 @@ button {
 }
 
 .informations h2 {
-    color: #333;
+    color: white;
 }
 
 .informations p {
     margin: 10px 0;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    color: white;
 }
 
 .informations a {
@@ -50,7 +52,9 @@ button {
 }
 
 
-
+h3 {
+	color:white;
+}
 
 
 a.modifier-profil {
@@ -69,6 +73,8 @@ a.supprimer-compte:hover {
 	
 }
 
-
+label {
+	color:white;
+}
 
  

@@ -1,19 +1,24 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background-color:rgb(18,18,18,255);
     margin: 0;
     padding: 0;
     text-align: center;
+}
+
+h2 {
+	color: white;
 }
 
 .annonce-details {
 	
  max-width: 400px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: rgb(40,36,36);
     padding: 60px;
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) ;
+    box-shadow: 0 0 10px rgb(192, 192, 192) ;
+    color: white;
 }
 
   .image-container img {
@@ -21,6 +26,7 @@ body {
            width: 100%; 
         height: auto;
         margin: auto;
+        
             
   }
   

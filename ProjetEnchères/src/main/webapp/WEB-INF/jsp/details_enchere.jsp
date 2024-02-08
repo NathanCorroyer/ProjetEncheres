@@ -19,7 +19,7 @@
     <title>Détails de l'enchère</title>
     <style>
         .image-container {
-            border: 2px solid black; 
+            border: 1px solid  #fd4040; 
             padding: 10px; 
             display: inline-block; 
             margin-bottom: 8%;
@@ -50,20 +50,33 @@
     		border-radius: 8px; 
     		margin-top: 4%;
 		}
-		
 		button {
-			background-color: grey; 
-    		border: none; 
-   			 color: white; 
-    		padding: 10px 20px; 
-   			text-align: center; 
-    		text-decoration: none; 
-   			 display: inline-block; 
-   			 font-size: 16px; 
-   			 margin: 4px 2px; 
-   			 cursor: pointer; 
-    		border-radius: 8px; 
-    		margin-top: 2%;
+    background-color: #fd4040;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	}
+button, input[type="button"] {
+    display: inline-block;
+    margin-right: 100px;
+    width: 100%;
+    margin-top:50px;
+}
+
+button[type="button"] {
+ border: 1px solid #fd4040;
+    background-color: rgb(40,36,36);
+	margin-top: 10px;
+	color: #fd4040;
+}
+
+button[type="submit"] {
+    width: 100%;
+    
+}
+
 		
 		}
     </style>

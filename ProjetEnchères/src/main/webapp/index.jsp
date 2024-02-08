@@ -33,9 +33,13 @@
     
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
+<div id="banner">
+<h2>Le site n°1 des ventes aux enchères en France</h2>
+<img src="<%=request.getContextPath()%>/images/banner.png">
+</div>  
 <section class="main">
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
-    
+  
     <!-- Tests d'existence des messages, appel d'une fonction js qui les fait disparaitre progressivement en 3sec -->
     <c:if test="${not empty requestScope.succesSuppression}">
     	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>
@@ -60,6 +64,10 @@
     <p style="color : red">${requestScope.echec_enchere}</p>
     <script>fadeOut("echec_enchere")</script>
     </c:if>
+    <c:if test="${not empty requestScope.echec_enchere_meme_personne}">
+    	<p style="color : red">${requestScope.echec_enchere_meme_personne}</p>
+    	<script>fadeOut("echec_enchere_meme_personne")</script>
+    </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     
@@ -78,7 +86,7 @@
 		request.getRequestDispatcher("/ServletRecuperationListeEncheres").forward(request,response); 
 		%>
 	</c:if>
-	
+	<div class="categorie">
 	<!-- Affichage de la liste des catégories et choix des filtres de la liste d'articles -->
 	<c:if test="${listeCategorie ne null}">
 		<form action="${pageContext.request.contextPath}/ServletRecuperationListeEncheres" method="POST">
@@ -91,6 +99,7 @@
 		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
 		         	</c:forEach>
 	      </select>
+	      <div class="filtre-enchere">
 	      	<label for="radioAll" >Toutes les enchères</label>
 	      	<input type="radio" name="tri_etat_enchere" value="all" id="radioAll"><br>
 	      	<label for="radioEnCours" >Enchères à venir</label>
@@ -99,7 +108,8 @@
 	      	<input type="radio" name="tri_etat_enchere" value="enCours" id="radioEnCours"><br>
 	      	<label for="radioFinies" >Enchères terminées</label>
 	      	<input type="radio" name="tri_etat_enchere" value="finies" id="radioFinies"><br>
-				      	
+		</div>
+		<div class="limite">      	
 	      	<c:if test="${userConnected ne null}">
 	      		<p>Voulez-vous limiter les résultats aux enchères auxquelles vous participez?</p>	
 	      		 <label for="radioOui" >Oui</label>
@@ -107,11 +117,14 @@
 	      		<label for="radioNon" >Non</label>
 	      		<input type="radio" name="tri_encheres_user" value="pas_tri" id="radioNon"><br>
 	      	</c:if>
+	    </div>
+	    <div class="filtrer">  	
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
+     	</div>
      	</form> 
      </c:if>
-      
+    </div>  
   
   	
 	

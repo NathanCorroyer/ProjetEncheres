@@ -17,7 +17,7 @@
 
 <div class="head">
 
-<h2>Se connecter</h2>
+<h2>Connexion</h2>
 </div>
  
  <section class="login-form">
