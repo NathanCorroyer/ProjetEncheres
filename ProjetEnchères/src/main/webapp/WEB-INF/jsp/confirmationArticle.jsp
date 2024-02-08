@@ -51,7 +51,8 @@
     </tr>
     </table>
     <h3>Votre adresse de retrait <i class="fa-solid fa-location-dot"></i></h3>
-    <table border="1">
+    <div class="retrait">
+    <table id="retrait" border="1">
     <tr>
         <th>Rue</th>
         <th>Code postal</th>
@@ -64,7 +65,7 @@
       
     </tr>
     </table>
-    
+    </div>
 </div>
 <div id="accueil">
 <button type="button" onclick="Acceuil()">Revenir à l'accueil</button>
