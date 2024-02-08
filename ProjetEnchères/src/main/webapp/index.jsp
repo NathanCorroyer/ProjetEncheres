@@ -111,7 +111,7 @@
 		</div>
 		<div class="limite">      	
 	      	<c:if test="${userConnected ne null}">
-	      		<p>Voulez-vous limiter les résultats aux enchères auxquelles vous participez?</p>	
+	      		<p>Voulez-vous limiter les résultats à vos ventes?</p>	
 	      		 <label for="radioOui" >Oui</label>
 	      		<input type="radio" name="tri_encheres_user" value="tri" id="radioOui"><br>
 	      		<label for="radioNon" >Non</label>
