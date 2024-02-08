@@ -57,15 +57,15 @@
     	<script>fadeOut("succes_creation")</script>
     </c:if>
     <c:if test="${not empty requestScope.reussite_enchere}">
-    	<p style="color : green">${requestScope.reussite_enchere}</p>
+    	<p id="reussite_enchere" style="color : green">${requestScope.reussite_enchere}</p>
     	<script>fadeOut("reussite_enchere")</script>
     </c:if>
     <c:if test="${not empty requestScope.echec_enchere}">
-    <p style="color : red">${requestScope.echec_enchere}</p>
+    <p id="echec_enchere" style="color : red">${requestScope.echec_enchere}</p>
     <script>fadeOut("echec_enchere")</script>
     </c:if>
     <c:if test="${not empty requestScope.echec_enchere_meme_personne}">
-    	<p style="color : red">${requestScope.echec_enchere_meme_personne}</p>
+    	<p id="echec_enchere_meme_personne" style="color : red">${requestScope.echec_enchere_meme_personne}</p>
     	<script>fadeOut("echec_enchere_meme_personne")</script>
     </c:if>
     <h2>Liste des enchères</h2>
