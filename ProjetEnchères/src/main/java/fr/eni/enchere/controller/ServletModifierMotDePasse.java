@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.MD5;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -23,7 +24,7 @@ public class ServletModifierMotDePasse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/WEB-INF/jsp/modifierMotDePasse.jsp");
+		response.sendRedirect(request.getContextPath()+"/WEB-INF/jsp/updatePassword.jsp");
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class ServletModifierMotDePasse extends HttpServlet {
 		
 		if(no_utilisateur != null && newPassword != null) {
 			UtilisateurManager um = UtilisateurManager.getInstance();
-			um.updatePassword(newPassword, no_utilisateur);
+			um.updatePassword(MD5.getMd5(newPassword), no_utilisateur);
 		}
 		
 		request.setAttribute("succesModifMdp", "Modification du mot de passe réussie");

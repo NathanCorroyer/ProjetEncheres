@@ -67,7 +67,7 @@
 	        <input type="checkbox" id="saveMail" name="saveMail" value="saveMail" ${cookieValue ne null ? 'checked' : ''}>
         </div> 
     	<br/>
-    	<a href="/modifierMotDePasse">Mot de passe oublié?</a>
+    	<a href="${pageContext.request.contextPath}/modifierMotDePasse">Mot de passe oublié?</a>
       </form>
     </section>
 </section>
