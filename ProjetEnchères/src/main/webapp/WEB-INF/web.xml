@@ -5,8 +5,8 @@
     <welcome-file>ServletRecuperationListeEncheres</welcome-file>
 	
   </welcome-file-list>
- <!--  <session-config>
-    <session-timeout>5</session-timeout> 5 minutes
-  </session-config>	 -->
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>	
 </web-app>
 

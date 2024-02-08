@@ -9,14 +9,26 @@
 
 <body>
 	<%@ include file = "navbar.jsp" %>
+	<script>
+    document.getElementById("formulaireModif").addEventListener("submit", function(event) {
+        var nouveauMotDePasse = document.getElementById("motDePasse").value;
+        var confirmationMotDePasse = document.getElementById("confirmation").value;
+
+        if (nouveauMotDePasse !== confirmationMotDePasse) {
+            alert("Les nouveaux mots de passe ne correspondent pas !");
+            event.preventDefault(); // Empêche l'envoi du formulaire
+        }
+    });
+</script>
 	<h2>Modification de votre mot de passe.</h2>
  
 	<form id="formulaireModif" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
+		<input type="hidden" name="mail" value="${mail}">
 		<label for="newPassword">Nouveau mot de passe : </label>
 		<input type = "password" name="newPassword" id="newPassword">
 		<label for="confirmationNewPassword">Confirmer le mot de passe : </label>
 		<input type = "password" name="confirmationNewPassword" id="confirmationNewPassword">
-		<button type="submit" value="Valider"></button>
+		<button type="submit" >Valider</button>
 	</form>
 		
 

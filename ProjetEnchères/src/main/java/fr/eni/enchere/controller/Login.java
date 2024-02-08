@@ -30,7 +30,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			String cookieValue = getCookieValue(request, "saveEmail");
-			System.out.println(cookieValue);
 			if(cookieValue != null) {
 				request.setAttribute("cookieValue", cookieValue);
 			}

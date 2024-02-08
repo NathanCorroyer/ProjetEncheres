@@ -10,6 +10,7 @@
 <title>ENI Enchère - Connexion</title>
 <link rel="stylesheet" href="styles/stylelogin.css">
 <link rel="icon" href="https://capecia-formations.fr/wp-content/uploads/2019/09/LogoENIcertification-print.png" type="image/x-icon">
+<script src="javascript/hideParagraph.js"></script>
 </head>
 <body>
 <%@ include file = "navbar.jsp" %>
@@ -20,10 +21,16 @@
 <h2>Connexion</h2>
 </div>
  <c:if test="${connexionNecessaire ne null}">
- 	<p style="text-color:white;" class="messageErreur">${connexionNecessaire}</p>
+ 	<p style="text-color:white;" class="messageErreur" >${connexionNecessaire}</p>
+ 
  </c:if>
  <c:if test="${succesModifMdp ne null}">
- 	<p style="text-color:white;" class="messageSucces">${succesModifMdp}</p>
+ 	<p style="text-color:white;" class="messageSucces" id="succesModifMdp">${succesModifMdp}</p>
+ 	<script>fadeOut("succesModifMdp")</script>
+ </c:if>
+ <c:if test="${erreurMail ne null}">
+ 	<p style="text-color:white;" class="messageSucces" id="erreurMail">${erreurMail}</p>
+ 	<script>fadeOut("erreurMail")</script>
  </c:if>
  <section class="login-form">
       <form class="login" action="<%=request.getContextPath()%>/login" method="POST"> 
