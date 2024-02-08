@@ -60,6 +60,10 @@
     <p style="color : red">${requestScope.echec_enchere}</p>
     <script>fadeOut("echec_enchere")</script>
     </c:if>
+    <c:if test="${not empty requestScope.echec_enchere_meme_personne}">
+    	<p style="color : red">${requestScope.echec_enchere_meme_personne}</p>
+    	<script>fadeOut("echec_enchere_meme_personne")</script>
+    </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     
