@@ -1,18 +1,19 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgb(18,18,18,255);
     margin: 0;
     padding: 0;
 }
 
  h2 {
     text-align: center;
+    color: white;
 }
 
 .modification-form {
     max-width: 400px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: rgb(40,36,36);   
     padding: 43px;
     border-radius: 18px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,7 +23,7 @@ body {
 label {
     display: block;
     margin: 10px 0 5px;
-    color: #333;
+      color: white;
 }
 
 input {
@@ -31,11 +32,12 @@ input {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+     background-color: grey;
   
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #fd4040;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -47,11 +49,14 @@ button {
 }
 
 button[type="button"]{
-	background-color:grey;
+	border: 1px solid #fd4040;
+    background-color: rgb(40,36,36);
+	margin-top: 10px;
+	color: #fd4040;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: red;
 }
 
 button[type="submit"] {
