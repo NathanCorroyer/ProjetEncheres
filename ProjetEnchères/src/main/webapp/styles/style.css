@@ -224,7 +224,6 @@ input#radioAll, #radioAVenir, #radioEnCours, #radioFinies {
 
 .filtrer {
 	display: flex;
-	justify-content: flex-end
 	
 }
 #banner {
