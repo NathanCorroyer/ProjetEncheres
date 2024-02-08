@@ -12,4 +12,5 @@ public interface EnchereDAO {
 	List<Enchere> SelectByNoUtilisateur(int no_utilisateur);
 	Enchere SelectLatestEnchereFromArticle(int no_article); 
 	List<Enchere> selectByNoArticleTriDecroissant( int no_article );
+	void deleteEnchereByNoEnchere( int no_enchere );
 }

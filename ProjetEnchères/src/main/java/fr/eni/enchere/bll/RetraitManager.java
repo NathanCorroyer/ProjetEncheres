@@ -36,4 +36,8 @@ public class RetraitManager {
 		public Retrait selectByArticle(Article article) throws SQLException {
 			return RetraitDAO.selectByArticle(article);
 		}
+		
+		public void deleteByNoArticle( int noArticle ) {
+			RetraitDAO.deleteByNoArticle(noArticle);
+		}
 }

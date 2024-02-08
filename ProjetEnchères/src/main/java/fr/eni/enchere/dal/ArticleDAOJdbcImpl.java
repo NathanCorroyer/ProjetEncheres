@@ -255,8 +255,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	//-------------------- PAS D'UTILITÉ POUR LE MOMENT -----------------
 	@Override
-	public void deleteSingleArticleFromUser(Utilisateur u, Article a) {
-		// TODO Auto-generated method stub
+	public void deleteSingleArticleFromUser(int noUtilisateur , int  noArticle ) {
+		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_DELETE_SINGLE_ARTICLE_FROM_USER)) {
+			pstmt.setInt(1, noUtilisateur);
+			pstmt.setInt(2, noArticle);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 

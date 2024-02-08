@@ -23,6 +23,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String SQL_SELECT_BY_NO_ARTICLE = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_article = ?";
 	private static final String SQL_SELECT_BY_NO_UTILISATEUR = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_utilisateur = ?";
 	private static final String SQL_SELECT_BY_NO_ARTICLE_DESC = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_article = ? ORDER BY montant_enchere DESC";
+	private static final String SQL_DELETE_BY_NO_ENCHERE = "DELETE FROM ENCHERES WHERE no_enchere = ?";
 	@Override
 	public Integer ajouter(Enchere e) throws SQLException {
 		Integer key = null;
@@ -39,6 +40,16 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		}
 		return key;
 	}
+	
+	public void deleteEnchereByNoEnchere( int no_enchere ) {
+		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_DELETE_BY_NO_ENCHERE)){
+			pstmt.setInt(1, no_enchere);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	@Override
 	public Enchere SelectByNoEnchere(int no_enchere) throws SQLException {

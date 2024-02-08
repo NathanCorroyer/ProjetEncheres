@@ -18,7 +18,7 @@ public interface ArticleDAO {
 	void supprimer(Article a);
 	void update(Article a);
 	void updateEnchere( int prix , int no_article );
-	void deleteSingleArticleFromUser(Utilisateur u, Article a);
+	void deleteSingleArticleFromUser(int noUtilisateur, int noArticle);
 	void deleteAllArticlesFromUser(Utilisateur u);
 	List<Article> selectByName(String nomTri) throws SQLException;
 	List<Article> selectArticleByCategorieAndByName(int no_categorie, String nomTri) throws SQLException;

@@ -48,4 +48,8 @@ public class EnchereManager {
 	public List<Enchere> selectByNoArticleTriDecroissant( int no_article ){
 		return enchereDAO.selectByNoArticleTriDecroissant(no_article);
 	}
+	
+	public void deleteEnchereByNoEnchere( int no_enchere ) {
+		 enchereDAO.deleteEnchereByNoEnchere(no_enchere);
+	}
 }

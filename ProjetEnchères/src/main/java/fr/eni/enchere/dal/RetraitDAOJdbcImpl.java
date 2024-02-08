@@ -18,6 +18,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	private static final String SQL_DELETE_ALL = "DELETE FROM Retraits";
 	private static final String SQL_FIND_ALL = "SELECT * FROM Retraits";
 	private static final String SELECT_BY_ARTICLE = "SELECT * FROM Retraits WHERE no_article = ?";
+	private static final String DELETE_BY_NO_ARTICLE = "DELETE FROM Retraits WHERE no_article = ?";
 	@Override
 	public void create(Retrait retrait) throws SQLException {
 		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_CREATE) ){
@@ -30,6 +31,17 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		} 
+	}
+	
+	public void deleteByNoArticle( int noArticle ) {
+		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(DELETE_BY_NO_ARTICLE)){
+			pstmt.setInt(1, noArticle);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 	@Override

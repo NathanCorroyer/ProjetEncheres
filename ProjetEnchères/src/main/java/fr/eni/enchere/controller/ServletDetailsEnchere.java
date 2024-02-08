@@ -2,9 +2,12 @@ package fr.eni.enchere.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +44,23 @@ public class ServletDetailsEnchere extends HttpServlet {
 		EnchereManager em = EnchereManager.getInstance();
 		List<Enchere> listeEnchereSurUnArticle = new ArrayList<>();
 		List<Enchere> listeEnchereSurUnArticleDESC = new ArrayList<>();
+	
+		
+		String momentPresentString = LocalDateTime.now().toString();
+		String debutEnchereString = request.getParameter("dateDebutEnchere");
+		LocalDateTime momentPresent = LocalDateTime.parse( momentPresentString );
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy, HH 'h' mm", Locale.FRENCH);
+		DateTimeFormatter formatterTest = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		LocalDateTime debutEnchere = LocalDateTime.parse( debutEnchereString, formatterTest );
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS");
+		String momentPresentFormate = momentPresent.format(formatter2);
+		String debutEnchereFormate = debutEnchere.format(formatter2);
+		
+		boolean dateOk = true ;
+		if ( momentPresent.isAfter(debutEnchere)) {
+			dateOk = false ; 
+		}	
+		
 		
 		try {
 		vendeur = um.selectUserByPseudo(request.getParameter("nomVendeur"));
@@ -64,8 +84,9 @@ public class ServletDetailsEnchere extends HttpServlet {
 		
 		 listeEnchereSurUnArticle = em.selectByNoArticle(no_article);
 		 Collections.reverse(listeEnchereSurUnArticle);
-		 
-		 
+		
+		
+		request.setAttribute("dateOk", dateOk);
 		request.setAttribute("listeEncheresDESC", listeEnchereSurUnArticle);
 		request.setAttribute("userConnected", userConnected );
 		request.setAttribute("prixInitialEnchere", enchereProposee);

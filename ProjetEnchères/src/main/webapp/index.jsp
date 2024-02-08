@@ -68,6 +68,10 @@
     	<p id="echec_enchere_meme_personne" style="color : red">${requestScope.echec_enchere_meme_personne}</p>
     	<script>fadeOut("echec_enchere_meme_personne")</script>
     </c:if>
+    <c:if test="${not empty requestScope.suppression_enchere_reussie}">
+    	<p id="suppression_enchere_reussie" style="color : red">${requestScope.suppression_enchere_reussie}</p>
+    	<script>fadeOut("suppression_enchere_reussie")</script>
+    </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
     
@@ -142,7 +146,8 @@
 				<c:set var="localDateTime" value="${a.getDate_fin_encheres()}" />
 	        	<c:set var="localDebutTime" value="${a.getDate_debut_encheres()}" />
 	        	<c:set var="debut_lien" value="/ServletDetailsEnchere?no_article=${a.getNoArticle()}"/>
-	        	<c:set var="fin_lien" value="&nomVendeur=${a.getUtilisateur().getPseudo()}"/>	        	
+	        	<c:set var="fin_lien" value="&nomVendeur=${a.getUtilisateur().getPseudo()}"/>
+	        	       	
 	        	
 	        	<c:set var="connexionNecessaire" value="Vous devez être connecté pour accéder à ce contenu"/>
 	        	<%-- Pour chaque article présent dans la liste, une balise li est créée et on y utilise les données qui nous intéressent en utilisant les getters de la classe Article  --%>
@@ -154,7 +159,7 @@
 		                  <div class = "annonce-img">
 		                  <c:choose>
 		                  	<c:when test="${userConnected ne null}">
-		                 		 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
+		                 		 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}&dateDebutEnchere=${a.getDate_debut_encheres()}">
 		                	  </c:when>
 		                 	 <c:otherwise>
 
@@ -171,24 +176,24 @@
 			               
 			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
 			                  
-			                   <p><span style="color: red; text-decoration: underline;">Catégorie</span> :  ${a.getCategorieComplete().getLibelle()}</p>
-			                  <p><span style="color: red; text-decoration: underline;">Vendeur</span> : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
+			                   <p><span style="color: red">Catégorie</span> :  ${a.getCategorieComplete().getLibelle()}</p>
+			                  <p><span style="color: red">Vendeur</span> : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
                 
 			                   <c:choose>
 			                  	<c:when test="${a.vendu eq true}">
-			                  		<p style="color: red; text-decoration: underline;">Enchère terminée.</p>
+			                  		<p style="color: red">Enchère terminée.</p>
 			                  	</c:when>
 			                  	<c:when test="${a.vendu eq false and localDebutTime.compareTo(maintenant) < 0}">
-			                  		<p style="color: red; text-decoration: underline;">Enchère en cours.</p>
+			                  		<p style="color: red">Enchère en cours.</p>
 			                  	</c:when>
 			                  	<c:otherwise>
-			                  		<p><span style="color: red; text-decoration: underline;">L'enchère commencera le </span>: </span> <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDebutTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                  		<p><span style="color: red">L'enchère commencera le </span>: </span> <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDebutTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
 			                  	</c:otherwise>
 			                  </c:choose>
 			                 
 			                   <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
-			                  <p><span style="color: red; text-decoration: underline;">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-			                   <p><span style="color: red; text-decoration: underline;">Prix </span>:<b>${a.getPrix_initial()} points </b></p>
+			                  <p><span style="color: red">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                   <p><span style="color: red">Prix </span>:<b>${a.getPrix_initial()} points </b></p>
 			                  
 			                   <br>
 			                  <br>

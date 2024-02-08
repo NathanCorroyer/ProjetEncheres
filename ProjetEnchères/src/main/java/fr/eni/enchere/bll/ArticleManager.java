@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.DAOFactory;
 
@@ -25,6 +26,10 @@ public static ArticleManager getInstance() {
 
 public void updateEnchere( int prixEnchere , int no_article ) {
 	articleDAO.updateEnchere( prixEnchere , no_article );
+}
+
+public void deleteSingleArticleFromUser(int noUtilisateur , int  noArticle ) {
+	articleDAO.deleteSingleArticleFromUser(noUtilisateur, noArticle);
 }
 
 public List<Article> selectAll(){
