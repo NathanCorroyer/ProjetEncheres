@@ -30,7 +30,7 @@ public class ServletAjouterCategorie extends HttpServlet {
 		
 			CategorieManager cm = CategorieManager.getInstance();
 			try {
-				cm.ajouter(libelle);
+				ajout = cm.ajouter(libelle);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
