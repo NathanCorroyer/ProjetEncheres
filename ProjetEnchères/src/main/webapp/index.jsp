@@ -78,7 +78,7 @@
 		request.getRequestDispatcher("/ServletRecuperationListeEncheres").forward(request,response); 
 		%>
 	</c:if>
-	
+	<div class="categorie">
 	<!-- Affichage de la liste des catégories et choix des filtres de la liste d'articles -->
 	<c:if test="${listeCategorie ne null}">
 		<form action="${pageContext.request.contextPath}/ServletRecuperationListeEncheres" method="POST">
@@ -91,6 +91,7 @@
 		       			 <option value="${c.no_categorie}" ${c.no_categorie eq categorie ? 'selected' : ''}>${c.libelle}</option>
 		         	</c:forEach>
 	      </select>
+	      <div class="filtre-enchere">
 	      	<label for="radioAll" >Toutes les enchères</label>
 	      	<input type="radio" name="tri_etat_enchere" value="all" id="radioAll"><br>
 	      	<label for="radioEnCours" >Enchères à venir</label>
@@ -99,7 +100,8 @@
 	      	<input type="radio" name="tri_etat_enchere" value="enCours" id="radioEnCours"><br>
 	      	<label for="radioFinies" >Enchères terminées</label>
 	      	<input type="radio" name="tri_etat_enchere" value="finies" id="radioFinies"><br>
-				      	
+		</div>
+		<div class="limite">      	
 	      	<c:if test="${userConnected ne null}">
 	      		<p>Voulez-vous limiter les résultats aux enchères auxquelles vous participez?</p>	
 	      		 <label for="radioOui" >Oui</label>
@@ -107,11 +109,14 @@
 	      		<label for="radioNon" >Non</label>
 	      		<input type="radio" name="tri_encheres_user" value="pas_tri" id="radioNon"><br>
 	      	</c:if>
+	    </div>
+	    <div class="filtrer">  	
 	       	<input type="text" name="search" placeholder="Le nom de l'article contient">	
      		<input type="submit" value="Filtrer">
+     	</div>
      	</form> 
      </c:if>
-      
+    </div>  
   
   	
 	
