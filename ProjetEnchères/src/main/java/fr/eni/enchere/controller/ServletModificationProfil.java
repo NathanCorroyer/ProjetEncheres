@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.MD5;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -34,7 +35,7 @@ public class ServletModificationProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur connectedUser = (Utilisateur) request.getSession().getAttribute("userConnected");
 		Integer noUtilisateur = connectedUser.getNoUtilisateur();
-		String ancienMotDePasse = request.getParameter("motDePasseActuel");
+		String ancienMotDePasse = MD5.getMd5(request.getParameter("motDePasseActuel"));
 		int creditactuel = connectedUser.getCredit();
 		
 		
@@ -48,7 +49,7 @@ public class ServletModificationProfil extends HttpServlet {
 						request.getParameter("rue"), 
 						request.getParameter("codePostal"),
 						request.getParameter("ville"),
-						request.getParameter("motDePasse"));
+						MD5.getMd5(request.getParameter("motDePasse")));
 						user.setNoUtilisateur(noUtilisateur);
 						user.setCredit(creditactuel);
 				UtilisateurManager.getInstance().update(user);

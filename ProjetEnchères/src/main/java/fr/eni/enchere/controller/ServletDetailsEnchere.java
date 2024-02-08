@@ -60,4 +60,9 @@ public class ServletDetailsEnchere extends HttpServlet {
 		request.setAttribute("retrait", retrait);
 		request.getRequestDispatcher("/WEB-INF/jsp/details_enchere.jsp").forward(request, response);
 		}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
+
+}

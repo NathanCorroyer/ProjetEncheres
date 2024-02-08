@@ -38,7 +38,7 @@
 <img src="<%=request.getContextPath()%>/images/banner.png">
 </div>  
 <section class="main">
-    <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
+
   
     <!-- Tests d'existence des messages, appel d'une fonction js qui les fait disparaitre progressivement en 3sec -->
     <c:if test="${not empty requestScope.succesSuppression}">
@@ -141,7 +141,10 @@
 				<c:set var="maintenant" value="${LocalDateTime.now()}"/>
 				<c:set var="localDateTime" value="${a.getDate_fin_encheres()}" />
 	        	<c:set var="localDebutTime" value="${a.getDate_debut_encheres()}" />
+	        	<c:set var="debut_lien" value="/ServletDetailsEnchere?no_article=${a.getNoArticle()}"/>
+	        	<c:set var="fin_lien" value="&nomVendeur=${a.getUtilisateur().getPseudo()}"/>	        	
 	        	
+	        	<c:set var="connexionNecessaire" value="Vous devez être connecté pour accéder à ce contenu"/>
 	        	<%-- Pour chaque article présent dans la liste, une balise li est créée et on y utilise les données qui nous intéressent en utilisant les getters de la classe Article  --%>
 	           	 <li>	
 	           	 	
@@ -149,7 +152,16 @@
 		                  <h4>${a.getNom_Article()}</h4>
 		                  
 		                  <div class = "annonce-img">
-		                  <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
+		                  <c:choose>
+		                  	<c:when test="${userConnected ne null}">
+		                 		 <a href="${pageContext.request.contextPath}/ServletDetailsEnchere?no_article=${a.getNoArticle()}&nomVendeur=${a.getUtilisateur().getPseudo()}">
+		                	  </c:when>
+		                 	 <c:otherwise>
+
+		                  		<a href="${pageContext.request.contextPath}/login?lienEnchere=${debut_lien}${fin_lien }&connexionNecessaire=${connexionNecessaire}">
+		                  		
+		                	 </c:otherwise>
+		                  </c:choose>
 		                  	<img src="${a.getImagePath()}" alt="TestImage">
 		                  	</a>
 		                  </div>  

@@ -19,9 +19,15 @@
 
 <h2>Connexion</h2>
 </div>
- 
+ <c:if test="${connexionNecessaire ne null}">
+ 	<p style="text-color:white;">${connexionNecessaire}</p>
+ </c:if>
  <section class="login-form">
-      <form class="login" action="<%=request.getContextPath()%>/login" method="post"> 
+      <form class="login" action="<%=request.getContextPath()%>/login" method="POST"> 
+      	<c:if test="${lienEnchere ne null and nomVendeur ne null}">
+      		<input type ="hidden" name = "lienEnchere" value="${lienEnchere}">
+      		<input type ="hidden" name = "nomVendeur" value="${nomVendeur}">
+      	</c:if>
         <div class="input-field">
           <label for="email">Email : </label>
           <input class="input" name="email" id="email" placeholder="email" required="required">

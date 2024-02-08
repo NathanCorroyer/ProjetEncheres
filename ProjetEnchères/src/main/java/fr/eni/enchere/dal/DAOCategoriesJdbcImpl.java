@@ -13,6 +13,10 @@ import fr.eni.enchere.bo.Categorie;
 public class DAOCategoriesJdbcImpl implements DAOCategories {
 	private static final String SQL_SELECT_ALL = "SELECT no_categorie, libelle FROM CATEGORIES";
 	private static final String SQL_SELECT_BY_ID = "SELECT no_categorie, libelle FROM CATEGORIES WHERE no_categorie = ?";
+	private static final String SQL_UPDATE = "UPDATE CATEGORIES set libelle = ? WHERE no_categorie = ?";
+	private static final String SQL_DELETE = "DELETE FROM CATEGORIES WHERE no_categorie = ?";
+	private static final String SQL_INSERT = "INSERT INTO CATEGORIES (libelle) values (?)";
+	
 
 	@Override
 	public List<Categorie> selectAll() {
@@ -62,17 +66,41 @@ public class DAOCategoriesJdbcImpl implements DAOCategories {
 	}
 
 	@Override
-	public void ajouter(Categorie c) throws SQLException {
-		
+	public boolean ajouter(String libelle) throws SQLException {
+		boolean ajout = false;
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT)){
+			pstmt.setString(1, libelle);
+			int rs = pstmt.executeUpdate();
+			if(rs == 1) {
+				ajout = true;
+			}
+		}
+		return ajout;
 	}
+	
 
 	@Override
-	public void supprimer(Categorie c) {
-		
+	public boolean supprimer(Integer no_categorie) throws SQLException {
+		boolean isDeleted = false;
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_DELETE)){
+			pstmt.setInt(1, no_categorie);
+			int rs = pstmt.executeUpdate();
+			if(rs == 1) {
+				isDeleted = true;
+			}
+		}
+		return isDeleted;
 	}
 
 	@Override
 	public void update(Categorie c) {
-		
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE)){
+			pstmt.setString(1, c.getLibelle());
+			pstmt.setInt(2, c.getNo_categorie());
+			pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+}
 }

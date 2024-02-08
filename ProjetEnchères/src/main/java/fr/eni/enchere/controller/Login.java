@@ -27,7 +27,18 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			System.out.println((String) request.getParameter("connexionNecessaire"));
+			System.out.println((String) request.getParameter("lienEnchere"));
+			System.out.println((String) request.getParameter("nomVendeur"));
+			
+			if(request.getParameter("connexionNecessaire") != null) {
+				request.setAttribute("connexionNecessaire", (String) request.getParameter("connexionNecessaire"));
+			}
+			
+			if(request.getParameter("lienEnchere") != null && request.getParameter("nomVendeur") != null) {
+				request.setAttribute("lienEnchere", (String) request.getParameter("lienEnchere"));
+				request.setAttribute("nomVendeur", (String) request.getParameter("nomVendeur"));
+			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -48,18 +59,17 @@ public class Login extends HttpServlet {
 			HttpSession ses;
 			ses= request.getSession();
 			try {
-				user =UtilisateurManager.getInstance().login(email2,mdp2);
+				user =UtilisateurManager.getInstance().login(email2,MD5.getMd5(mdp2));
 				if( user!=null )
 				{
 					ses.setAttribute("userConnected", user );
 					request.setAttribute("succes_creation", request.getAttribute("succes_creation"));
 					RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 					rd.forward(request, response);
-				}
-			} catch (BLLException e) {
+					}
+				} catch (BLLException e) {
 				e.printStackTrace();
-			}
-			
+				}
 			} else {
 				
 				
@@ -70,15 +80,30 @@ public class Login extends HttpServlet {
 				user =UtilisateurManager.getInstance().login(email,MD5.getMd5(mdp));
 				HttpSession ses;
 				ses= request.getSession();
-				if(user!=null)
-				{
+				if(user!=null) {
 					ses.setAttribute("userConnected", user);
-					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-					rd.forward(request, response);
+					System.out.println(request.getParameter("lienEnchere"));
+					if(request.getParameter("lienEnchere") != null && request.getParameter("nomVendeur") != null) {
+						request.setAttribute("lienEnchere", (String) request.getParameter("lienEnchere"));
+						request.setAttribute("nomVendeur", (String) request.getParameter("nomVendeur"));
+						RequestDispatcher rd = request.getRequestDispatcher((String)request.getParameter("lienEnchere")+"&"+(String)request.getParameter("nomVendeur"));
+						rd.forward(request, response);
+					
+					}else {
+						
+						
+						RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+						rd.forward(request, response);
+					}
 				}else{	
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-				request.setAttribute("erreur", "Email ou mot de passe non valide.");
-				rd.forward(request, response);
+					
+					if(request.getAttribute("lienEnchere") != null && request.getAttribute("nomVendeur") != null) {
+						request.setAttribute("lienEnchere", request.getAttribute("lienEnchere"));
+						request.setAttribute("nomVendeur", request.getAttribute("nomVendeur"));
+					}
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+					request.setAttribute("erreur", "Email ou mot de passe non valide.");
+					rd.forward(request, response);
 				
 				}
 			} catch (BLLException e) {
