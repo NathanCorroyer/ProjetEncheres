@@ -19,4 +19,6 @@ public interface RetraitDAO {
 
 	Retrait selectByArticle(Article article) throws SQLException;
 	
+	 void deleteByNoArticle( int noArticle );
+	
 }

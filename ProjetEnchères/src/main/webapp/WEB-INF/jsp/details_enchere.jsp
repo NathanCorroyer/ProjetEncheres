@@ -101,28 +101,28 @@ button[type="submit"] {
             	                    	
                 <h4 style="color: red">${article.getNom_Article()}</h4>
                 <div class="image-container">
-                <img src="${article.getImagePath()}" width="300" height="300" alt="TestImage">                
-                </div>         
-                <div class="description">               
-                <p>Description : </p>
-                
-                <p>${article.getDescription()}</p>
-                <input type="hidden" name="noArticle" value="${article.getNoArticle()}">
+	                <img src="${article.getImagePath()}" width="300" height="300" alt="TestImage">                
+	                </div>         
+	                <div class="description">               
+	                <p>Description : </p>
+	                
+	                <p>${article.getDescription()}</p>
+	                <input type="hidden" name="noArticle" value="${article.getNoArticle()}">
                 
                 </div>
-                <p><span style="color: red; text-decoration: underline;">Catégorie </span>: ${article.getCategorieComplete().getLibelle()}</p>
-                <p><span style="color: red; text-decoration: underline;">Début de l'enchère</span> : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-                <input type="hidden" name="debutEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
-                <p><span style="color: red; text-decoration: underline;">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-                <input type="hidden" name="finEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
-                <p><span style="color: red; text-decoration: underline;">Prix actuel </span>:<b> ${article.getPrix_initial()} points </b></p>
-                <input type="hidden" name="prixInitial" value="${article.getPrix_initial()}">
-                <hr>
-                <div class="retrait">
-                <h4>Retrait : </h4>
-                <p> Adresse : ${retrait.rue}, ${retrait.code_postal}, ${retrait.ville}  </p>
-                <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
-                <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
+	                <p><span style="color: red">Catégorie </span>: ${article.getCategorieComplete().getLibelle()}</p>
+	                <p><span style="color: red">Début de l'enchère</span> : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+	                <input type="hidden" name="debutEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
+	                <p><span style="color: red">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+	                <input type="hidden" name="finEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
+	                <p><span style="color: red">Prix actuel </span>:<b> ${article.getPrix_initial()} points </b></p>
+	                <input type="hidden" name="prixInitial" value="${article.getPrix_initial()}">
+	                <hr>
+	                <div class="retrait">
+	                <h4>Retrait : </h4>
+	                <p> Adresse : ${retrait.rue}, ${retrait.code_postal}, ${retrait.ville}  </p>
+	                <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
+	                <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
 
 	            </div>
                 <c:if test="${userConnected.actif eq true && Vendeur.getPseudo() ne userConnected.getPseudo()}">
@@ -138,16 +138,24 @@ button[type="submit"] {
                 <br>
                 
                 <c:if test="${Vendeur.getPseudo() eq userConnected.getPseudo()}">
-                <p>Liste des enchéreurs actuels de l'objet :</p>
-                <ol>
-                	<c:forEach var ="e" items="${listeEncheresDESC}">
-                		<li><span style="color: red; text-decoration: underline;">Pseudo </span>: ${e.getUtilisateur().getPseudo()}
-                		<br>
-                		<span style="color: red; text-decoration: underline;">Enchère proposée </span>: ${e.getMontant_enchere()}
-                		</li>
-                		<br>
-                	</c:forEach>
-                </ol>
+
+	                <p>Liste des enchéreurs actuels de l'objet :</p>
+	              
+	                <ol>
+	                	<c:forEach var ="e" items="${listeEncheresDESC}">
+	                		<li><span style="color: red">Pseudo </span>: ${e.getUtilisateur().getPseudo()}
+	                		<br>
+	                		<span style="color: red">Enchère proposée </span>: ${e.getMontant_enchere()}
+	                		</li>
+	                		<br>
+	                	</c:forEach>
+	                </ol>
+                	<c:if test="${dateOk eq true}">
+            
+                		<button><a href="${pageContext.request.contextPath}/ServletSuppressionEnchere?noArticle=${article.getNoArticle()}&noUser=${Vendeur.getNoUtilisateur()}">Supprimer l'article</a></button>
+          
+                		
+                	</c:if>
                 </c:if>
                 
                 
