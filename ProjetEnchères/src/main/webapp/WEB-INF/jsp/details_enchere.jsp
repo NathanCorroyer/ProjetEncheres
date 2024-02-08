@@ -99,7 +99,7 @@ button[type="submit"] {
    					</c:if>
     				
             	                    	
-                <h4>${article.getNom_Article()}</h4>
+                <h4 style="color: red">${article.getNom_Article()}</h4>
                 <div class="image-container">
                 <img src="${article.getImagePath()}" width="300" height="300" alt="TestImage">                
                 </div>         
@@ -110,12 +110,12 @@ button[type="submit"] {
                 <input type="hidden" name="noArticle" value="${article.getNoArticle()}">
                 
                 </div>
-                <p>Catégorie : ${article.getCategorieComplete().getLibelle()}</p>
-                <p>Début de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+                <p><span style="color: red; text-decoration: underline;">Catégorie </span>: ${article.getCategorieComplete().getLibelle()}</p>
+                <p><span style="color: red; text-decoration: underline;">Début de l'enchère</span> : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <input type="hidden" name="debutEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTimeDebut"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
-                <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+                <p><span style="color: red; text-decoration: underline;">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
                 <input type="hidden" name="finEnchere" value="<%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %>">
-                <p>Prix actuel :<b> ${article.getPrix_initial()} points </b></p>
+                <p><span style="color: red; text-decoration: underline;">Prix actuel </span>:<b> ${article.getPrix_initial()} points </b></p>
                 <input type="hidden" name="prixInitial" value="${article.getPrix_initial()}">
                 <hr>
                 <div class="retrait">
@@ -141,9 +141,9 @@ button[type="submit"] {
                 <p>Liste des enchéreurs actuels de l'objet :</p>
                 <ol>
                 	<c:forEach var ="e" items="${listeEncheresDESC}">
-                		<li>Pseudo : ${e.getUtilisateur().getPseudo()}
+                		<li><span style="color: red; text-decoration: underline;">Pseudo </span>: ${e.getUtilisateur().getPseudo()}
                 		<br>
-                		Enchère proposée : ${e.getMontant_enchere()}
+                		<span style="color: red; text-decoration: underline;">Enchère proposée </span>: ${e.getMontant_enchere()}
                 		</li>
                 		<br>
                 	</c:forEach>
