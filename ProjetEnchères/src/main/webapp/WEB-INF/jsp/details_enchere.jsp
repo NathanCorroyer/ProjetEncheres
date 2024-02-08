@@ -124,7 +124,7 @@ button[type="submit"] {
                 <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
 
 	            </div>
-                <c:if test="${userConnected.actif eq true}">
+                <c:if test="${userConnected.actif eq false}">
 	                <hr>
 	                <label for="prix_initial">Ma proposition :</label>
 	                <br>           
