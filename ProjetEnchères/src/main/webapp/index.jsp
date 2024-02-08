@@ -149,7 +149,7 @@
 	           	 <li>	
 	           	 	
 		              <div class="annonce-details">
-		                  <h4>${a.getNom_Article()}</h4>
+		                  <h4 style="color: red">${a.getNom_Article()}</h4>
 		                  
 		                  <div class = "annonce-img">
 		                  <c:choose>
@@ -171,24 +171,24 @@
 			               
 			                  <%-- Lien vers la servlet de récup des données du vendeur, qui nous permettra d'afficher ses informations --%>
 			                  
-			                   <p>Catégorie : ${a.getCategorieComplete().getLibelle()}</p>
-			                  <p>Vendeur : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
+			                   <p><span style="color: red; text-decoration: underline;">Catégorie</span> :  ${a.getCategorieComplete().getLibelle()}</p>
+			                  <p><span style="color: red; text-decoration: underline;">Vendeur</span> : <a href="${pageContext.request.contextPath}/ServletAffichantProfilVendeur?userPseudo=${a.getUtilisateur().getPseudo()}"> ${a.getUtilisateur().getPseudo()} </a></p>
                 
 			                   <c:choose>
 			                  	<c:when test="${a.vendu eq true}">
-			                  		<p>Enchère terminée.</p>
+			                  		<p style="color: red; text-decoration: underline;">Enchère terminée.</p>
 			                  	</c:when>
 			                  	<c:when test="${a.vendu eq false and localDebutTime.compareTo(maintenant) < 0}">
-			                  		<p>Enchère en cours.</p>
+			                  		<p style="color: red; text-decoration: underline;">Enchère en cours.</p>
 			                  	</c:when>
 			                  	<c:otherwise>
-			                  		<p>L'enchère commencera le : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDebutTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                  		<p><span style="color: red; text-decoration: underline;">L'enchère commencera le </span>: </span> <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDebutTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
 			                  	</c:otherwise>
 			                  </c:choose>
 			                 
 			                   <%-- Première utilisation du formatage de date, avec le DateTimeFormatter défini plus haut --%>
-			                  <p>Fin de l'enchère : <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
-			                   <p>Prix : <b>${a.getPrix_initial()} points </b></p>
+			                  <p><span style="color: red; text-decoration: underline;">Fin de l'enchère </span>: <%= formatLocalDateTime((LocalDateTime) pageContext.getAttribute("localDateTime"), "EEEE, dd MMMM yyyy, HH 'h' mm") %></p>
+			                   <p><span style="color: red; text-decoration: underline;">Prix </span>:<b>${a.getPrix_initial()} points </b></p>
 			                  
 			                   <br>
 			                  <br>
