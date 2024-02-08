@@ -36,8 +36,9 @@ input {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: white;
     background-color: grey;
+    color:white;
+
 }
 
 button {
@@ -78,6 +79,4 @@ button[type="submit"] {
     color: red;
     margin-top: 10px;
 }
-input {
-	color: grey;
-}
+
