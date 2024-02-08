@@ -34,7 +34,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String SQL_ENABLE_BY_MAIL = "UPDATE UTILISATEURS SET actif = 1 WHERE email = ?";
 
-	private static final String SQL_UPDATE_PASSWORD = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE no_utilisateur =?";
+	private static final String SQL_UPDATE_PASSWORD = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE email =?";
 
 	
 	
@@ -96,10 +96,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public void updatePassword(String newPassword, int no_utilisateur) {
+	public void updatePassword(String newPassword, String email) {
 		try(Connection con = ConnectionProvider.getConnection();PreparedStatement pstmt = con.prepareStatement(SQL_UPDATE_PASSWORD)){
 			pstmt.setString(1,newPassword);
-			pstmt.setInt(2,no_utilisateur);
+			pstmt.setString(2,email);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

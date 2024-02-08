@@ -58,9 +58,9 @@ public class ServletCreerEnchere extends HttpServlet {
 
 
 
-			String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			//String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
-			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
 			String directoryAbsolute = directoryPath + nomFichier ;

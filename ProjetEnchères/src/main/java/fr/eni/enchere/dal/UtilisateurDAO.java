@@ -29,5 +29,5 @@ public interface UtilisateurDAO {
 
 	boolean enableByMail(String email);
 
-	void updatePassword(String newPassword, int no_utilisateur);
+	void updatePassword(String newPassword, String mail);
 }

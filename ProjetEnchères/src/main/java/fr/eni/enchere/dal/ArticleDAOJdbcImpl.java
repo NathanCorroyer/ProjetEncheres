@@ -22,8 +22,8 @@ import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
-	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS ORDER BY date_fin_encheres DESC";
-	private static final String SQL_SELECT_ALL_NOT_STARTED = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS WHERE date_debut_encheres > GETDATE() ORDER BY date_fin_encheres DESC";
+	private static final String SQL_SELECT_ALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS ORDER BY date_fin_encheres ASC";
+	private static final String SQL_SELECT_ALL_NOT_STARTED = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie, path_image FROM ARTICLES_VENDUS WHERE date_debut_encheres > GETDATE() ORDER BY date_fin_encheres ASC";
 	
 	private static final String SQL_SELECT_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, path_image FROM ARTICLES_VENDUS WHERE no_categorie = ?";
 	

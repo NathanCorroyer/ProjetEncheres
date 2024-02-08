@@ -41,8 +41,8 @@ public class UtilisateurManager {
 		}
 		
 	}
-	public void updatePassword(String mdp, int no_utilisateur) {
-		utilisateurDAO.updatePassword(mdp, no_utilisateur);
+	public void updatePassword(String mdp, String mail) {
+		utilisateurDAO.updatePassword(mdp, mail);
 	}
 	
 	
