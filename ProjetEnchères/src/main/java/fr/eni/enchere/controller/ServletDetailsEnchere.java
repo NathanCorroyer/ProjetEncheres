@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Retrait;
@@ -47,11 +45,13 @@ public class ServletDetailsEnchere extends HttpServlet {
 	
 		String debutEnchereString = null;
 		String momentPresentString = LocalDateTime.now().toString();
+		
 		if(request.getParameter("dateDebutEnchere") != null) {
 			debutEnchereString = request.getParameter("dateDebutEnchere");			
 		}else {
 			debutEnchereString = (String) request.getAttribute("dateDebutEnchere");
 		}
+		
 		LocalDateTime momentPresent = LocalDateTime.parse( momentPresentString );
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy, HH 'h' mm", Locale.FRENCH);
 		DateTimeFormatter formatterTest = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");

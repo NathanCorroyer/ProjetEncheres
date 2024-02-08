@@ -33,11 +33,14 @@
  	<script>fadeOut("erreurMail")</script>
  </c:if>
  <section class="login-form">
+ 	
       <form class="login" action="<%=request.getContextPath()%>/login" method="POST"> 
       	<c:if test="${lienEnchere ne null and nomVendeur ne null}">
       		<input type ="hidden" name = "lienEnchere" value="${lienEnchere}">
       		<input type ="hidden" name = "nomVendeur" value="${nomVendeur}">
+      		<input type ="hidden" name = "dateDebutEnchere" value="${dateDebutEnchere}">
       	</c:if>
+      	
         <div class="input-field">
           <label for="email">Email : </label>
           <c:choose>
@@ -58,7 +61,7 @@
         <c:if test="${not empty requestScope.erreur}">
  			<p>${requestScope.erreur}</p>
  		</c:if>
-    
+    	<input type ="hidden" name = "dateDebutEnchere" value="${dateDebutEnchere}">
         <div>
           <button class="btn-login" type="submit">Connexion</button>
         </div>

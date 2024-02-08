@@ -29,15 +29,14 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setAttribute("dateOk", request.getAttribute("dateOk"));
-			request.setAttribute("dateDebutEnchere", request.getAttribute("debutEnchere"));
-			request.setAttribute("listeEncheresDESC", request.getAttribute("listeEnchereSurUnArticle"));
-			request.setAttribute("userConnected", request.getAttribute("userConnected"));
-			request.setAttribute("prixInitialEnchere", request.getAttribute("enchereProposee"));
-			request.setAttribute("Vendeur",request.getAttribute("vendeur"));				
-			request.setAttribute("article", request.getAttribute("article"));
-			request.setAttribute("retrait", request.getAttribute("retrait"));
+			
+			String date = request.getParameter("dateDebutEnchere");
+			request.setAttribute("dateDebutEnchere", date );
+			System.out.println("date login 1 " +date);
+			
 			String cookieValue = getCookieValue(request, "saveEmail");
+			
+			System.out.println();
 			if(cookieValue != null) {
 				request.setAttribute("cookieValue", cookieValue);
 			}
@@ -54,6 +53,7 @@ public class Login extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
+
 		
 
 	/**
@@ -61,14 +61,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cookieValue = getCookieValue(request, "saveEmail");
-		request.setAttribute("dateDebutEnchere", request.getAttribute("debutEnchere"));
-		request.setAttribute("dateOk", request.getAttribute("dateOk"));
-		request.setAttribute("listeEncheresDESC", request.getAttribute("listeEnchereSurUnArticle"));
-		request.setAttribute("userConnected", request.getAttribute("userConnected"));
-		request.setAttribute("prixInitialEnchere", request.getAttribute("enchereProposee"));
-		request.setAttribute("Vendeur",request.getAttribute("vendeur"));				
-		request.setAttribute("article", request.getAttribute("article"));
-		request.setAttribute("retrait", request.getAttribute("retrait"));
+		
+		
 
 		if(request.getParameter("saveMail") != null && request.getParameter("saveMail").equals("saveMail") ) {
 			Cookie cookie = new Cookie("saveEmail", request.getParameter("email"));
