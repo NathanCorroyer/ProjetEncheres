@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<%@ include file = "../navbar.jsp" %>
+	<%@ include file = "navbar.jsp" %>
 	<h2>Modification de votre mot de passe.</h2>
  
 	<form id="formulaireModif" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
