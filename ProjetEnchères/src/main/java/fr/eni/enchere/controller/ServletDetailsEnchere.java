@@ -90,7 +90,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 		request.setAttribute("listeEncheresDESC", listeEnchereSurUnArticle);
 		request.setAttribute("userConnected", userConnected );
 		request.setAttribute("prixInitialEnchere", enchereProposee);
-		request.setAttribute("Vendeur",vendeur);				
+		request.setAttribute("Vendeur" ,vendeur);				
 		request.setAttribute("article", article);
 		request.setAttribute("retrait", retrait);
 		request.getRequestDispatcher("/WEB-INF/jsp/details_enchere.jsp").forward(request, response);
