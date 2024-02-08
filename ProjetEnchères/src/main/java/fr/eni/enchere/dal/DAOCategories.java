@@ -9,8 +9,8 @@ import fr.eni.enchere.bo.Categorie;
 public interface DAOCategories {
 	List<Categorie> selectAll();
 	 Categorie selectByNoCategorie(int no_categorie);
-    void ajouter(Categorie c) throws SQLException;
-    void supprimer(Categorie c);
+    boolean ajouter(String libelle) throws SQLException;
+    boolean supprimer(Integer c) throws SQLException;
     void update(Categorie c);
     
 }
