@@ -103,6 +103,29 @@ a{
 	color : white;
 }
 .checkboxBtn{
-	display : flex;
+	width:100%;
+	display: flex;
 	flex-direction : row;
+	flex-wrap: nowrap;
+	
+	justify-content : left;
+	
+	align-items:center; 
+}
+
+#saveMail{
+	width : auto;
+	height : 100%;
+	margin: 2%;
+	position : relative;
+	margin-top : 4%;
+	
+	
+	
+}
+
+#labelSaveMail{
+	width : fit-content;
+	margin-right:2%;
+	line-height : 2em;
 }

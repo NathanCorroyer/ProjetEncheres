@@ -7,6 +7,7 @@
 <title>Votre mail?</title>
 </head>
 <body>
+	<%@ include file = "navbar.jsp" %>
 	<h2>Réinitialisation de mot de passe</h2>
 		<form id="formulaireModif" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
 		<label for="newPassword">Votre mail : </label>
