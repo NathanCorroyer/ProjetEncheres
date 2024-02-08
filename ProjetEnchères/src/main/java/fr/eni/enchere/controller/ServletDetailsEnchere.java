@@ -45,9 +45,13 @@ public class ServletDetailsEnchere extends HttpServlet {
 		List<Enchere> listeEnchereSurUnArticle = new ArrayList<>();
 		List<Enchere> listeEnchereSurUnArticleDESC = new ArrayList<>();
 	
-		
+		String debutEnchereString = null;
 		String momentPresentString = LocalDateTime.now().toString();
-		String debutEnchereString = request.getParameter("dateDebutEnchere");
+		if(request.getParameter("dateDebutEnchere") != null) {
+			debutEnchereString = request.getParameter("dateDebutEnchere");			
+		}else {
+			debutEnchereString = (String) request.getAttribute("dateDebutEnchere");
+		}
 		LocalDateTime momentPresent = LocalDateTime.parse( momentPresentString );
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy, HH 'h' mm", Locale.FRENCH);
 		DateTimeFormatter formatterTest = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -85,7 +89,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 		 listeEnchereSurUnArticle = em.selectByNoArticle(no_article);
 		 Collections.reverse(listeEnchereSurUnArticle);
 		
-		
+		request.setAttribute("dateDebutEnchere", debutEnchere);
 		request.setAttribute("dateOk", dateOk);
 		request.setAttribute("listeEncheresDESC", listeEnchereSurUnArticle);
 		request.setAttribute("userConnected", userConnected );

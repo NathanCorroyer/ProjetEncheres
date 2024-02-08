@@ -163,7 +163,7 @@
 		                	  </c:when>
 		                 	 <c:otherwise>
 
-		                  		<a href="${pageContext.request.contextPath}/login?lienEnchere=${debut_lien}${fin_lien }&connexionNecessaire=${connexionNecessaire}">
+		                  		<a href="${pageContext.request.contextPath}/login?lienEnchere=${debut_lien}${fin_lien }&connexionNecessaire=${connexionNecessaire}&dateDebutEnchere=${a.getDate_debut_encheres()}">
 		                  		
 		                	 </c:otherwise>
 		                  </c:choose>
