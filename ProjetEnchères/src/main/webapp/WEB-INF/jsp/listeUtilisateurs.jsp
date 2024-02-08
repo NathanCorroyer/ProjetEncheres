@@ -44,6 +44,7 @@
 					<th>Code Postal</th>
 					<th>Ville</th>
 					<th>Compte activé?</th>
+					<th colspan="2"> Actions </th>
 				</tr>
 				<c:forEach items="${listeUtilisateurs}" var="u">
 					<c:if test="${u.administrateur eq false}">
