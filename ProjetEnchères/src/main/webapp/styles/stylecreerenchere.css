@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color:rgb(18,18,18,255);
     margin: 0;
     padding: 0;
 }
@@ -9,6 +9,7 @@ body {
 
 h2 {
     text-align: center;
+    color: white 
 }
 
 .main {
@@ -18,16 +19,17 @@ h2 {
 .enchere-form {
     max-width: 400px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color:rgb(40,36,36);
     padding: 40px;
+    color: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) ;
+   box-shadow: 0 0 10px rgb(192, 192, 192) ;
 }
 
 label{
     display: block;
     margin: 10px 0 5px;
-    color: #333;
+    color: white;
 }
 
 
@@ -39,6 +41,7 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
+    background-color: grey;
 }
 
 input {
@@ -48,11 +51,12 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
+    background-color: grey;
 }
 
 button {
-    background-color: #4caf50;
-    color: #fff;
+      background-color: #fd4040;
+    color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -60,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: red;
 }
 
 button, input[type="button"] {
@@ -71,8 +75,10 @@ button, input[type="button"] {
 }
 
 button[type="button"] {
-	background-color: silver;
+	border: 1px solid #fd4040;
+    background-color: rgb(40,36,36);
 	margin-top: 10px;
+	color: #fd4040;
 }
 
 button[type="submit"] {
@@ -85,3 +91,5 @@ button[type="submit"] {
     color: red;
     margin-top: 10px;
 }
+
+
