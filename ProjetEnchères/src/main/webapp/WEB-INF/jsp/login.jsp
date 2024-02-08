@@ -51,6 +51,10 @@
             Créer un compte
           </button></a>
         </div>
+        
+        <label for="option1">
+        	<input type="checkbox" id="saveMail" name="saveMail" value="saveMail"> Se souvenir de moi?
+    	</label>
       </form>
     </section>
 </section>

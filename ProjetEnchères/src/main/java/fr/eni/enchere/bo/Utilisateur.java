@@ -52,7 +52,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
-		this.password = MD5.getMd5(password);
+		this.password = password;
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -70,7 +70,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
-		this.password = MD5.getMd5(password);
+		this.password = password;
 
 	}
 	public Integer getNoUtilisateur() {
