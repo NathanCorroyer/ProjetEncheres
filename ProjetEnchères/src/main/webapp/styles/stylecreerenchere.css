@@ -92,4 +92,6 @@ button[type="submit"] {
     margin-top: 10px;
 }
 
-
+ #description-characters-count {
+	 color:  #fd4040;
+	 }
