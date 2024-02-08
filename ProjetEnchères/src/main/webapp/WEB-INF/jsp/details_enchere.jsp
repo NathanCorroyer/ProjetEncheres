@@ -125,8 +125,9 @@ button[type="submit"] {
                 <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
 
 	            </div>
-                <c:if test="${userConnected.actif eq false}">
+                <c:if test="${userConnected.actif eq true && Vendeur.getPseudo() ne userConnected.getPseudo()}">
 	                <hr>
+	                <br>
 	                <label for="prix_initial">Ma proposition :</label>
 	                <br>           
 	        		<input type="number" name="enchereProposee" id="enchere" required min="${prixInitialEnchere}" value="${prixInitialEnchere}"> 
