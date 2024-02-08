@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Modification de votre mot de passe</title>
+ <link rel="stylesheet" href="styles/styleregister.css">
 </head>
 
 <body>
-	<%@ include file = "navbar.jsp" %>
+	<%@ include file = "navbar.jsp" %>*
+	<section class="main">
 	<script>
     document.getElementById("formulaireModif").addEventListener("submit", function(event) {
         var nouveauMotDePasse = document.getElementById("motDePasse").value;
@@ -22,7 +24,7 @@
 </script>
 	<h2>Modification de votre mot de passe.</h2>
  
-	<form id="formulaireModif" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
+	<form class="inscription-form" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
 		<input type="hidden" name="mail" value="${mail}">
 		<label for="newPassword">Nouveau mot de passe : </label>
 		<input type = "password" name="newPassword" id="newPassword">
@@ -31,6 +33,6 @@
 		<button type="submit" >Valider</button>
 	</form>
 		
-
+	</section>
 </body>
 </html>
