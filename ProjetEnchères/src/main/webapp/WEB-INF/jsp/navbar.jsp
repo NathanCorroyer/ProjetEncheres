@@ -13,7 +13,7 @@
 	      <div class="navbar-links">
 
 	          <ul>
-	          <li><a href="#"><i class="fa-solid fa-store"></i> Enchères </a></li>
+	          <li><a href="<%=request.getContextPath()%>/index.jsp"><i class="fa-solid fa-store"></i> Enchères </a></li>
 	          <li><a href="<%=request.getContextPath()%>/creer_enchere"><i class="fa-solid fa-euro-sign"></i> Vendre</a></li>
 	          <li><a href="<%=request.getContextPath()%>/mon_profil"><i class="fa-solid fa-user"></i> Mon Profil</a></li>
 	          <li><a href="<%=request.getContextPath()%>/servletdeconnexion"><i class="fa-solid fa-right-from-bracket"></i> Deconnexion</a></li>

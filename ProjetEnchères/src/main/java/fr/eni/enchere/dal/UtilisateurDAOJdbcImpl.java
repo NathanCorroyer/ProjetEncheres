@@ -29,6 +29,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_NUMERO = "SELECT * FROM Utilisateurs WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_MAIL = "SELECT * FROM Utilisateurs WHERE email = ?";
 
+	private static final String SQL_DISABLE_BY_MAIL = "UPDATE UTILISATEURS SET actif = 0 WHERE email = ?";
+
+	private static final String SQL_ENABLE_BY_MAIL = "UPDATE UTILISATEURS SET actif = 1 WHERE email = ?";
+
 	
 	
 	
@@ -108,7 +112,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				u.setCode_postal(rs.getString("code_postal"));
 				u.setVille(rs.getString("ville"));
 				u.setPassword(rs.getString("mot_de_passe"));
-				 
+				u.setActif(rs.getBoolean("actif")); 
 				listeUtilisateurs.add(u);
 			}
 			
@@ -241,12 +245,50 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			utilisateur.setCredit(rs.getInt("credit"));
 			utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			utilisateur.setTelephone(rs.getString("telephone"));
+			utilisateur.setActif(rs.getBoolean("actif"));
 
 	        return utilisateur;
 	    }
+	 
+	 @Override
+	 public boolean disableByMail(String email) {
+		boolean disabled = false;
+		Integer rs = null;
+		  try (Connection connection = ConnectionProvider.getConnection();
+		       PreparedStatement preparedStatement = connection.prepareStatement(SQL_DISABLE_BY_MAIL)) {
+			  	preparedStatement.setString(1, email);
+			  	rs = preparedStatement.executeUpdate();
+			  	if(rs != null) {
+			  		disabled = true;
+			  	}
+		  } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return disabled;
+	}
 	
-		 
-	 }
+	 @Override
+	 public boolean enableByMail(String email) {
+		boolean enabled = false;
+		Integer rs = null;
+		  try (Connection connection = ConnectionProvider.getConnection();
+		       PreparedStatement preparedStatement = connection.prepareStatement(SQL_ENABLE_BY_MAIL)) {
+			  	preparedStatement.setString(1, email);
+			  	preparedStatement.executeUpdate();
+			  	enabled = true;
+		  } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return enabled;
+	}	 
+	 
+
+
+}
 	
 
 

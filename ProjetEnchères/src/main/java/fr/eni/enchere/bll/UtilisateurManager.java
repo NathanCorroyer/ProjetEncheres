@@ -101,7 +101,13 @@ public class UtilisateurManager {
     }
 	
 	
+	public boolean disableByMail(String email) {
+		return utilisateurDAO.disableByMail(email);
+	}
 	
+	public boolean enableByMail(String email) {
+		return utilisateurDAO.enableByMail(email);
+	}
 	public void validerUser( Utilisateur u ) throws BLLException {
 		boolean ok = true ;
 		StringBuffer sb = new StringBuffer();
