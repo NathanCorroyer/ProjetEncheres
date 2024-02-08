@@ -58,8 +58,8 @@ public class ServletCreerEnchere extends HttpServlet {
 
 
 
-		
-			String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			String directoryPath = "C:\\ENI\\9 - Projet en groupe\\TP Groupe\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
+			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\Users\\Nathan\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\Users\\Sushiett\\git\\ProjetEncheres\\ProjetEnchères\\src\\main\\webapp\\images\\imagesArticles\\";
 			//String directoryPath = "C:\\\\Users\\\\mlecam2023\\\\git\\\\ProjetEncheres\\\\ProjetEnchères\\\\src\\\\main\\\\webapp\\\\images\\\\imagesArticles\\\\\\";
@@ -70,7 +70,7 @@ public class ServletCreerEnchere extends HttpServlet {
 			FileOutputStream os = new FileOutputStream(directoryAbsolute); // OutputStream sert à écrire les infos
 			
 			int bytesLus = -1 ;   //Déclare une variable pour stocker le nombre d'octets lus à chaque itération
-			byte[] buffer = new byte[8192]; // Déclare un tampon de 4096 octets pour stocker les données du flux
+			byte[] buffer = new byte[12288]; // Déclare un tampon de 4096 octets pour stocker les données du flux
 			while (( bytesLus = is.read( buffer )) != -1 ) { //lit les données du flux d'entrée, et les écrit dans le flux de sortie
 				os.write( buffer, 0 , bytesLus );
 			}

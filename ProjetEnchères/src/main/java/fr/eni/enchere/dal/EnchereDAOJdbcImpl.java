@@ -22,6 +22,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String SQL_SELECT_BY_NO_ENCHERE = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_enchere = ?";
 	private static final String SQL_SELECT_BY_NO_ARTICLE = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_article = ?";
 	private static final String SQL_SELECT_BY_NO_UTILISATEUR = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_utilisateur = ?";
+	private static final String SQL_SELECT_BY_NO_ARTICLE_DESC = "SELECT no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur FROM ENCHERES WHERE no_article = ? ORDER BY montant_enchere DESC";
 	@Override
 	public Integer ajouter(Enchere e) throws SQLException {
 		Integer key = null;
@@ -94,6 +95,25 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		return listeEncheres;
 	}
 
+	public List<Enchere> selectByNoArticleTriDecroissant( int no_article ){
+		List<Enchere> listeEncheres = new ArrayList<>();
+		try ( Connection con = ConnectionProvider.getConnection() ; PreparedStatement pstmt = con.prepareStatement(SQL_SELECT_BY_NO_ARTICLE_DESC)){
+			pstmt.setInt(1, no_article);
+			ResultSet rs = pstmt.executeQuery();
+			while ( rs.next()) {
+				Enchere e; 
+				e = enchereBuilder(rs);
+				listeEncheres.add(e);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 
 	@Override
 	public List<Enchere> SelectByNoUtilisateur(int no_utilisateur) {
