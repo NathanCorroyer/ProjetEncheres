@@ -24,7 +24,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private static final String SQL_DELETE_ALL = "DELETE from Utilisateurs" ;
 	
-	private static final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
+	private static final String SQL_LOGIN= "SELECT no_Utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,actif FROM UTILISATEURS WHERE email = ? and mot_de_passe = ?";
 
 	private static final String SELECT_BY_PSEUDO = "SELECT * FROM Utilisateurs WHERE pseudo = ?";
 	private static final String SELECT_BY_NUMERO = "SELECT * FROM Utilisateurs WHERE no_utilisateur = ?";
@@ -33,6 +33,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_DISABLE_BY_MAIL = "UPDATE UTILISATEURS SET actif = 0 WHERE email = ?";
 
 	private static final String SQL_ENABLE_BY_MAIL = "UPDATE UTILISATEURS SET actif = 1 WHERE email = ?";
+
+	private static final String SQL_UPDATE_PASSWORD = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE no_utilisateur =?";
 
 	
 	
@@ -92,8 +94,18 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 	}
-
 	
+	@Override
+	public void updatePassword(String newPassword, int no_utilisateur) {
+		try(Connection con = ConnectionProvider.getConnection();PreparedStatement pstmt = con.prepareStatement(SQL_UPDATE_PASSWORD)){
+			pstmt.setString(1,newPassword);
+			pstmt.setInt(2,no_utilisateur);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public List<Utilisateur> findAll(){
 		
 		List<Utilisateur> listeUtilisateurs = new ArrayList();
@@ -152,6 +164,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					utilisateur.setTelephone(rs.getString("telephone"));
+					utilisateur.setActif(rs.getBoolean("actif"));
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

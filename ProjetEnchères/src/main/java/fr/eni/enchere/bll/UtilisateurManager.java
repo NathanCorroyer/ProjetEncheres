@@ -41,6 +41,9 @@ public class UtilisateurManager {
 		}
 		
 	}
+	public void updatePassword(String mdp, int no_utilisateur) {
+		utilisateurDAO.updatePassword(mdp, no_utilisateur);
+	}
 	
 	
 	public void register (Utilisateur u) throws SQLException , BLLException {
