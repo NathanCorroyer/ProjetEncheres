@@ -27,9 +27,6 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			System.out.println((String) request.getParameter("connexionNecessaire"));
-			System.out.println((String) request.getParameter("lienEnchere"));
-			System.out.println((String) request.getParameter("nomVendeur"));
 			
 			if(request.getParameter("connexionNecessaire") != null) {
 				request.setAttribute("connexionNecessaire", (String) request.getParameter("connexionNecessaire"));
