@@ -33,9 +33,13 @@
     
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
+<div id="banner">
+<h2>Le site n°1 des ventes aux enchères en France</h2>
+<img src="<%=request.getContextPath()%>/images/banner.png">
+</div>  
 <section class="main">
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
-    
+  
     <!-- Tests d'existence des messages, appel d'une fonction js qui les fait disparaitre progressivement en 3sec -->
     <c:if test="${not empty requestScope.succesSuppression}">
     	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>

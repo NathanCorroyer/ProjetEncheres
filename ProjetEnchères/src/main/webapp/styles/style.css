@@ -227,5 +227,22 @@ input#radioAll, #radioAVenir, #radioEnCours, #radioFinies {
 	justify-content: flex-end
 	
 }
+#banner {
+  position: relative;
+    text-align: center;
+}
 
+#banner img{
+	width:100%;
+	height:40%;
 
+}
+
+#banner h2{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    font-size: 2rem; 
+}
