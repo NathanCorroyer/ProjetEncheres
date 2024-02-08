@@ -36,7 +36,7 @@ button {
 .informations p {
     margin: 10px 0;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; 
     color: white;
 }
 

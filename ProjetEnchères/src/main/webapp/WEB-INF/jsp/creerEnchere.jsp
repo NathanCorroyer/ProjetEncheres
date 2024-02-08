@@ -30,7 +30,7 @@
 		         	</c:forEach>
 	      </select>
         
-        <label for="file">Photo de l'article :</label>
+        <label for="file">Photo de l'article :</label> 
         <input type="file" name="photoArticle" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
