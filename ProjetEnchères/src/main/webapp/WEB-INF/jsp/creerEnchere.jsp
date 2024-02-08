@@ -20,7 +20,8 @@
         <input type="text" name="nom_article" required>
 
         <label for="description">Description :</label>
-        <textarea name="description" required></textarea>
+        <textarea name="description" id="description" maxlength="100" required></textarea>
+        <div id="description-characters-count">Nombre de caractères restants : 100</div>
 
         <label for="no_categorie">Catégorie :</label>
         <select class="category-dropdown search-form" name="categorie">
@@ -29,7 +30,7 @@
 		         	</c:forEach>
 	      </select>
         
-        <label for="file">Photo de l'article :</label>
+        <label for="file">Photo de l'article :</label> 
         <input type="file" name="photoArticle" accept="image/*">
 
         <label for="prix_initial">Mise à prix :</label>
@@ -61,18 +62,28 @@
 	        <label for="ville">Ville :</label>
 	        <input type="text" id="ville" name="ville"  value="${user.ville}" required><br>
         </div>
-<!--
-        <label for="modalitesRetrait">Modalités de retrait :</label>
-        <textarea name="modalitesRetrait"></textarea>
-		 Modalité de retrait à modifier --> 
-		 
-        <button type="submit">Enregister</button>
+
+        <button type="submit">Enregistrer</button>
         <button type="button" onclick="annuler()">Annuler</button>
     </form>
     <script>
         function annuler() {
             window.location.href = '<%=request.getContextPath()%>/index.jsp';
         }
+
+        const descriptionInput = document.getElementById('description');
+        const descriptionCharactersCount = document.getElementById('description-characters-count');
+        const maxDescriptionLength = 100; // Limite maximale de caractères
+
+        descriptionInput.addEventListener('input', function() {
+            let description = descriptionInput.value;
+            if (description.length > maxDescriptionLength) {
+                description = description.slice(0, maxDescriptionLength);
+                descriptionInput.value = description;
+            }
+            const remainingCharacters = maxDescriptionLength - description.length;
+            descriptionCharactersCount.textContent = 'Nombre de caractères restants : ' + remainingCharacters;
+        });
     </script>
 </section>
 </body>

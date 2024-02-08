@@ -88,7 +88,7 @@ input[type="submit"] {
     background-color: #fd4040;
     color: #fff;
     cursor: pointer;
-}
+} 
 
 input[type="submit"]:hover {
     background-color: #fd4040;
@@ -100,6 +100,7 @@ input[type="submit"]:hover {
     border-radius: 5px;
     background-color: #fd4040;
     color: #fff;
+     
 
 }
 
@@ -111,6 +112,7 @@ input[type="submit"]:hover {
     padding: 10px;
     display: flex;
     background-color: rgb(40,36,36);
+    box-shadow: 10 px 5px 5px grey;
 }
 
 .annonces img {

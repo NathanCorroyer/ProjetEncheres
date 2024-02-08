@@ -14,7 +14,7 @@ h2 {
 	
  max-width: 400px;
     margin: 0 auto;
-    background-color: rgb(40,36,36);
+    background-color: rgb(40,36,36); 
     padding: 60px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgb(192, 192, 192) ;
@@ -36,3 +36,12 @@ h2 {
             display: inline-block; 
   }
   
+input#enchere {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fd4040;
+    color: #fff;
+}
+
+
