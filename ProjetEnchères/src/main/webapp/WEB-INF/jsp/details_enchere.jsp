@@ -123,15 +123,31 @@ button[type="submit"] {
                 <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
                 <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
                 <hr>
-                
+                <c:if test="${Vendeur.getPseudo() ne userConnected.getPseudo()}">
                 <label for="prix_initial">Ma proposition :</label>
                 </div>
                 <br>           
         		<input type="number" name="enchereProposee" id="enchere" required min="${prixInitialEnchere}" value="${prixInitialEnchere}"> 
         		<br>        
                 <button class="submit">Enchérir</button>
-                
+                </c:if>
                 <br>
+                
+                <c:if test="${Vendeur.getPseudo() eq userConnected.getPseudo()}">
+                <p>Liste des enchéreurs actuels de l'objet :</p>
+                <ol>
+                	<c:forEach var ="e" items="${listeEncheresDESC}">
+                		<li>Pseudo : ${e.getUtilisateur().getPseudo()}
+                		<br>
+                		Enchère proposée : ${e.getMontant_enchere()}
+                		</li>
+                		<br>
+                	</c:forEach>
+                </ol>
+                </c:if>
+                
+                
+                
                 <button type="button" onclick="annuler()">Retour à l'accueil</button>
                 
             </div>

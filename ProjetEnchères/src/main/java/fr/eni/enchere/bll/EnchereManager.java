@@ -43,5 +43,9 @@ public class EnchereManager {
 	
 	public Enchere selectLatestEnchereFromArticle(int no_article) {
 		return enchereDAO.SelectLatestEnchereFromArticle(no_article);
+		}
+	
+	public List<Enchere> selectByNoArticleTriDecroissant( int no_article ){
+		return enchereDAO.selectByNoArticleTriDecroissant(no_article);
 	}
 }

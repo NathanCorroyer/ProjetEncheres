@@ -11,4 +11,5 @@ public interface EnchereDAO {
 	List<Enchere> SelectByNoArticle(int no_article);
 	List<Enchere> SelectByNoUtilisateur(int no_utilisateur);
 	Enchere SelectLatestEnchereFromArticle(int no_article); 
+	List<Enchere> selectByNoArticleTriDecroissant( int no_article );
 }
