@@ -9,8 +9,8 @@
 </head>
 <body>
 	<%@ include file = "navbar.jsp" %>
+
 	<section class="main">
-	
 	<h2>Réinitialisation de mot de passe</h2>
 		<form class="inscription-form" action="${pageContext.request.contextPath}/modifierMotDePasse" method = "POST">
 		<label for="newPassword">Votre mail : </label>

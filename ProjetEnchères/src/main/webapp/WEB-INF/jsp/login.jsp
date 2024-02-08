@@ -70,7 +70,7 @@
         </div>
         
         <div class="checkboxBtn">
-	        <label for="saveMail">Se souvenir de moi?</label>
+	        <label for="saveMail" id="labelSaveMail">Se souvenir de moi?</label>
 	        <input type="checkbox" id="saveMail" name="saveMail" value="saveMail" ${cookieValue ne null ? 'checked' : ''}>
         </div> 
     	<br/>
