@@ -36,11 +36,11 @@ input {
     width: 70%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid grey;
     border-radius: 4px;
     margin-left: 13%;
-    background-color: grey;
-    color:white;
+    background-color:white;
+
     
    
 }
