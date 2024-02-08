@@ -1,7 +1,8 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgb(18,18,18,255);
+    color: white;
     margin: 0;
     padding: 0;
 }
@@ -18,33 +19,45 @@ h2, h3 {
 .tableau {
 	max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: rgb(40,36,36);
     padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) ;
+    box-shadow: 0 0 10px rgb(192, 192, 192) ;
+    color: white; 
 }
 
 #img {
 	display: flex;
     justify-content: center;
+    padding-bottom: 2%;
 }
 table {
 	display: flex;
+	text-align: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: rgb(40,36,36);
     padding: 10px;
-   	border: none;
-   	    
+   	border-radius: 8px;
+   	border-color: #fd4040;
+}
+
+.retrait {
+	display: flex;
+	justify-content: center;
+}
+#retrait {
+	width: 40%;
+	
 }
   th, td {
-    border: 1px solid #272727; /* Couleur de la bordure verte */
+    border: none; /* Couleur de la bordure verte */
     border-radius: 8px; 
     padding: 10px; /* Ajoutez un peu de rembourrage pour l'espace intérieur */
   }
 
   th {
-    background-color: #272727; /* Couleur de fond verte pour les en-têtes */
-    color: white; /* Couleur du texte blanc pour les en-têtes */
+    background-color: rgb(40,36,36); /* Couleur de fond verte pour les en-têtes */
+    color: #fd4040; /* Couleur du texte blanc pour les en-têtes */
   }
 
 #accueil {
@@ -53,7 +66,7 @@ table {
 	justify-content: center;
 }
 button {
-    background-color: #4caf50;
+    background-color: #fd4040;
     color: #fff;
     font-weight: bold;
     padding: 10px 15px;
@@ -63,5 +76,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: rgb(128, 0, 0);
 }

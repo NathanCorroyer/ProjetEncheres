@@ -95,3 +95,13 @@ button[type="submit"] {
  #description-characters-count {
 	 color:  #fd4040;
 	 }
+
+select {
+	width: 105%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    background-color: grey;
+}	 
