@@ -38,7 +38,7 @@ public class ServletAffichageListeUtilisateurs extends HttpServlet {
 					e.printStackTrace();
 				}
 		}else {
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect(request.getContextPath()+"/index.jsp");
 		}
 	}
 
