@@ -33,9 +33,13 @@
     
     <!--  Navbar -->
     <%@ include file = "WEB-INF/jsp/navbar.jsp" %>
+<div id="banner">
+<h2>Le site n°1 des ventes aux enchères en France</h2>
+<img src="<%=request.getContextPath()%>/images/banner.png">
+</div>  
 <section class="main">
     <a href="${pageContext.request.contextPath}/ServletAffichageListeUtilisateurs">Liste Utilisateurs</a>
-    
+  
     <!-- Tests d'existence des messages, appel d'une fonction js qui les fait disparaitre progressivement en 3sec -->
     <c:if test="${not empty requestScope.succesSuppression}">
     	<% request.setAttribute("succesSuppression", "Votre compte a bien été supprimé"); %>
@@ -59,6 +63,10 @@
     <c:if test="${not empty requestScope.echec_enchere}">
     <p style="color : red">${requestScope.echec_enchere}</p>
     <script>fadeOut("echec_enchere")</script>
+    </c:if>
+    <c:if test="${not empty requestScope.echec_enchere_meme_personne}">
+    	<p style="color : red">${requestScope.echec_enchere_meme_personne}</p>
+    	<script>fadeOut("echec_enchere_meme_personne")</script>
     </c:if>
     <h2>Liste des enchères</h2>
     <!-- Barre de recherche déplacée en dessous de "Filtres :" -->
