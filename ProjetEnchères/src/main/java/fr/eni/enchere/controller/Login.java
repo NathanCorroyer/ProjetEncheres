@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.Cookie;
+
 import fr.eni.enchere.bll.BLLException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.MD5;
@@ -27,7 +29,12 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+			String cookieValue = getCookieValue(request, "saveEmail");
+			System.out.println(cookieValue);
+			if(cookieValue != null) {
+				request.setAttribute("cookieValue", cookieValue);
+			}
+		
 			if(request.getParameter("connexionNecessaire") != null) {
 				request.setAttribute("connexionNecessaire", (String) request.getParameter("connexionNecessaire"));
 			}
@@ -46,6 +53,17 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cookieValue = getCookieValue(request, "saveEmail");
+
+		if(request.getParameter("saveMail") != null && request.getParameter("saveMail").equals("saveMail") ) {
+			Cookie cookie = new Cookie("saveEmail", request.getParameter("email"));
+			cookie.setMaxAge(24*60*60);
+			response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("saveEmail","");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		String email2 = (String) request.getAttribute("email");
 		String mdp2 = (String) request.getAttribute("motDePasse");
 		String succes_creation = (String) request.getAttribute("succes_creation");
@@ -97,6 +115,7 @@ public class Login extends HttpServlet {
 						request.setAttribute("lienEnchere", request.getAttribute("lienEnchere"));
 						request.setAttribute("nomVendeur", request.getAttribute("nomVendeur"));
 					}
+					
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 					request.setAttribute("erreur", "Email ou mot de passe non valide.");
 					rd.forward(request, response);
@@ -108,5 +127,19 @@ public class Login extends HttpServlet {
 			
 		}
 	}
+	
+	
+	public static String getCookieValue(HttpServletRequest request, String cookieName) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+       
+    }
 }
 

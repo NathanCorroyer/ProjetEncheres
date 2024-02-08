@@ -28,4 +28,6 @@ public interface UtilisateurDAO {
 	boolean disableByMail(String email);
 
 	boolean enableByMail(String email);
+
+	void updatePassword(String newPassword, int no_utilisateur);
 }

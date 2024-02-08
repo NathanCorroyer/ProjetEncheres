@@ -20,7 +20,10 @@
 <h2>Connexion</h2>
 </div>
  <c:if test="${connexionNecessaire ne null}">
- 	<p style="text-color:white;">${connexionNecessaire}</p>
+ 	<p style="text-color:white;" class="messageErreur">${connexionNecessaire}</p>
+ </c:if>
+ <c:if test="${succesModifMdp ne null}">
+ 	<p style="text-color:white;" class="messageSucces">${succesModifMdp}</p>
  </c:if>
  <section class="login-form">
       <form class="login" action="<%=request.getContextPath()%>/login" method="POST"> 
@@ -30,7 +33,14 @@
       	</c:if>
         <div class="input-field">
           <label for="email">Email : </label>
-          <input class="input" name="email" id="email" placeholder="email" required="required">
+          <c:choose>
+          	<c:when test="${cookieValue ne null}">
+	          <input class="input" name="email" id="email"  required="required" value="${cookieValue}">
+          	</c:when>
+          	<c:otherwise>
+          		 <input class="input" name="email" id="email"  required="required" placeholder="exemple@exemple.com">
+          	</c:otherwise>
+          </c:choose>
         </div>
 
         <div class="input-field">
@@ -52,9 +62,12 @@
           </button></a>
         </div>
         
-        <label for="option1">
-        	<input type="checkbox" id="saveMail" name="saveMail" value="saveMail"> Se souvenir de moi?
-    	</label>
+        <div class="checkboxBtn">
+	        <label for="saveMail">Se souvenir de moi?</label>
+	        <input type="checkbox" id="saveMail" name="saveMail" value="saveMail" ${cookieValue ne null ? 'checked' : ''}>
+        </div> 
+    	<br/>
+    	<a href="/modifierMotDePasse">Mot de passe oublié?</a>
       </form>
     </section>
 </section>

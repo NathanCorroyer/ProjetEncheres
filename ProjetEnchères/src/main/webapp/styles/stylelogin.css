@@ -89,3 +89,20 @@ p {
 	text-align:center;
 	
 }
+
+.messageErreur{
+	color:red;
+}
+
+.messageSucces{
+	color:green;
+}
+
+a{
+	text-decoration: underline;
+	color : white;
+}
+.checkboxBtn{
+	display : flex;
+	flex-direction : row;
+}
