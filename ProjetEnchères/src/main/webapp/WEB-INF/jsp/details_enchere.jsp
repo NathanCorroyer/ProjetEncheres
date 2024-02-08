@@ -122,21 +122,22 @@ button[type="submit"] {
                 <p> Adresse : ${retrait.rue}, ${retrait.code_postal}, ${retrait.ville}  </p>
                 <p> Pseudo du vendeur : ${Vendeur.getPseudo()} </p>
                 <input type="hidden" name="pseudoVendeur" value="${Vendeur.getPseudo()}">
-                <hr>
                 
-                <label for="prix_initial">Ma proposition :</label>
-                </div>
-                <br>           
-        		<input type="number" name="enchereProposee" id="enchere" required min="${prixInitialEnchere}" value="${prixInitialEnchere}"> 
-        		<br>        
-                <button class="submit">Enchérir</button>
-                
+	            </div>
+                <c:if test="${userConnected.actif eq true}">
+	                <hr>
+	                <label for="prix_initial">Ma proposition :</label>
+	                <br>           
+	        		<input type="number" name="enchereProposee" id="enchere" required min="${prixInitialEnchere}" value="${prixInitialEnchere}"> 
+	        		<br>        
+	                <button class="submit">Enchérir</button>
+                </c:if>
                 <br>
                 <button type="button" onclick="annuler()">Retour à l'accueil</button>
                 
             </div>
             </form>
-        </c:if>
+ 	</c:if>
 			
        
         <c:if test="${empty article}">

@@ -79,7 +79,6 @@ public class Login extends HttpServlet {
 				ses= request.getSession();
 				if(user!=null) {
 					ses.setAttribute("userConnected", user);
-					System.out.println(request.getParameter("lienEnchere"));
 					if(request.getParameter("lienEnchere") != null && request.getParameter("nomVendeur") != null) {
 						request.setAttribute("lienEnchere", (String) request.getParameter("lienEnchere"));
 						request.setAttribute("nomVendeur", (String) request.getParameter("nomVendeur"));

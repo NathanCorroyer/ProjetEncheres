@@ -17,11 +17,13 @@
 	          	<li><a href="<%=request.getContextPath()%>/ServletAffichageListeUtilisateurs"><i class="fa-solid fa-user-group"></i></i> Utilisateurs </a></li>
 		        <li><a href="<%=request.getContextPath()%>/ServletAffichageListeCategories"><i class="fa-solid fa-list"></i></i> Catégories </a></li>
 	          </c:if>
-	          <li><a href="<%=request.getContextPath()%>/index.jsp"><i class="fa-solid fa-store"></i> Enchères </a></li>
-	          <li><a href="<%=request.getContextPath()%>/creer_enchere"><i class="fa-solid fa-euro-sign"></i> Vendre</a></li>
-	          <li><a href="<%=request.getContextPath()%>/mon_profil"><i class="fa-solid fa-user"></i> Mon Profil</a></li>
-	          <li><a href="<%=request.getContextPath()%>/servletdeconnexion"><i class="fa-solid fa-right-from-bracket"></i> Deconnexion</a></li>
-	              
+	          <c:if test="${userConnected.actif eq true}">
+		          <li><a href="<%=request.getContextPath()%>/index.jsp"><i class="fa-solid fa-store"></i> Enchères </a></li>
+		          <li><a href="<%=request.getContextPath()%>/creer_enchere"><i class="fa-solid fa-euro-sign"></i> Vendre</a></li>
+		      </c:if> 
+		      <li><a href="<%=request.getContextPath()%>/mon_profil"><i class="fa-solid fa-user"></i> Mon Profil</a></li>
+		      <li><a href="<%=request.getContextPath()%>/servletdeconnexion"><i class="fa-solid fa-right-from-bracket"></i> Deconnexion</a></li>
+		      
 	              <!--  TO DO PAGE ACCUEIL DECONNECTED -->
 	          </ul>
 	      </div>

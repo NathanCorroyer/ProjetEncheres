@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.enchere.bo.MD5;
 import fr.eni.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
@@ -48,7 +49,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(6 , utilisateur.getRue());
 			pstmt.setString(7 , utilisateur.getCode_postal());
 			pstmt.setString(8 , utilisateur.getVille());
-			pstmt.setString(9 , utilisateur.getPassword());
+			pstmt.setString(9 , MD5.getMd5(utilisateur.getPassword()));
 			
 			pstmt.executeUpdate();
 			
@@ -151,8 +152,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					utilisateur.setTelephone(rs.getString("telephone"));
-			 }else {
-				 System.out.println("Utilisateur non trouvé en base de données");
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
