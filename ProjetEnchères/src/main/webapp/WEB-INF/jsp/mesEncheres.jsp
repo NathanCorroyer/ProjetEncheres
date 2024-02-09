@@ -25,12 +25,12 @@
 <body>
 	<%@ include file = "navbar.jsp" %>
 		<div class="form-container" style=" width : 100%; display:flex; justify-content:center; align-items:center; margin-bottom : 30px;">
-			<form action="${pageContext.request.contextPath}/mes_encheres" method = "POST">
-				<div class="filtre-enchere">
+			<form action="${pageContext.request.contextPath}/mes_encheres" method = "POST" style=" display : flex; flex-direction : row; width:12%;">
+				<div class="filtre-enchere" >
 			      	<label for="radioVentes" >Ventes</label>
-			      	<input type="radio" name="tri" value="ventes" id="radioVentes" checked><br>
+			      	<input type="radio" name="tri" value="ventes" id="radioVentes" checked style="position : relative ;top:-20%; margin-right:10px;"><br>
 			      	<label for="radioAchats" >Achats</label>
-			      	<input type="radio" name="tri" value="achats" id="radioAchats"><br>
+			      	<input type="radio" name="tri" value="achats" id="radioAchats" style="position : relative ;top:-20%">><br>
 				</div>
 				<input type="submit" value="Filtrer">
 			</form>
