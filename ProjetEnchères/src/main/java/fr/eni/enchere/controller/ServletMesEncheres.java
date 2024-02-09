@@ -62,7 +62,7 @@ public class ServletMesEncheres extends HttpServlet {
 				}
 			}
 		}
-		
+		request.setAttribute("tri", tri);
 		request.setAttribute("listeArticles", listeArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mesEncheres.jsp");
 		rd.forward(request, response);

@@ -20,6 +20,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mes enchères</title>
+
 </head>
 <body>
 	<%@ include file = "navbar.jsp" %>
@@ -33,6 +34,15 @@
 			</div>
 			<input type="submit" value="Filtrer">
 		</form>
+		
+		<c:choose>
+			<c:when test="${tri eq 'achats' }">
+			<h2>Les enchères en cours sur lesquelles j'ai fait une offre</h2>
+			</c:when>
+			<c:otherwise>
+			<h2>Mes ventes en cours</h2>
+			</c:otherwise>
+		</c:choose>
 		<c:if test = "${listeArticles eq null}">
 			<%
 			String contextPath = request.getContextPath();

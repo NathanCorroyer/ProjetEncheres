@@ -18,7 +18,7 @@
 		        <li><a href="<%=request.getContextPath()%>/ServletAffichageListeCategories"><i class="fa-solid fa-list"></i></i> Catégories </a></li>
 	          </c:if>
 	          <c:if test="${userConnected.actif eq true}">
-		          <li><a href="<%=request.getContextPath()%>/mes_encheres"><i class="fa-solid fa-store"></i>Mes enchères </a></li>
+		          <li><a href="<%=request.getContextPath()%>/mes_encheres"><i class="fa-solid fa-store"></i>Mes enchères en cours</a></li>
 		          <li><a href="<%=request.getContextPath()%>/creer_enchere"><i class="fa-solid fa-euro-sign"></i> Vendre</a></li>
 		      </c:if> 
 		      <li><a href="<%=request.getContextPath()%>/mon_profil"><i class="fa-solid fa-user"></i> Mon Profil</a></li>
